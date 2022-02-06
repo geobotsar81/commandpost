@@ -1,0 +1,51 @@
+[
+  {
+    "name": "dashboard",
+    "path": "/dashboard",
+    "component": "/home/george/projects/commandpost/pages/dashboard.vue",
+    "chunkName": "pages/dashboard",
+    "_name": "_538e4f3e"
+  },
+  {
+    "name": "forgot-password",
+    "path": "/forgot-password",
+    "component": "/home/george/projects/commandpost/pages/forgot-password.vue",
+    "chunkName": "pages/forgot-password",
+    "_name": "_3f308392"
+  },
+  {
+    "name": "login",
+    "path": "/login",
+    "component": "/home/george/projects/commandpost/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_26904d36"
+  },
+  {
+    "name": "register",
+    "path": "/register",
+    "component": "/home/george/projects/commandpost/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_70da37e6"
+  },
+  {
+    "name": "verify-email",
+    "path": "/verify-email",
+    "component": "/home/george/projects/commandpost/pages/verify-email.vue",
+    "chunkName": "pages/verify-email",
+    "_name": "_74cd0a8b"
+  },
+  {
+    "name": "reset-password-token",
+    "path": "/reset-password/:token?",
+    "component": "/home/george/projects/commandpost/pages/reset-password/_token.vue",
+    "chunkName": "pages/reset-password/_token",
+    "_name": "_ad477286"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/george/projects/commandpost/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_5ce8aa1f"
+  }
+]

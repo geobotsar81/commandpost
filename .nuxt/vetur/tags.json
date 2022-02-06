@@ -1,0 +1,29 @@
+{
+  "AppButton": {
+    "description": "Auto imported from components/AppButton.vue"
+  },
+  "AppCheckbox": {
+    "description": "Auto imported from components/AppCheckbox.vue"
+  },
+  "AppInput": {
+    "description": "Auto imported from components/AppInput.vue"
+  },
+  "AppLabel": {
+    "description": "Auto imported from components/AppLabel.vue"
+  },
+  "AppLogo": {
+    "description": "Auto imported from components/AppLogo.vue"
+  },
+  "TheFooter": {
+    "description": "Auto imported from components/TheFooter.vue"
+  },
+  "TheHeader": {
+    "description": "Auto imported from components/TheHeader.vue"
+  },
+  "TheMain": {
+    "description": "Auto imported from components/TheMain.vue"
+  },
+  "ValidationErrors": {
+    "description": "Auto imported from components/validation-errors.vue"
+  }
+}

@@ -1,0 +1,12 @@
+@import "~bootstrap";
+@import "variables.scss";
+
+body {
+    font-family: $appFont;
+    background-color: #ffffff;
+    font-size: 14px;
+    a {
+        color: $appRed;
+        text-decoration: none;
+    }
+}
