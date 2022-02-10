@@ -8,5 +8,11 @@ body {
     a {
         color: $appRed;
         text-decoration: none;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            color: $appBlack;
+        }
     }
 }
