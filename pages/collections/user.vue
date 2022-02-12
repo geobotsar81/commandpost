@@ -8,6 +8,8 @@
                     <ul>
                         <li v-for="(collection, index) in userCollections" :key="index">
                             <NuxtLink :to="'/collections/update/' + collection.id">{{ collection.title }}</NuxtLink>
+                            |
+                            <a href="#" @click.prevent="deleteCollection(collection.id)">Delete</a>
                         </li>
                     </ul>
                 </div>
@@ -24,10 +26,20 @@ export default {
         title: "User Collections",
     },
     middleware: "authenticated",
-    data() {
-        return {
-            error: "",
-        };
+    methods: {
+        //Delete a Collection
+        async deleteCollection(collectionID) {
+            this.processing = true;
+            this.success = "";
+
+            try {
+                await this.$store.dispatch("collections/deleteUserCollections", { form: this.form, collectionID: collectionID });
+                this.processing = false;
+                this.userCollections = this.$store.state.collections.userCollections;
+            } catch (e) {
+                alert(e);
+            }
+        },
     },
     //Fetch user collections
     async fetch({ store, error }) {
@@ -39,9 +51,13 @@ export default {
             });
         }
     },
-    //Load user collections from state
-    computed: mapState({
-        userCollections: (state) => state.collections.userCollections,
-    }),
+    data() {
+        return {
+            form: {
+                user_id: this.$auth.user.id,
+            },
+            userCollections: this.$store.state.collections.userCollections,
+        };
+    },
 };
 </script>

@@ -55,6 +55,18 @@ export default {
         AppLabel,
     },
     middleware: "authenticated",
+    data() {
+        return {
+            form: {
+                title: this.$store.state.collections.collection.title,
+                user_id: this.$auth.user.id,
+
+                errors: [],
+            },
+            success: "",
+            collection: this.$store.state.collections.collection,
+        };
+    },
     //Get the current Collection
     async fetch({ store, params, error }) {
         try {
@@ -65,18 +77,7 @@ export default {
             });
         }
     },
-    data() {
-        return {
-            form: {
-                title: this.$store.state.collections.collection.title,
-                user_id: this.$auth.user.id,
-                collection_id: this.$store.state.collections.collection.id,
-                errors: [],
-            },
-            success: "",
-            collection: this.$store.state.collections.collection,
-        };
-    },
+    fetchOnServer: false,
     methods: {
         //Update a new Collection
         async submit() {
@@ -85,7 +86,7 @@ export default {
             this.form.errors = [];
 
             try {
-                const response = await CollectionService.updateCollection(this.form);
+                const response = await CollectionService.updateCollection(this.form, this.collection.id);
                 this.processing = false;
                 this.form.title = "";
                 this.success = response.data;

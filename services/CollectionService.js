@@ -14,12 +14,18 @@ export default {
         return apiClient.get("/collections/index");
     },
     getUserCollections(userID) {
-        return apiClient.get("/collections/user/" + userID);
+        return apiClient.get("/collections/users/" + userID);
     },
     getUserCollection(userID, collectionID) {
-        return apiClient.get("/collections/usersingle/" + userID + "/" + collectionID);
+        return apiClient.get("/collections/users/" + userID + "/" + collectionID);
     },
     addCollection(data) {
         return apiClient.post("/collections/store", data);
+    },
+    updateCollection(data, collectionID) {
+        return apiClient.post("/collections/update/" + collectionID, data);
+    },
+    deleteCollection(data, collectionID) {
+        return apiClient.post("/collections/destroy/" + collectionID, data);
     },
 };
