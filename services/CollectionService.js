@@ -13,7 +13,13 @@ export default {
     getCollections() {
         return apiClient.get("/collections/index");
     },
-    getCollection(id) {
-        return apiClient.get("/collections/" + id);
+    getUserCollections(userID) {
+        return apiClient.get("/collections/user/" + userID);
+    },
+    getUserCollection(userID, collectionID) {
+        return apiClient.get("/collections/usersingle/" + userID + "/" + collectionID);
+    },
+    addCollection(data) {
+        return apiClient.post("/collections/store", data);
     },
 };

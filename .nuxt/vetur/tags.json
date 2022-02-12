@@ -5,6 +5,9 @@
   "AppCheckbox": {
     "description": "Auto imported from components/AppCheckbox.vue"
   },
+  "AppError": {
+    "description": "Auto imported from components/AppError.vue"
+  },
   "AppInput": {
     "description": "Auto imported from components/AppInput.vue"
   },

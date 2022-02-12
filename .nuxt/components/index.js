@@ -1,5 +1,6 @@
 export { default as AppButton } from '../../components/AppButton.vue'
 export { default as AppCheckbox } from '../../components/AppCheckbox.vue'
+export { default as AppError } from '../../components/AppError.vue'
 export { default as AppInput } from '../../components/AppInput.vue'
 export { default as AppLabel } from '../../components/AppLabel.vue'
 export { default as AppLogo } from '../../components/AppLogo.vue'

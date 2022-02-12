@@ -8,6 +8,7 @@ You can directly use them in pages and other components without the need to impo
 
 - `<AppButton>` | `<app-button>` (components/AppButton.vue)
 - `<AppCheckbox>` | `<app-checkbox>` (components/AppCheckbox.vue)
+- `<AppError>` | `<app-error>` (components/AppError.vue)
 - `<AppInput>` | `<app-input>` (components/AppInput.vue)
 - `<AppLabel>` | `<app-label>` (components/AppLabel.vue)
 - `<AppLogo>` | `<app-logo>` (components/AppLogo.vue)

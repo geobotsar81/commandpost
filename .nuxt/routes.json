@@ -35,6 +35,27 @@
     "_name": "_74cd0a8b"
   },
   {
+    "name": "collections-add",
+    "path": "/collections/add",
+    "component": "/home/george/projects/commandpost/pages/collections/add.vue",
+    "chunkName": "pages/collections/add",
+    "_name": "_18fdcc98"
+  },
+  {
+    "name": "collections-user",
+    "path": "/collections/user",
+    "component": "/home/george/projects/commandpost/pages/collections/user.vue",
+    "chunkName": "pages/collections/user",
+    "_name": "_8ded0d70"
+  },
+  {
+    "name": "collections-update-id",
+    "path": "/collections/update/:id?",
+    "component": "/home/george/projects/commandpost/pages/collections/update/_id.vue",
+    "chunkName": "pages/collections/update/_id",
+    "_name": "_11f76cb1"
+  },
+  {
     "name": "reset-password-token",
     "path": "/reset-password/:token?",
     "component": "/home/george/projects/commandpost/pages/reset-password/_token.vue",
