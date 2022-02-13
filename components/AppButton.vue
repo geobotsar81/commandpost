@@ -1,5 +1,5 @@
 <template>
-    <button :type="type" class="btn btn-main">
+    <button :type="type" class="btn btn-primary">
         <slot />
     </button>
 </template>
@@ -14,19 +14,4 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.btn-main {
-    font-size: 12px;
-    background-color: $appBlack;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: $appTransition;
-
-    &:hover,
-    &:focus {
-        background-color: $appGrey2;
-        color: #fff;
-    }
-}
-</style>
+<style lang="scss" scoped></style>
