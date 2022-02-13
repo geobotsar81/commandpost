@@ -3,10 +3,17 @@
         <div class="row">
             <div class="col-12"><h1>Your Collections</h1></div>
 
-            <div class="row" v-if="userCollections">
+            <!--Loader-->
+            <AppLoader v-if="processing" />
+            <!--Success-->
+            <AppSuccess :message="success" />
+            <div class="row mt-4">
+                <div class="col-12"><NuxtLink class="btn btn-primary" to="/collections/add"> New Collection </NuxtLink></div>
+            </div>
+            <div class="row mt-4" v-if="userCollections">
                 <div class="col-12">
                     <ul>
-                        <li v-for="(collection, index) in userCollections" :key="index">
+                        <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
                             <NuxtLink :to="'/collections/update/' + collection.id">{{ collection.title }}</NuxtLink>
                             |
                             <a href="#" @click.prevent="deleteCollection(collection.id)">Delete</a>
@@ -19,13 +26,27 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
+import AppLoader from "~/components/AppLoader.vue";
+import AppSuccess from "~/components/AppSuccess.vue";
 export default {
     head: {
         title: "User Collections",
     },
     middleware: "authenticated",
+    components: {
+        AppLoader,
+        AppSuccess,
+    },
+    data() {
+        return {
+            form: {
+                user_id: this.$auth.user.id,
+            },
+            userCollections: this.$store.state.collections.userCollections,
+            processing: false,
+            success: "",
+        };
+    },
     methods: {
         //Delete a Collection
         async deleteCollection(collectionID) {
@@ -36,6 +57,7 @@ export default {
                 await this.$store.dispatch("collections/deleteUserCollections", { form: this.form, collectionID: collectionID });
                 this.processing = false;
                 this.userCollections = this.$store.state.collections.userCollections;
+                this.success = "Collection deleted successfully";
             } catch (e) {
                 alert(e);
             }
@@ -50,14 +72,6 @@ export default {
                 message: e,
             });
         }
-    },
-    data() {
-        return {
-            form: {
-                user_id: this.$auth.user.id,
-            },
-            userCollections: this.$store.state.collections.userCollections,
-        };
     },
 };
 </script>

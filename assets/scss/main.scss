@@ -15,4 +15,23 @@ body {
             color: $appBlack;
         }
     }
+
+    h1 {
+        font-size: 28px;
+    }
+
+    .btn-primary {
+        font-size: 12px;
+        background-color: $appBlack;
+        color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 4px;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            background-color: $appGrey2;
+            color: #fff;
+        }
+    }
 }

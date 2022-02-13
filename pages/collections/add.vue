@@ -5,14 +5,13 @@
                 <div class="row">
                     <div class="col-12"><h1>Add a new Collection</h1></div>
                 </div>
+
+                <!--Loader-->
+                <AppLoader v-if="processing" />
+                <!--Success-->
+                <AppSuccess :message="success" />
                 <!-- Validation Errors -->
                 <AppValidationErrors :errors="form.errors" class="mb-4" />
-
-                <div class="row" v-if="success">
-                    <div class="col-12">
-                        <div class="alert alert-success">{{ success }}</div>
-                    </div>
-                </div>
 
                 <form @submit.prevent="submit">
                     <div class="row mt-4">
@@ -38,6 +37,8 @@ import AppValidationErrors from "@/components/validation-errors.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
+import AppLoader from "~/components/AppLoader.vue";
+import AppSuccess from "~/components/AppSuccess.vue";
 import CollectionService from "@/services/CollectionService.js";
 import global from "@/mixins/global.js";
 
@@ -50,6 +51,8 @@ export default {
         AppButton,
         AppInput,
         AppLabel,
+        AppLoader,
+        AppSuccess,
     },
     middleware: "authenticated",
     data() {
@@ -60,6 +63,7 @@ export default {
                 errors: [],
             },
             success: "",
+            processing: false,
         };
     },
 

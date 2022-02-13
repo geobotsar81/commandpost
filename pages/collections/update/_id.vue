@@ -7,15 +7,14 @@
                         <h1>Update Collection {{ collection.title }}</h1>
                     </div>
                 </div>
-
+                <!--Modal-->
+                <AppModal ref="messageModal" :modalMessage="modalMessage" />
+                <!--Loader-->
+                <AppLoader v-if="processing" />
+                <!--Success-->
+                <AppSuccess :message="success" />
                 <!-- Validation Errors -->
                 <AppValidationErrors :errors="form.errors" class="mb-4" />
-
-                <div class="row" v-if="success">
-                    <div class="col-12">
-                        <div class="alert alert-success">{{ success }}</div>
-                    </div>
-                </div>
 
                 <form @submit.prevent="submit">
                     <div class="row mt-4">
@@ -41,7 +40,9 @@ import AppValidationErrors from "@/components/validation-errors.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
-import CollectionService from "@/services/CollectionService.js";
+import AppLoader from "~/components/AppLoader.vue";
+import AppSuccess from "~/components/AppSuccess.vue";
+import AppModal from "~/components/AppModal.vue";
 import global from "@/mixins/global.js";
 
 export default {
@@ -53,6 +54,9 @@ export default {
         AppButton,
         AppInput,
         AppLabel,
+        AppLoader,
+        AppSuccess,
+        AppModal,
     },
     middleware: "authenticated",
     data() {
@@ -60,10 +64,11 @@ export default {
             form: {
                 title: this.$store.state.collections.collection.title,
                 user_id: this.$auth.user.id,
-
                 errors: [],
             },
             success: "",
+            modalMessage: "",
+            processing: false,
             collection: this.$store.state.collections.collection,
         };
     },
@@ -77,19 +82,20 @@ export default {
             });
         }
     },
-    fetchOnServer: false,
     methods: {
         //Update a new Collection
         async submit() {
+            //this.modalMessage = "Test";
+            //this.$refs.messageModal.showModal();
             this.processing = true;
             this.success = "";
             this.form.errors = [];
 
             try {
-                const response = await CollectionService.updateCollection(this.form, this.collection.id);
+                await this.$store.dispatch("collections/updateUserCollection", { form: this.form, collectionID: this.collection.id });
                 this.processing = false;
-                this.form.title = "";
-                this.success = response.data;
+                this.collection = this.$store.state.collections.collection;
+                this.success = "Collection updated successfully";
             } catch (e) {
                 global.mapErrors(e, this.form.errors);
             }

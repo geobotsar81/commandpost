@@ -11,6 +11,13 @@
                     <div class="col-sm-6 col-lg-8 text-center text-sm-end">
                         <template v-if="$auth.loggedIn">
                             <NuxtLink to="/dashboard"> Dashboard </NuxtLink> |
+                            <div class="d-inline dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Collections</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li class="ps-2"><NuxtLink to="/collections/user"> My Collections </NuxtLink></li>
+                                    <li class="ps-2"><NuxtLink to="/collections/add"> New Collection </NuxtLink></li>
+                                </ul>
+                            </div>
                             <button @click.prevent="logout">Logout</button>
                         </template>
 
