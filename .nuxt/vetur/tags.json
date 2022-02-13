@@ -5,9 +5,6 @@
   "AppCheckbox": {
     "description": "Auto imported from components/AppCheckbox.vue"
   },
-  "AppError": {
-    "description": "Auto imported from components/AppError.vue"
-  },
   "AppInput": {
     "description": "Auto imported from components/AppInput.vue"
   },
@@ -20,11 +17,11 @@
   "AppLogo": {
     "description": "Auto imported from components/AppLogo.vue"
   },
+  "AppMessage": {
+    "description": "Auto imported from components/AppMessage.vue"
+  },
   "AppModal": {
     "description": "Auto imported from components/AppModal.vue"
-  },
-  "AppSuccess": {
-    "description": "Auto imported from components/AppSuccess.vue"
   },
   "TheFooter": {
     "description": "Auto imported from components/TheFooter.vue"

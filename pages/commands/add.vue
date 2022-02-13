@@ -3,12 +3,12 @@
         <div class="row">
             <div class="col-12 col-lg-6 offset-lg-2">
                 <div class="row">
-                    <div class="col-12"><h1>Add a new Collection</h1></div>
+                    <div class="col-12"><h1>Add a new Command</h1></div>
                 </div>
 
                 <div class="row mt-4">
                     <div class="col-12">
-                        <NuxtLink to="/collections/user"><i class="fas fa-long-arrow-left"></i> Back to my Collections </NuxtLink>
+                        <NuxtLink to="/commands/user"><i class="fas fa-long-arrow-left"></i> Back to my Commands </NuxtLink>
                     </div>
                 </div>
 
@@ -22,14 +22,30 @@
                 <form @submit.prevent="submit">
                     <div class="row mt-4">
                         <div class="col-12">
-                            <AppLabel for="title" value="Title" />
-                            <AppInput id="title" type="title" class="mt-1 block w-full" v-model="form.title" autofocus autocomplete="username" />
+                            <AppLabel for="collection" value="Collection" />
+                            <select id="collection" class="form-select" aria-label="Default select example" v-model="form.collection">
+                                <option value="" selected>Select a Collection</option>
+                                <option v-for="(collection, index) in userCollections" :key="index" :value="collection.id">{{ collection.title }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <AppLabel for="command" value="Command" />
+                            <AppInput id="command" type="command" class="mt-1 block w-full" v-model="form.command" />
                         </div>
                     </div>
 
                     <div class="row mt-4">
                         <div class="col-12">
-                            <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Add Collection </AppButton>
+                            <AppLabel for="description" value="Description" />
+                            <AppInput id="description" type="description" class="mt-1 block w-full" v-model="form.description" />
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Add Command </AppButton>
                         </div>
                     </div>
                 </form>
@@ -45,12 +61,12 @@ import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
 import AppLoader from "~/components/AppLoader.vue";
 import AppMessage from "~/components/AppMessage.vue";
-import CollectionService from "@/services/CollectionService.js";
+import CommandService from "@/services/CommandService.js";
 import global from "@/mixins/global.js";
 
 export default {
     head: {
-        title: "Add a New Collection",
+        title: "Add a New Command",
     },
     components: {
         AppValidationErrors,
@@ -64,27 +80,41 @@ export default {
     data() {
         return {
             form: {
-                title: "",
+                command: "",
+                description: "",
                 user_id: this.$auth.user.id,
+                collection: "",
                 errors: [],
             },
             message: "",
             messageType: "",
             processing: false,
+            userCollections: this.$store.state.collections.userCollections,
         };
     },
-
+    //Fetch user collections
+    async fetch({ store, error }) {
+        try {
+            await store.dispatch("collections/fetchUserCollections", store.state.auth.user.id);
+        } catch (e) {
+            error({
+                message: e,
+            });
+        }
+    },
     methods: {
-        //Add a New Collection
+        //Add a New Command
         async submit() {
             this.processing = true;
             this.success = "";
             this.form.errors = [];
 
             try {
-                const response = await CollectionService.addCollection(this.form);
+                const response = await CommandService.addCommand(this.form);
                 this.processing = false;
-                this.form.title = "";
+                this.form.collection = "";
+                this.form.command = "";
+                this.form.description = "";
                 this.message = response.data;
                 this.messageType = "success";
             } catch (e) {

@@ -8,6 +8,8 @@ import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '../assets/scss/main.scss'
 
+import '../assets/fontawesome-pro/css/all.min.css'
+
 import _743c700e from '../layouts/authenticated.vue'
 import _6f6c098b from '../layouts/default.vue'
 

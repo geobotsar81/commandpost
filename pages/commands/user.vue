@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-12"><h1>Your Collections</h1></div>
+            <div class="col-12"><h1>Your Commands</h1></div>
 
             <!--Loader-->
             <AppLoader v-if="processing" />
@@ -9,15 +9,15 @@
             <AppMessage :message="message" :type="messageType" />
 
             <div class="row mt-4">
-                <div class="col-12"><NuxtLink class="btn btn-primary" to="/collections/add"> New Collection </NuxtLink></div>
+                <div class="col-12"><NuxtLink class="btn btn-primary" to="/commands/add"> New Command </NuxtLink></div>
             </div>
-            <div class="row mt-4" v-if="userCollections">
+            <div class="row mt-4" v-if="userCommands">
                 <div class="col-12">
                     <ul>
-                        <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
-                            <NuxtLink :to="'/collections/update/' + collection.id">{{ collection.title }}</NuxtLink>
+                        <li class="mt-2" v-for="(command, index) in userCommands" :key="index">
+                            <NuxtLink :to="'/commands/update/' + command.id">{{ command.command }}</NuxtLink>
                             |
-                            <a href="#" @click.prevent="deleteCollection(collection.id)">Delete</a>
+                            <a href="#" @click.prevent="deleteCommand(command.id)">Delete</a>
                         </li>
                     </ul>
                 </div>
@@ -29,9 +29,10 @@
 <script>
 import AppLoader from "~/components/AppLoader.vue";
 import AppMessage from "~/components/AppMessage.vue";
+
 export default {
     head: {
-        title: "User Collections",
+        title: "User Commands",
     },
     middleware: "authenticated",
     components: {
@@ -43,23 +44,23 @@ export default {
             form: {
                 user_id: this.$auth.user.id,
             },
-            userCollections: this.$store.state.collections.userCollections,
+            userCommands: this.$store.state.commands.userCommands,
             processing: false,
             message: "",
             messageType: "",
         };
     },
     methods: {
-        //Delete a Collection
-        async deleteCollection(collectionID) {
+        //Delete a Command
+        async deleteCommand(commandID) {
             this.processing = true;
             this.message = "";
 
             try {
-                await this.$store.dispatch("collections/deleteUserCollections", { form: this.form, collectionID: collectionID });
+                await this.$store.dispatch("commands/deleteUserCommands", { form: this.form, commandID: commandID });
                 this.processing = false;
-                this.userCollections = this.$store.state.collections.userCollections;
-                this.message = "Collection deleted successfully";
+                this.userCommands = this.$store.state.commands.userCommands;
+                this.message = "Command deleted successfully";
                 this.messageType = "success";
             } catch (e) {
                 this.processing = false;
@@ -68,10 +69,10 @@ export default {
             }
         },
     },
-    //Fetch user collections
+    //Fetch user commands
     async fetch({ store, error }) {
         try {
-            await store.dispatch("collections/fetchUserCollections", store.state.auth.user.id);
+            await store.dispatch("commands/fetchUserCommands", store.state.auth.user.id);
         } catch (e) {
             error({
                 message: e,
