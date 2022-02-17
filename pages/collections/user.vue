@@ -3,10 +3,9 @@
         <div class="row">
             <div class="col-12"><h1>Your Collections</h1></div>
 
-            <!--Loader-->
-            <AppLoader v-if="processing" />
-            <!--Success-->
-            <AppSuccess :message="success" />
+            <!--Message-->
+            <AppMessage :message="message" :type="messageType" />
+
             <div class="row mt-4">
                 <div class="col-12"><NuxtLink class="btn btn-primary" to="/collections/add"> New Collection </NuxtLink></div>
             </div>
@@ -14,9 +13,7 @@
                 <div class="col-12">
                     <ul>
                         <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
-                            <NuxtLink :to="'/collections/update/' + collection.id">{{ collection.title }}</NuxtLink>
-                            |
-                            <a href="#" @click.prevent="deleteCollection(collection.id)">Delete</a>
+                            <AppCollection @showMessage="displayMessage" @deletedCollection="refreshCollections" :collection="collection" />
                         </li>
                     </ul>
                 </div>
@@ -26,16 +23,17 @@
 </template>
 
 <script>
-import AppLoader from "~/components/AppLoader.vue";
-import AppSuccess from "~/components/AppSuccess.vue";
+import AppMessage from "~/components/AppMessage.vue";
+import AppCollection from "~/components/AppCollection.vue";
+
 export default {
     head: {
         title: "User Collections",
     },
     middleware: "authenticated",
     components: {
-        AppLoader,
-        AppSuccess,
+        AppMessage,
+        AppCollection,
     },
     data() {
         return {
@@ -43,24 +41,17 @@ export default {
                 user_id: this.$auth.user.id,
             },
             userCollections: this.$store.state.collections.userCollections,
-            processing: false,
-            success: "",
+            message: "",
+            messageType: "",
         };
     },
     methods: {
-        //Delete a Collection
-        async deleteCollection(collectionID) {
-            this.processing = true;
-            this.success = "";
-
-            try {
-                await this.$store.dispatch("collections/deleteUserCollections", { form: this.form, collectionID: collectionID });
-                this.processing = false;
-                this.userCollections = this.$store.state.collections.userCollections;
-                this.success = "Collection deleted successfully";
-            } catch (e) {
-                alert(e);
-            }
+        refreshCollections() {
+            this.userCollections = this.$store.state.collections.userCollections;
+        },
+        displayMessage(message) {
+            this.message = message.message;
+            this.messageType = message.type;
         },
     },
     //Fetch user collections

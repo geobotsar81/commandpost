@@ -1,8 +1,11 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-12"><h1>Welcome to CommandPost!</h1></div>
-            <app-error :error="error"></app-error>
+            <div class="col-12 text-center"><h1>Welcome to CommandPost!</h1></div>
+
+            <!--Message-->
+            <AppMessage :message="message" :type="messageType" />
+
             <div class="row" v-if="collections">
                 <div class="col-12">
                     <ul>
@@ -16,21 +19,22 @@
 
 <script>
 import { mapState } from "vuex";
-import AppError from "~/components/AppError.vue";
+import AppMessage from "~/components/AppMessage.vue";
 export default {
     head: {
-        title: "Welcome",
+        title: "Welcome to CommandPost",
     },
     components: {
-        AppError,
+        AppMessage,
     },
-    async asyncData({ store, error }) {
+    //Fetch Collections
+    async fetch({ store }) {
+        this.message = "";
         try {
             await store.dispatch("collections/fetchCollections");
         } catch (e) {
-            return {
-                error: "Could not load data at this time",
-            };
+            this.message = "Could not load data at this time";
+            this.messageType = "error";
         }
     },
     computed: mapState({
@@ -38,7 +42,8 @@ export default {
     }),
     data() {
         return {
-            error: "",
+            message: "",
+            messageType: "",
         };
     },
 };

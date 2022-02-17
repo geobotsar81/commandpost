@@ -49,11 +49,39 @@
     "_name": "_8ded0d70"
   },
   {
+    "name": "commands-add",
+    "path": "/commands/add",
+    "component": "/home/george/projects/commandpost/pages/commands/add.vue",
+    "chunkName": "pages/commands/add",
+    "_name": "_63fa84dd"
+  },
+  {
+    "name": "commands-user",
+    "path": "/commands/user",
+    "component": "/home/george/projects/commandpost/pages/commands/user.vue",
+    "chunkName": "pages/commands/user",
+    "_name": "_57bd733f"
+  },
+  {
     "name": "collections-update-id",
     "path": "/collections/update/:id?",
     "component": "/home/george/projects/commandpost/pages/collections/update/_id.vue",
     "chunkName": "pages/collections/update/_id",
     "_name": "_11f76cb1"
+  },
+  {
+    "name": "collections-view-id",
+    "path": "/collections/view/:id?",
+    "component": "/home/george/projects/commandpost/pages/collections/view/_id.vue",
+    "chunkName": "pages/collections/view/_id",
+    "_name": "_6874b7cd"
+  },
+  {
+    "name": "commands-update-id",
+    "path": "/commands/update/:id?",
+    "component": "/home/george/projects/commandpost/pages/commands/update/_id.vue",
+    "chunkName": "pages/commands/update/_id",
+    "_name": "_cfa05d30"
   },
   {
     "name": "reset-password-token",

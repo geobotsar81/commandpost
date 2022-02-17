@@ -18,6 +18,13 @@
                                     <li class="ps-2"><NuxtLink to="/collections/add"> New Collection </NuxtLink></li>
                                 </ul>
                             </div>
+                            <div class="d-inline dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Commands</button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                    <li class="ps-2"><NuxtLink to="/commands/user"> My Commands </NuxtLink></li>
+                                    <li class="ps-2"><NuxtLink to="/commands/add"> New Command </NuxtLink></li>
+                                </ul>
+                            </div>
                             <button @click.prevent="logout">Logout</button>
                         </template>
 
@@ -57,11 +64,11 @@ export default {
     top: 0;
     transition: $appTransition;
     z-index: $zindexHeader;
-    border-bottom: 1px solid $appLightGrey2;
+    border-bottom: 1px solid $appGrey2;
     background-color: #fff;
 
     a {
-        color: $appRed;
+        color: $appOrange;
     }
 
     i {
@@ -73,7 +80,7 @@ export default {
 
     button {
         background-color: transparent;
-        color: $appRed;
+        color: $appOrange;
         border: 0px;
     }
 }

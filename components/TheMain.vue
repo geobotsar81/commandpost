@@ -11,11 +11,13 @@ main {
     font-size: 18px;
     line-height: 24px;
     font-weight: 400;
-    padding: 120px 0px;
-    color: $appBlack;
-    min-height: calc(100vh - 200px);
+    padding: 40px 0px;
+    color: $appWhite;
+    min-height: 100vh;
     position: relative;
     text-align: left;
+    background-color: $appBlack;
+    background-image: url("~assets/img/square_pattern.png");
 
     :deep(ul, ol) {
         li {

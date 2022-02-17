@@ -10,6 +10,18 @@
             <div class="row mt-2">
                 <div class="col-12"><NuxtLink to="/collections/add"> New Collection </NuxtLink></div>
             </div>
+
+            <div class="row">
+                <div class="col-12"><hr /></div>
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-12"><NuxtLink to="/commands/user"> My Commands </NuxtLink></div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12"><NuxtLink to="/commands/add"> New Command </NuxtLink></div>
+            </div>
         </div>
     </div>
 </template>

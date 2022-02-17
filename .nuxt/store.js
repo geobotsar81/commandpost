@@ -20,6 +20,7 @@ let store = {};
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../store/collections.js'), 'collections.js')
+  resolveStoreModules(require('../store/commands.js'), 'commands.js')
 
   // If the environment supports hot reloading...
 
@@ -27,6 +28,7 @@ let store = {};
     // Whenever any Vuex module is updated...
     module.hot.accept([
       '../store/collections.js',
+      '../store/commands.js',
       '../store/index.js',
     ], () => {
       // Update `root.modules` with the latest definitions.

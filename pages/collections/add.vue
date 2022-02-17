@@ -6,10 +6,16 @@
                     <div class="col-12"><h1>Add a new Collection</h1></div>
                 </div>
 
+                <div class="row mt-4 mb-2">
+                    <div class="col-12">
+                        <NuxtLink to="/collections/user"><i class="fas fa-long-arrow-left"></i> Back to my Collections </NuxtLink>
+                    </div>
+                </div>
+
                 <!--Loader-->
                 <AppLoader v-if="processing" />
-                <!--Success-->
-                <AppSuccess :message="success" />
+                <!--Message-->
+                <AppMessage :message="message" :type="messageType" />
                 <!-- Validation Errors -->
                 <AppValidationErrors :errors="form.errors" class="mb-4" />
 
@@ -38,7 +44,7 @@ import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
 import AppLoader from "~/components/AppLoader.vue";
-import AppSuccess from "~/components/AppSuccess.vue";
+import AppMessage from "~/components/AppMessage.vue";
 import CollectionService from "@/services/CollectionService.js";
 import global from "@/mixins/global.js";
 
@@ -52,7 +58,7 @@ export default {
         AppInput,
         AppLabel,
         AppLoader,
-        AppSuccess,
+        AppMessage,
     },
     middleware: "authenticated",
     data() {
@@ -62,7 +68,8 @@ export default {
                 user_id: this.$auth.user.id,
                 errors: [],
             },
-            success: "",
+            message: "",
+            messageType: "",
             processing: false,
         };
     },
@@ -78,8 +85,10 @@ export default {
                 const response = await CollectionService.addCollection(this.form);
                 this.processing = false;
                 this.form.title = "";
-                this.success = response.data;
+                this.message = response.data;
+                this.messageType = "success";
             } catch (e) {
+                this.processing = false;
                 global.mapErrors(e, this.form.errors);
             }
         },

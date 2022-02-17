@@ -7,12 +7,19 @@
                         <h1>Update Collection {{ collection.title }}</h1>
                     </div>
                 </div>
+
+                <div class="row mt-4 mb-2">
+                    <div class="col-12">
+                        <NuxtLink to="/collections/user"><i class="fas fa-long-arrow-left"></i> Back to my Collections </NuxtLink>
+                    </div>
+                </div>
+
                 <!--Modal-->
                 <AppModal ref="messageModal" :modalMessage="modalMessage" />
                 <!--Loader-->
                 <AppLoader v-if="processing" />
-                <!--Success-->
-                <AppSuccess :message="success" />
+                <!--Message-->
+                <AppMessage :message="message" :type="messageType" />
                 <!-- Validation Errors -->
                 <AppValidationErrors :errors="form.errors" class="mb-4" />
 
@@ -41,7 +48,7 @@ import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
 import AppLoader from "~/components/AppLoader.vue";
-import AppSuccess from "~/components/AppSuccess.vue";
+import AppMessage from "~/components/AppMessage.vue";
 import AppModal from "~/components/AppModal.vue";
 import global from "@/mixins/global.js";
 
@@ -55,7 +62,7 @@ export default {
         AppInput,
         AppLabel,
         AppLoader,
-        AppSuccess,
+        AppMessage,
         AppModal,
     },
     middleware: "authenticated",
@@ -66,7 +73,8 @@ export default {
                 user_id: this.$auth.user.id,
                 errors: [],
             },
-            success: "",
+            message: "",
+            messageType: "",
             modalMessage: "",
             processing: false,
             collection: this.$store.state.collections.collection,
@@ -95,8 +103,10 @@ export default {
                 await this.$store.dispatch("collections/updateUserCollection", { form: this.form, collectionID: this.collection.id });
                 this.processing = false;
                 this.collection = this.$store.state.collections.collection;
-                this.success = "Collection updated successfully";
+                this.message = "Collection updated successfully";
+                this.messageType = "success";
             } catch (e) {
+                this.processing = false;
                 global.mapErrors(e, this.form.errors);
             }
         },
