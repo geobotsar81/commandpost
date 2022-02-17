@@ -5,6 +5,12 @@
   "AppCheckbox": {
     "description": "Auto imported from components/AppCheckbox.vue"
   },
+  "AppCollection": {
+    "description": "Auto imported from components/AppCollection.vue"
+  },
+  "AppCommand": {
+    "description": "Auto imported from components/AppCommand.vue"
+  },
   "AppInput": {
     "description": "Auto imported from components/AppInput.vue"
   },
@@ -31,6 +37,9 @@
   },
   "TheMain": {
     "description": "Auto imported from components/TheMain.vue"
+  },
+  "TheSideMenu": {
+    "description": "Auto imported from components/TheSideMenu.vue"
   },
   "ValidationErrors": {
     "description": "Auto imported from components/validation-errors.vue"

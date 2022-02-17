@@ -3,8 +3,6 @@
         <div class="row">
             <div class="col-12"><h1>Your Commands</h1></div>
 
-            <!--Loader-->
-            <AppLoader v-if="processing" />
             <!--Message-->
             <AppMessage :message="message" :type="messageType" />
 
@@ -15,9 +13,7 @@
                 <div class="col-12">
                     <ul>
                         <li class="mt-2" v-for="(command, index) in userCommands" :key="index">
-                            <NuxtLink :to="'/commands/update/' + command.id">{{ command.command }}</NuxtLink>
-                            |
-                            <a href="#" @click.prevent="deleteCommand(command.id)">Delete</a>
+                            <AppCommand @showMessage="displayMessage" @deletedCommand="refreshCommands" :command="command" />
                         </li>
                     </ul>
                 </div>
@@ -27,8 +23,8 @@
 </template>
 
 <script>
-import AppLoader from "~/components/AppLoader.vue";
 import AppMessage from "~/components/AppMessage.vue";
+import AppCommand from "~/components/AppCommand.vue";
 
 export default {
     head: {
@@ -36,37 +32,23 @@ export default {
     },
     middleware: "authenticated",
     components: {
-        AppLoader,
         AppMessage,
+        AppCommand,
     },
     data() {
         return {
-            form: {
-                user_id: this.$auth.user.id,
-            },
             userCommands: this.$store.state.commands.userCommands,
-            processing: false,
             message: "",
             messageType: "",
         };
     },
     methods: {
-        //Delete a Command
-        async deleteCommand(commandID) {
-            this.processing = true;
-            this.message = "";
-
-            try {
-                await this.$store.dispatch("commands/deleteUserCommands", { form: this.form, commandID: commandID });
-                this.processing = false;
-                this.userCommands = this.$store.state.commands.userCommands;
-                this.message = "Command deleted successfully";
-                this.messageType = "success";
-            } catch (e) {
-                this.processing = false;
-                this.message = e;
-                this.messageType = "error";
-            }
+        refreshCommands() {
+            this.userCommands = this.$store.state.commands.userCommands;
+        },
+        displayMessage(message) {
+            this.message = message.message;
+            this.messageType = message.type;
         },
     },
     //Fetch user commands

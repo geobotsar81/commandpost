@@ -64,11 +64,11 @@ export default {
     top: 0;
     transition: $appTransition;
     z-index: $zindexHeader;
-    border-bottom: 1px solid $appLightGrey2;
+    border-bottom: 1px solid $appGrey2;
     background-color: #fff;
 
     a {
-        color: $appRed;
+        color: $appOrange;
     }
 
     i {
@@ -80,7 +80,7 @@ export default {
 
     button {
         background-color: transparent;
-        color: $appRed;
+        color: $appOrange;
         border: 0px;
     }
 }

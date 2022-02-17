@@ -14,6 +14,7 @@ const _8ded0d70 = () => interopDefault(import('../pages/collections/user.vue' /*
 const _63fa84dd = () => interopDefault(import('../pages/commands/add.vue' /* webpackChunkName: "pages/commands/add" */))
 const _57bd733f = () => interopDefault(import('../pages/commands/user.vue' /* webpackChunkName: "pages/commands/user" */))
 const _11f76cb1 = () => interopDefault(import('../pages/collections/update/_id.vue' /* webpackChunkName: "pages/collections/update/_id" */))
+const _6874b7cd = () => interopDefault(import('../pages/collections/view/_id.vue' /* webpackChunkName: "pages/collections/view/_id" */))
 const _cfa05d30 = () => interopDefault(import('../pages/commands/update/_id.vue' /* webpackChunkName: "pages/commands/update/_id" */))
 const _ad477286 = () => interopDefault(import('../pages/reset-password/_token.vue' /* webpackChunkName: "pages/reset-password/_token" */))
 const _5ce8aa1f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -69,6 +70,10 @@ export const routerOptions = {
     path: "/collections/update/:id?",
     component: _11f76cb1,
     name: "collections-update-id"
+  }, {
+    path: "/collections/view/:id?",
+    component: _6874b7cd,
+    name: "collections-view-id"
   }, {
     path: "/commands/update/:id?",
     component: _cfa05d30,

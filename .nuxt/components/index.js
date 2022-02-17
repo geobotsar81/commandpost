@@ -1,5 +1,7 @@
 export { default as AppButton } from '../../components/AppButton.vue'
 export { default as AppCheckbox } from '../../components/AppCheckbox.vue'
+export { default as AppCollection } from '../../components/AppCollection.vue'
+export { default as AppCommand } from '../../components/AppCommand.vue'
 export { default as AppInput } from '../../components/AppInput.vue'
 export { default as AppLabel } from '../../components/AppLabel.vue'
 export { default as AppLoader } from '../../components/AppLoader.vue'
@@ -9,6 +11,7 @@ export { default as AppModal } from '../../components/AppModal.vue'
 export { default as TheFooter } from '../../components/TheFooter.vue'
 export { default as TheHeader } from '../../components/TheHeader.vue'
 export { default as TheMain } from '../../components/TheMain.vue'
+export { default as TheSideMenu } from '../../components/TheSideMenu.vue'
 export { default as ValidationErrors } from '../../components/validation-errors.vue'
 
 // nuxt/nuxt.js#8607

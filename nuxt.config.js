@@ -50,7 +50,9 @@ export default {
 
     googleFonts: {
         families: {
-            Roboto: true,
+            Roboto: {
+                wght: [400, 700, 900],
+            },
         },
     },
 

@@ -2,16 +2,22 @@
     <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-12"><h2>CommandPost</h2></div>
-            </div>
-            <div class="row footer__copyrights">
-                <div class="col-12">© George Botsaris - {{ currentYear }}</div>
+                <div class="col-sm-4">
+                    <NuxtLink to="/">
+                        <AppLogo :key="footer" />
+                    </NuxtLink>
+                </div>
+                <div class="col-sm-8 footer__copyrights">© All rights reserved - {{ currentYear }}</div>
             </div>
         </div>
     </footer>
 </template>
 <script>
+import AppLogo from "~/components/AppLogo.vue";
 export default {
+    components: {
+        AppLogo,
+    },
     data() {
         return {
             currentYear: 2022,
@@ -21,19 +27,19 @@ export default {
 </script>
 <style lang="scss" scoped>
 .footer {
-    padding: 60px 0px 20px 0px;
+    padding: 10px 0px;
     color: #fff;
     background-color: $appBlack;
-    min-height: 200px;
-    text-align: center;
 
-    h2 {
-        color: #fff;
-        font-size: 60px;
+    ::v-deep .logo {
+        color: #fff !important;
+        font-size: 40px;
         font-weight: 700;
     }
 }
 .footer__copyrights {
     font-size: 16px;
+    margin-top: 20px;
+    text-align: right;
 }
 </style>

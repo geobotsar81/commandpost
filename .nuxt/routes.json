@@ -70,6 +70,13 @@
     "_name": "_11f76cb1"
   },
   {
+    "name": "collections-view-id",
+    "path": "/collections/view/:id?",
+    "component": "/home/george/projects/commandpost/pages/collections/view/_id.vue",
+    "chunkName": "pages/collections/view/_id",
+    "_name": "_6874b7cd"
+  },
+  {
     "name": "commands-update-id",
     "path": "/commands/update/:id?",
     "component": "/home/george/projects/commandpost/pages/commands/update/_id.vue",

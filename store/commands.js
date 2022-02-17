@@ -14,6 +14,9 @@ export const mutations = {
     SET_USER_COMMANDS(state, commands) {
         state.userCommands = commands;
     },
+    SET_COLLECTION_COMMANDS(state, commands) {
+        state.collectionCommands = commands;
+    },
 };
 export const actions = {
     fetchCommands({ commit }) {
@@ -24,6 +27,11 @@ export const actions = {
     fetchUserCommand({ commit }, data) {
         return CommandService.getUserCommand(data.userID, data.commandID).then((response) => {
             commit("SET_COMMAND", response.data);
+        });
+    },
+    fetchCollectionCommands({ commit }, data) {
+        return CommandService.getCollectionCommands(data.userID, data.collectionID).then((response) => {
+            commit("SET_COLLECTION_COMMANDS", response.data);
         });
     },
     fetchUserCommands({ commit }, userID) {

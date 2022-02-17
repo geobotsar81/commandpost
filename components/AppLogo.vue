@@ -1,5 +1,5 @@
 <template>
-    <div class="logo">CommandPost</div>
+    <div class="logo">CmndPost</div>
 </template>
 <script>
 export default {
@@ -8,8 +8,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .logo {
-    font-size: 20px;
-    color: $appBlack;
+    font-size: 48px;
+    color: $appWhite;
+    font-weight: 900;
     text-decoration: none;
 }
 </style>

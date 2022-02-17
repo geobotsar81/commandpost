@@ -8,6 +8,8 @@ You can directly use them in pages and other components without the need to impo
 
 - `<AppButton>` | `<app-button>` (components/AppButton.vue)
 - `<AppCheckbox>` | `<app-checkbox>` (components/AppCheckbox.vue)
+- `<AppCollection>` | `<app-collection>` (components/AppCollection.vue)
+- `<AppCommand>` | `<app-command>` (components/AppCommand.vue)
 - `<AppInput>` | `<app-input>` (components/AppInput.vue)
 - `<AppLabel>` | `<app-label>` (components/AppLabel.vue)
 - `<AppLoader>` | `<app-loader>` (components/AppLoader.vue)
@@ -17,4 +19,5 @@ You can directly use them in pages and other components without the need to impo
 - `<TheFooter>` | `<the-footer>` (components/TheFooter.vue)
 - `<TheHeader>` | `<the-header>` (components/TheHeader.vue)
 - `<TheMain>` | `<the-main>` (components/TheMain.vue)
+- `<TheSideMenu>` | `<the-side-menu>` (components/TheSideMenu.vue)
 - `<ValidationErrors>` | `<validation-errors>` (components/validation-errors.vue)

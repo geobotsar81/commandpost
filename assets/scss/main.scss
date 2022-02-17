@@ -3,21 +3,22 @@
 
 body {
     font-family: $appFont;
-    background-color: #ffffff;
+    background-color: $appBlack;
     font-size: 14px;
     a {
-        color: $appRed;
+        color: $appOrange;
         text-decoration: none;
         transition: $appTransition;
 
         &:hover,
         &:focus {
-            color: $appBlack;
+            color: $appGreen;
         }
     }
 
     h1 {
         font-size: 28px;
+        color: $appOrange;
     }
 
     .btn-primary {

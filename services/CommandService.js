@@ -19,6 +19,9 @@ export default {
     getUserCommand(userID, commandID) {
         return apiClient.get("/commands/users/" + userID + "/" + commandID);
     },
+    getCollectionCommands(userID, collectionID) {
+        return apiClient.get("/commands/collection/" + userID + "/" + collectionID);
+    },
     addCommand(data) {
         return apiClient.post("/commands/store", data);
     },

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col-12"><h1>Welcome to CommandPost!</h1></div>
+            <div class="col-12 text-center"><h1>Welcome to CommandPost!</h1></div>
 
             <!--Message-->
             <AppMessage :message="message" :type="messageType" />

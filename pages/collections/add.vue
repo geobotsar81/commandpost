@@ -6,7 +6,7 @@
                     <div class="col-12"><h1>Add a new Collection</h1></div>
                 </div>
 
-                <div class="row mt-4">
+                <div class="row mt-4 mb-2">
                     <div class="col-12">
                         <NuxtLink to="/collections/user"><i class="fas fa-long-arrow-left"></i> Back to my Collections </NuxtLink>
                     </div>
