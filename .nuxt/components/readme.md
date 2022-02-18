@@ -19,7 +19,6 @@ You can directly use them in pages and other components without the need to impo
 - `<AppPaginatedCommands>` | `<app-paginated-commands>` (components/AppPaginatedCommands.vue)
 - `<AppPagination>` | `<app-pagination>` (components/AppPagination.vue)
 - `<TheFooter>` | `<the-footer>` (components/TheFooter.vue)
-- `<TheHeader>` | `<the-header>` (components/TheHeader.vue)
 - `<TheMain>` | `<the-main>` (components/TheMain.vue)
 - `<TheSideMenu>` | `<the-side-menu>` (components/TheSideMenu.vue)
 - `<ValidationErrors>` | `<validation-errors>` (components/validation-errors.vue)

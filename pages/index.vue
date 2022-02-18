@@ -4,6 +4,10 @@
             <div class="col-12 text-center"><h1>Welcome to CommandPost!</h1></div>
         </div>
         <div class="row"><div class="col-12 text-center">A place for web devs to store their commands</div></div>
+        <div class="row mt-2" v-if="!$auth.loggedIn">
+            <div class="col-12 text-center"><NuxtLink to="/login">Login</NuxtLink> or <NuxtLink to="/register">Register</NuxtLink> to start adding your Commands</div>
+        </div>
+
         <div class="row mt-4">
             <div class="col-12"><AppPaginatedCommands /></div>
         </div>
@@ -19,16 +23,6 @@ export default {
     },
     components: {
         AppPaginatedCommands,
-    },
-    //Fetch Collections
-    async fetch({ store }) {
-        this.message = "";
-        try {
-            await store.dispatch("commands/fetchCommands", { sort: 1, search: "" });
-        } catch (e) {
-            this.message = "Could not load data at this time";
-            this.messageType = "error";
-        }
     },
 };
 </script>

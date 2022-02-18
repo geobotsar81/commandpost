@@ -4,20 +4,20 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _538e4f3e = () => interopDefault(import('../pages/dashboard.vue' /* webpackChunkName: "pages/dashboard" */))
-const _3f308392 = () => interopDefault(import('../pages/forgot-password.vue' /* webpackChunkName: "pages/forgot-password" */))
-const _26904d36 = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
-const _70da37e6 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
-const _74cd0a8b = () => interopDefault(import('../pages/verify-email.vue' /* webpackChunkName: "pages/verify-email" */))
-const _18fdcc98 = () => interopDefault(import('../pages/collections/add.vue' /* webpackChunkName: "pages/collections/add" */))
-const _8ded0d70 = () => interopDefault(import('../pages/collections/user.vue' /* webpackChunkName: "pages/collections/user" */))
-const _63fa84dd = () => interopDefault(import('../pages/commands/add.vue' /* webpackChunkName: "pages/commands/add" */))
-const _57bd733f = () => interopDefault(import('../pages/commands/user.vue' /* webpackChunkName: "pages/commands/user" */))
-const _11f76cb1 = () => interopDefault(import('../pages/collections/update/_id.vue' /* webpackChunkName: "pages/collections/update/_id" */))
-const _6874b7cd = () => interopDefault(import('../pages/collections/view/_id.vue' /* webpackChunkName: "pages/collections/view/_id" */))
-const _cfa05d30 = () => interopDefault(import('../pages/commands/update/_id.vue' /* webpackChunkName: "pages/commands/update/_id" */))
-const _ad477286 = () => interopDefault(import('../pages/reset-password/_token.vue' /* webpackChunkName: "pages/reset-password/_token" */))
-const _5ce8aa1f = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _03e5f33c = () => interopDefault(import('../pages/dashboard.vue' /* webpackChunkName: "pages/dashboard" */))
+const _68df265a = () => interopDefault(import('../pages/forgot-password.vue' /* webpackChunkName: "pages/forgot-password" */))
+const _3de5a3b7 = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
+const _76907476 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
+const _616290ea = () => interopDefault(import('../pages/verify-email.vue' /* webpackChunkName: "pages/verify-email" */))
+const _7fe102f5 = () => interopDefault(import('../pages/collections/add.vue' /* webpackChunkName: "pages/collections/add" */))
+const _8eb28fb2 = () => interopDefault(import('../pages/collections/user.vue' /* webpackChunkName: "pages/collections/user" */))
+const _50900b3c = () => interopDefault(import('../pages/commands/add.vue' /* webpackChunkName: "pages/commands/add" */))
+const _044e8e80 = () => interopDefault(import('../pages/commands/user.vue' /* webpackChunkName: "pages/commands/user" */))
+const _02886f60 = () => interopDefault(import('../pages/collections/update/_id.vue' /* webpackChunkName: "pages/collections/update/_id" */))
+const _70ed21a8 = () => interopDefault(import('../pages/collections/view/_id.vue' /* webpackChunkName: "pages/collections/view/_id" */))
+const _97f19bae = () => interopDefault(import('../pages/commands/update/_id.vue' /* webpackChunkName: "pages/commands/update/_id" */))
+const _2cde7b3e = () => interopDefault(import('../pages/reset-password/_token.vue' /* webpackChunkName: "pages/reset-password/_token" */))
+const _743e00a0 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -32,59 +32,59 @@ export const routerOptions = {
 
   routes: [{
     path: "/dashboard",
-    component: _538e4f3e,
+    component: _03e5f33c,
     name: "dashboard"
   }, {
     path: "/forgot-password",
-    component: _3f308392,
+    component: _68df265a,
     name: "forgot-password"
   }, {
     path: "/login",
-    component: _26904d36,
+    component: _3de5a3b7,
     name: "login"
   }, {
     path: "/register",
-    component: _70da37e6,
+    component: _76907476,
     name: "register"
   }, {
     path: "/verify-email",
-    component: _74cd0a8b,
+    component: _616290ea,
     name: "verify-email"
   }, {
     path: "/collections/add",
-    component: _18fdcc98,
+    component: _7fe102f5,
     name: "collections-add"
   }, {
     path: "/collections/user",
-    component: _8ded0d70,
+    component: _8eb28fb2,
     name: "collections-user"
   }, {
     path: "/commands/add",
-    component: _63fa84dd,
+    component: _50900b3c,
     name: "commands-add"
   }, {
     path: "/commands/user",
-    component: _57bd733f,
+    component: _044e8e80,
     name: "commands-user"
   }, {
     path: "/collections/update/:id?",
-    component: _11f76cb1,
+    component: _02886f60,
     name: "collections-update-id"
   }, {
     path: "/collections/view/:id?",
-    component: _6874b7cd,
+    component: _70ed21a8,
     name: "collections-view-id"
   }, {
     path: "/commands/update/:id?",
-    component: _cfa05d30,
+    component: _97f19bae,
     name: "commands-update-id"
   }, {
     path: "/reset-password/:token?",
-    component: _ad477286,
+    component: _2cde7b3e,
     name: "reset-password-token"
   }, {
     path: "/",
-    component: _5ce8aa1f,
+    component: _743e00a0,
     name: "index"
   }],
 

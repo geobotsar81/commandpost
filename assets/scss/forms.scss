@@ -1,0 +1,51 @@
+body {
+    .card {
+        background-color: rgba($appBlack2, 0.8);
+        border: solid 1px $appGrey;
+    }
+
+    .alert {
+        ul {
+            margin: 5px 0px;
+            padding-left: 0px;
+        }
+    }
+
+    .alert-danger {
+        background-color: $appOrange;
+        border-color: $appOrange;
+        .text-red-600 {
+            color: $appBlack !important;
+        }
+    }
+
+    label {
+        font-size: 12px;
+        color: $appGrey;
+    }
+
+    .form-control,
+    .form-select {
+        box-shadow: none !important;
+
+        &:hover,
+        &:focus {
+            border-color: $appOrange;
+        }
+    }
+
+    .form-check-input {
+        box-shadow: none !important;
+
+        &:hover,
+        &:focus {
+            background-color: $appOrange;
+            border-color: $appOrange;
+        }
+    }
+
+    .form-check-input:checked {
+        background-color: $appOrange;
+        border-color: $appOrange;
+    }
+}

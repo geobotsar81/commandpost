@@ -9,23 +9,27 @@
                     <div class="col-12">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</div>
                 </div>
 
-                <!-- Validation Errors -->
-                <BreezeValidationErrors :errors="form.errors" class="mb-4" />
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <!-- Validation Errors -->
+                        <BreezeValidationErrors :errors="form.errors" class="mb-4" />
 
-                <form @submit.prevent="submit">
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <AppLabel for="email" value="Email" />
-                            <AppInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
-                        </div>
-                    </div>
+                        <form @submit.prevent="submit">
+                            <div class="row">
+                                <div class="col-12">
+                                    <AppLabel for="email" value="Email" />
+                                    <AppInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                                </div>
+                            </div>
 
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <AppButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Email Password Reset Link </AppButton>
-                        </div>
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <AppButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Email Password Reset Link </AppButton>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

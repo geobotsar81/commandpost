@@ -5,41 +5,46 @@
                 <div class="row">
                     <div class="col-12"><h1>Login</h1></div>
                 </div>
-                <!-- Validation Errors -->
-                <BreezeValidationErrors :errors="form.errors" class="mb-4" />
 
-                <form @submit.prevent="submit">
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <AppLabel for="email" value="Email" />
-                            <AppInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
-                        </div>
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <!-- Validation Errors -->
+                        <BreezeValidationErrors v-if="form.errors" :errors="form.errors" class="mb-4" />
+
+                        <form @submit.prevent="submit">
+                            <div class="row">
+                                <div class="col-12">
+                                    <AppLabel for="email" value="Email" />
+                                    <AppInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <AppLabel for="password" value="Password" />
+                                    <AppInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <label>
+                                        <AppCheckbox name="remember" :checked="form.remember" />
+                                        <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <NuxtLink to="/forgot-password"> Forgot your password? </NuxtLink>
+
+                                    <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Log in </AppButton>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <AppLabel for="password" value="Password" />
-                            <AppInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <label>
-                                <AppCheckbox name="remember" :checked="form.remember" />
-                                <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <div class="row mt-4">
-                        <div class="col-12">
-                            <NuxtLink to="/forgot-password"> Forgot your password? </NuxtLink>
-
-                            <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Log in </AppButton>
-                        </div>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

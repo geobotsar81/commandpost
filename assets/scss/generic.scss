@@ -1,0 +1,20 @@
+body {
+    font-family: $appFont;
+    background-color: $appBlack;
+    font-size: 14px;
+    a {
+        color: $appOrange;
+        text-decoration: none;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            color: $appOrange2;
+        }
+    }
+
+    h1 {
+        font-size: 28px;
+        color: $appOrange;
+    }
+}

@@ -1,38 +1,4 @@
-@import "~bootstrap";
 @import "variables.scss";
-
-body {
-    font-family: $appFont;
-    background-color: $appBlack;
-    font-size: 14px;
-    a {
-        color: $appOrange;
-        text-decoration: none;
-        transition: $appTransition;
-
-        &:hover,
-        &:focus {
-            color: $appGreen;
-        }
-    }
-
-    h1 {
-        font-size: 28px;
-        color: $appOrange;
-    }
-
-    .btn-primary {
-        font-size: 12px;
-        background-color: $appBlack;
-        color: #ffffff;
-        padding: 10px 20px;
-        border-radius: 4px;
-        transition: $appTransition;
-
-        &:hover,
-        &:focus {
-            background-color: $appGrey2;
-            color: #fff;
-        }
-    }
-}
+@import "buttons.scss";
+@import "generic.scss";
+@import "forms.scss";

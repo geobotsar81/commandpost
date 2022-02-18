@@ -1,8 +1,8 @@
 <template>
-    <div>
-        {{ collection.title }} - {{ collection.commands.length }} commands
-        <span class="float-end">
-            <NuxtLink :to="'/collections/update/' + collection.id">Edit</NuxtLink> | <NuxtLink :to="'/collections/view/' + collection.id">View Commands</NuxtLink> |
+    <div class="collection">
+        <NuxtLink :to="'/collections/view/' + collection.id">{{ collection.title }} ({{ collection.commands.length }})</NuxtLink>
+        <span class="float-end" v-if="type != 'compact'">
+            <NuxtLink :to="'/collections/update/' + collection.id">Edit</NuxtLink>
             <a href="#" @click.prevent="deleteCollection(collection.id)">Delete</a>
         </span>
     </div>
@@ -19,6 +19,10 @@ export default {
         collection: {
             type: Object,
             required: true,
+        },
+        type: {
+            type: String,
+            required: false,
         },
     },
     data() {

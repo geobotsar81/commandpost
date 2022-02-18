@@ -30,10 +30,7 @@ export default {
     components: true,
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: [
-        //"@nuxtjs/tailwindcss"
-        "@nuxtjs/google-fonts",
-    ],
+    buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
@@ -65,19 +62,7 @@ export default {
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {
-        postcss: {
-            plugins: {
-                // Disable `postcss-url`
-                "postcss-url": false,
-            },
-            preset: {
-                autoprefixer: {
-                    grid: true,
-                },
-            },
-        },
-    },
+    build: {},
 
     auth: {
         strategies: {
