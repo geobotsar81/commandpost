@@ -11,7 +11,7 @@
         <div class="row mt-4 sideMenu__links">
             <div class="col-12">
                 <ul>
-                    <li><NuxtLink to="/home"> Home </NuxtLink></li>
+                    <li><NuxtLink to="/"> Home </NuxtLink></li>
                     <template v-if="$auth.loggedIn">
                         <li><NuxtLink to="/dashboard"> Dashboard </NuxtLink></li>
                         <div class="d-inline dropdown">
@@ -69,10 +69,11 @@ export default {
 <style lang="scss" scoped>
 .sideMenu {
     padding: 15px 45px;
-    background-color: $appBlack2WithOpacity;
+    background-color: rgba($appBlack2, 0.8);
     height: 100%;
     display: inline-block;
     position: relative;
+    width: 100%;
 }
 
 .sideMenu__links {
@@ -94,6 +95,15 @@ export default {
     position: absolute;
     left: 45px;
     bottom: 15px;
-    color: $appWhite;
+    color: $appGrey2;
+}
+
+@media (max-width: 1199.98px) {
+    .sideMenu {
+        padding: 15px 25px;
+    }
+    :deep(.logo) {
+        font-size: 25px !important;
+    }
 }
 </style>

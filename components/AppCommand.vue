@@ -2,12 +2,25 @@
     <div>
         <!--Loader-->
         <AppLoader v-if="processing" />
-        <div v-else>
-            {{ command.command }}
-            <span class="float-end">
-                <NuxtLink :to="'/commands/update/' + command.id">Edit</NuxtLink> |
-                <a href="#" @click.prevent="deleteCommand(command.id)">Delete</a>
-            </span>
+        <div v-else class="command">
+            <div class="row command__collection">
+                <div class="col-12">
+                    <strong>{{ command.collection.title }}</strong>
+                    <span v-if="command.description"> - {{ command.description }}</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8 command__code">
+                    {{ command.command }}
+                </div>
+                <div class="col-4 text-end command__links">
+                    <NuxtLink :to="'/commands/clone/' + command.id"><i class="far fa-clone"></i></NuxtLink>
+                    <template v-if="command.collection.user_id == form.userID">
+                        <NuxtLink :to="'/commands/update/' + command.id"><i class="far fa-edit"></i></NuxtLink>
+                        <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt"></i></a>
+                    </template>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -27,7 +40,7 @@ export default {
     data() {
         return {
             form: {
-                userID: this.$auth.user.id,
+                userID: this.$auth?.user?.id,
             },
             processing: false,
         };
@@ -52,4 +65,41 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.command {
+    padding: 20px;
+    border: solid 1px $appGrey;
+    border-radius: $appBorderRadius;
+    background-color: rgba($appBlack2, 0.5);
+    margin-bottom: 20px;
+    transition: $appTransition;
+
+    &:hover,
+    &:focus {
+        background-color: rgba($appGreen, 0.5);
+    }
+}
+
+.command__collection {
+    color: $appOrange;
+    font-size: 15px;
+}
+
+.command__code {
+    padding-top: 5px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+.command__links {
+    a {
+        color: $appGreen;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            color: $appOrange;
+        }
+    }
+}
+</style>

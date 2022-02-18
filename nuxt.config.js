@@ -52,6 +52,7 @@ export default {
         families: {
             Roboto: {
                 wght: [400, 700, 900],
+                ital: [400],
             },
         },
     },
@@ -64,7 +65,19 @@ export default {
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
+    build: {
+        postcss: {
+            plugins: {
+                // Disable `postcss-url`
+                "postcss-url": false,
+            },
+            preset: {
+                autoprefixer: {
+                    grid: true,
+                },
+            },
+        },
+    },
 
     auth: {
         strategies: {
