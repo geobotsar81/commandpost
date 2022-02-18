@@ -29,6 +29,12 @@
   "AppModal": {
     "description": "Auto imported from components/AppModal.vue"
   },
+  "AppPaginatedCommands": {
+    "description": "Auto imported from components/AppPaginatedCommands.vue"
+  },
+  "AppPagination": {
+    "description": "Auto imported from components/AppPagination.vue"
+  },
   "TheFooter": {
     "description": "Auto imported from components/TheFooter.vue"
   },

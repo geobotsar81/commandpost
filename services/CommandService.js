@@ -10,8 +10,8 @@ const apiClient = axios.create({
 });
 
 export default {
-    getCommands() {
-        return apiClient.get("/commands/index");
+    getCommands(data) {
+        return apiClient.post("/commands/index", data);
     },
     getUserCommands(userID) {
         return apiClient.get("/commands/users/" + userID);

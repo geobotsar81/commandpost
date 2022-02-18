@@ -16,6 +16,8 @@ You can directly use them in pages and other components without the need to impo
 - `<AppLogo>` | `<app-logo>` (components/AppLogo.vue)
 - `<AppMessage>` | `<app-message>` (components/AppMessage.vue)
 - `<AppModal>` | `<app-modal>` (components/AppModal.vue)
+- `<AppPaginatedCommands>` | `<app-paginated-commands>` (components/AppPaginatedCommands.vue)
+- `<AppPagination>` | `<app-pagination>` (components/AppPagination.vue)
 - `<TheFooter>` | `<the-footer>` (components/TheFooter.vue)
 - `<TheHeader>` | `<the-header>` (components/TheHeader.vue)
 - `<TheMain>` | `<the-main>` (components/TheMain.vue)

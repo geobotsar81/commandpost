@@ -19,8 +19,8 @@ export const mutations = {
     },
 };
 export const actions = {
-    fetchCommands({ commit }) {
-        return CommandService.getCommands().then((response) => {
+    fetchCommands({ commit }, data) {
+        return CommandService.getCommands(data).then((response) => {
             commit("SET_COMMANDS", response.data);
         });
     },
