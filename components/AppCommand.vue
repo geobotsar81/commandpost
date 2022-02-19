@@ -67,7 +67,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .command {
-    padding: 20px;
+    padding: 15px 20px;
     border: solid 1px $appGrey;
     border-radius: $appBorderRadius;
     background-color: rgba($appBlack2, 0.5);
@@ -76,17 +76,20 @@ export default {
 
     &:hover,
     &:focus {
-        background-color: rgba($appGreen, 0.5);
+        background-color: rgba($appGrey2, 0.1);
     }
 }
 
 .command__collection {
     color: $appOrange;
-    font-size: 15px;
+    font-size: 12px;
+    strong {
+        font-size: 17px;
+    }
 }
 
 .command__code {
-    padding-top: 5px;
+    padding-top: 2px;
     font-style: italic;
     font-weight: 400;
 }

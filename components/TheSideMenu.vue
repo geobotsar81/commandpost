@@ -7,28 +7,36 @@
                 </NuxtLink>
             </div>
         </div>
-
+        <p v-if="$fetchState.pending">{{ $fetchState }}Fetching mountains...</p>
         <div class="row mt-4 sideMenu__links">
             <div class="col-12">
                 <ul>
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
                     <template v-if="$auth.loggedIn">
                         <li><NuxtLink to="/dashboard"> Dashboard </NuxtLink></li>
-                        <div class="d-inline dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Collections</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li class="ps-2"><NuxtLink to="/collections/user"> My Collections </NuxtLink></li>
-                                <li class="ps-2"><NuxtLink to="/collections/add"> New Collection </NuxtLink></li>
-                            </ul>
-                        </div>
-                        <div class="d-inline dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">Commands</button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                                <li class="ps-2"><NuxtLink to="/commands/user"> My Commands </NuxtLink></li>
-                                <li class="ps-2"><NuxtLink to="/commands/add"> New Command </NuxtLink></li>
-                            </ul>
-                        </div>
-                        <button @click.prevent="logout">Logout</button>
+                        <li>
+                            <a data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
+                                >Collections <i class="fal fa-angle-up"></i
+                            ></a>
+
+                            <div class="collapse" id="collapseCollections">
+                                <div>
+                                    <ul>
+                                        <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
+                                            <AppCollection type="compact" :collection="collection" />
+                                        </li>
+                                        <li class="mt-4">
+                                            <NuxtLink to="/collections/add"> <i class="fas fa-plus-circle"></i> Add Collection </NuxtLink>
+                                        </li>
+                                        <li class="mt-2">
+                                            <NuxtLink to="/commands/add"> <i class="fas fa-plus-circle"></i> Add Command </NuxtLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li><a href="#" @click.prevent="logout">Logout</a></li>
                     </template>
 
                     <template v-else>
@@ -44,12 +52,24 @@
 </template>
 <script>
 import AppLogo from "~/components/AppLogo.vue";
+import AppCollection from "~/components/AppCollection.vue";
+
 export default {
     components: {
         AppLogo,
+        AppCollection,
     },
     data() {
-        return {};
+        return {
+            userCollections: null,
+        };
+    },
+    //Fetch user collections
+    async fetch() {
+        try {
+            await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+            this.userCollections = this.$store.state.collections.userCollections;
+        } catch (e) {}
     },
     computed: {
         currentYear() {
@@ -69,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 .sideMenu {
     padding: 15px 45px;
-    background-color: rgba($appBlack2, 0.8);
+    background-color: rgba($appBlack2, 1);
     height: 100%;
     display: inline-block;
     position: relative;
@@ -78,16 +98,35 @@ export default {
 
 .sideMenu__links {
     ul {
+        padding-left: 0px;
     }
 
     li {
         list-style: none;
-        padding: 5px 0px;
+        padding: 10px 0px;
+
+        ul {
+            padding-left: 10px;
+            li {
+                padding: 2px 0px;
+            }
+        }
     }
 
-    a {
+    a,
+    button {
         color: $appOrange;
         font-size: 18px;
+    }
+
+    i {
+        transition: $appTransition;
+    }
+
+    a.collapsed {
+        i {
+            transform: rotate(180deg);
+        }
     }
 }
 

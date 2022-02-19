@@ -1,0 +1,20 @@
+body {
+    .btn-primary {
+        font-size: 12px;
+        background-color: $appBlack;
+        border-color: $appOrange;
+        color: $appWhite;
+        padding: 10px 20px;
+        border-radius: 4px;
+        transition: $appTransition;
+        font-weight: 700;
+
+        &:hover,
+        &:focus {
+            background-color: $appOrange;
+            border-color: $appOrange;
+            color: $appBlack;
+            box-shadow: none !important;
+        }
+    }
+}

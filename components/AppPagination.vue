@@ -42,7 +42,7 @@ export default {
                 key = this.pageNumber - 1;
             }
             let currentPageNumber = parseInt(key);
-            this.$emit("update:modelValue", currentPageNumber);
+            this.$emit("changePage", currentPageNumber);
             this.pageNumber = currentPageNumber;
         },
     },
