@@ -3,21 +3,23 @@
         <!--Loader-->
         <AppLoader v-if="processing" />
         <div v-else class="command">
-            <div class="row command__collection">
-                <div class="col-12">
-                    <strong>{{ command.collection.title }}</strong>
-                    <span v-if="command.description"> - {{ command.description }}</span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-8 command__code">
-                    {{ command.command }}
+            <div class="row align-items-center">
+                <div class="col-8">
+                    <div class="row command__collection">
+                        <div class="col-12">
+                            <strong>{{ command.collection.title }}</strong>
+                            <span v-if="command.description"> - {{ command.description }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 command__code">{{ command.command }}</div>
+                    </div>
                 </div>
                 <div class="col-4 text-end command__links">
-                    <NuxtLink :to="'/commands/clone/' + command.id"><i class="far fa-clone"></i></NuxtLink>
+                    <NuxtLink :to="'/commands/clone/' + command.id"><i class="far fa-clone" title="copy"></i></NuxtLink>
                     <template v-if="command.collection.user_id == form.userID">
-                        <NuxtLink :to="'/commands/update/' + command.id"><i class="far fa-edit"></i></NuxtLink>
-                        <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt"></i></a>
+                        <NuxtLink :to="'/commands/update/' + command.id"><i class="far fa-edit" title="edot"></i></NuxtLink>
+                        <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt" title="delete"></i></a>
                     </template>
                 </div>
             </div>
@@ -98,6 +100,7 @@ export default {
     a {
         color: $appGreen;
         transition: $appTransition;
+        margin: 0px 10px;
 
         &:hover,
         &:focus {

@@ -20,13 +20,16 @@ body {
     }
 
     label {
-        font-size: 12px;
+        font-size: 14px;
         color: $appGrey;
+        margin-bottom: 4px;
     }
 
     .form-control,
     .form-select {
         box-shadow: none !important;
+        height: 50px;
+        border-radius: $appBorderRadius;
 
         &:hover,
         &:focus {

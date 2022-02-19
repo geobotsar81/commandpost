@@ -90,6 +90,14 @@ export default function (ctx, inject) {
   }
 }))
 
+  // cookie
+  $auth.registerStrategy('cookie', new CookieScheme($auth, {
+  "cookie": {
+    "name": "XSRF-TOKEN"
+  },
+  "name": "cookie"
+}))
+
   // Inject it to nuxt context as $auth
   inject('auth', $auth)
   ctx.$auth = $auth
