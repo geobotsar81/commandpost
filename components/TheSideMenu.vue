@@ -7,29 +7,41 @@
                 </NuxtLink>
             </div>
         </div>
-        <p v-if="$fetchState.pending">{{ $fetchState }}Fetching mountains...</p>
+
+        <!--Message Modal-->
+        <AppMessageModal ref="messageModal" :message="message" :type="type" />
+
+        <!--Collection Modal-->
+        <AppCollectionModal :collectionID="editCollectionID" :collectionTitle="editCollectionTitle" ref="collectionModal" @refreshCollections="refreshCollections" />
+
         <div class="row mt-4 sideMenu__links">
             <div class="col-12">
                 <ul>
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
-                    <template v-if="$auth.loggedIn">
+                    <template v-if="auth.$state.loggedIn">
                         <li><NuxtLink to="/dashboard"> Dashboard </NuxtLink></li>
                         <li>
-                            <a data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
+                            <a class="collapsed" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
                                 >Collections <i class="fal fa-angle-up"></i
                             ></a>
 
-                            <div class="collapse" id="collapseCollections">
+                            <div class="collapse" id="collapseCollections" v-if="userCollections">
                                 <div>
                                     <ul>
                                         <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
-                                            <AppCollection type="compact" :collection="collection" />
+                                            <AppCollection
+                                                @editCollection="editCollection"
+                                                @deletedCollection="refreshCollections"
+                                                @showMessage="showMessageModal"
+                                                type="compact"
+                                                :collection="collection"
+                                            />
                                         </li>
                                         <li class="mt-4">
-                                            <NuxtLink to="/collections/add"> <i class="fas fa-plus-circle"></i> Add Collection </NuxtLink>
+                                            <a href="#" @click.prevent="showCollectionModal"> <i class="fas fa-plus-circle"></i> Add Collection </a>
                                         </li>
                                         <li class="mt-2">
-                                            <NuxtLink to="/commands/add"> <i class="fas fa-plus-circle"></i> Add Command </NuxtLink>
+                                            <a href="#"> <i class="fas fa-plus-circle"></i> Add Command </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -53,15 +65,24 @@
 <script>
 import AppLogo from "~/components/AppLogo.vue";
 import AppCollection from "~/components/AppCollection.vue";
+import AppCollectionModal from "~/components/AppModalCollection.vue";
+import AppMessageModal from "~/components/AppModalMessage.vue";
 
 export default {
     components: {
         AppLogo,
         AppCollection,
+        AppCollectionModal,
+        AppMessageModal,
     },
     data() {
         return {
             userCollections: null,
+            auth: this.$auth ?? null,
+            message: null,
+            type: null,
+            editCollectionID: null,
+            editCollectionTitle: null,
         };
     },
     //Fetch user collections
@@ -81,6 +102,32 @@ export default {
     methods: {
         logout() {
             this.$auth.logout();
+        },
+        //Edit a Collection
+        editCollection(data) {
+            this.editCollectionID = data.id;
+            this.editCollectionTitle = data.title;
+            this.$refs.collectionModal.showModal();
+        },
+        //Show the modal to add/edit a Collection
+        showCollectionModal() {
+            this.editCollectionID = null;
+            this.editCollectionTitle = null;
+            this.$refs.collectionModal.showModal();
+        },
+        showMessageModal(data) {
+            this.message = data.message;
+            this.type = data.type;
+            this.$refs.messageModal.showModal();
+        },
+        //Refresh collections when one is added through the modal
+        refreshCollections() {
+            this.userCollections = this.$store.state.collections.userCollections;
+        },
+    },
+    watch: {
+        "$store.state.auth.user": function (val) {
+            this.auth = this.$auth;
         },
     },
 };

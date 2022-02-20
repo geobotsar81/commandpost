@@ -5,6 +5,8 @@ body {
     }
 
     .alert {
+        margin-bottom: 0px;
+        padding: 0px;
         ul {
             margin: 5px 0px;
             padding-left: 0px;
@@ -12,16 +14,23 @@ body {
     }
 
     .alert-danger {
-        background-color: $appOrange;
-        border-color: $appOrange;
+        background-color: transparent;
+        border-color: transparent;
+        color: $appRed !important;
         .text-red-600 {
-            color: $appBlack !important;
+            color: $appRed !important;
         }
+    }
+
+    .alert-success {
+        background-color: transparent;
+        border-color: transparent;
+        color: $appGreen;
     }
 
     label {
         font-size: 14px;
-        color: $appGrey;
+        color: $appGrey2;
         margin-bottom: 4px;
     }
 

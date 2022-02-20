@@ -63,7 +63,6 @@ import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
 import AppLoader from "~/components/AppLoader.vue";
 import AppMessage from "~/components/AppMessage.vue";
-import AppModal from "~/components/AppModal.vue";
 import global from "@/mixins/global.js";
 
 export default {
@@ -77,7 +76,6 @@ export default {
         AppLabel,
         AppLoader,
         AppMessage,
-        AppModal,
     },
     middleware: "authenticated",
     data() {

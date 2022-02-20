@@ -1,9 +1,9 @@
 <template>
     <div class="collection">
         <NuxtLink :to="'/collections/view/' + collection.id">{{ collection.title }} ({{ collection.commands.length }})</NuxtLink>
-        <span class="float-end" v-if="type != 'compact'">
-            <NuxtLink :to="'/collections/update/' + collection.id">Edit</NuxtLink>
-            <a href="#" @click.prevent="deleteCollection(collection.id)">Delete</a>
+        <span class="float-end collection__links">
+            <a href="#" @click.prevent="editCollection(collection.id, collection.title)"><i class="far fa-edit" title="edit"></i></a>
+            <a href="#" @click.prevent="deleteCollection(collection.id)"><i class="far fa-trash-alt" title="delete"></i></a>
         </span>
     </div>
 </template>
@@ -34,6 +34,10 @@ export default {
         };
     },
     methods: {
+        //Edit Collection
+        editCollection(id, title) {
+            this.$emit("editCollection", { id: id, title: title });
+        },
         //Delete a Collection
         async deleteCollection(collectionID) {
             this.processing = true;
@@ -57,4 +61,8 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.collection__links a {
+    margin-left: 10px;
+}
+</style>

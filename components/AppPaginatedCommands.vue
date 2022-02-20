@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="search">
         <!--Message-->
         <AppMessage v-if="message" :message="message" :type="messageType" />
 
@@ -23,7 +23,7 @@
                                         <option value="4">Date &#8593;</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-2 mt-4">
+                                <div class="col-sm-2 search__button">
                                     <AppButton @click.prevent="searchCommands" v-if="!searching"> Search </AppButton>
                                     <AppLoader v-else></AppLoader>
                                 </div>
@@ -97,7 +97,7 @@ export default {
     },
     methods: {
         refreshCommands() {
-            this.userCommands = this.$store.state.commands.userCommands;
+            this.commands = this.$store.state.commands.commands;
         },
         //Display a message from the commands component
         displayMessage(message) {
@@ -127,10 +127,15 @@ export default {
         sortFilter: function (val) {
             this.searchCommands();
         },*/
+
         currentPage: function (val) {
             this.getCommands();
         },
     },
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.search__button {
+    margin-top: 28px;
+}
+</style>
