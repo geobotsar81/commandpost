@@ -1,2 +1,2 @@
-import "bootstrap/dist/css/bootstrap.css";
-import bootstrap from "bootstrap";
+import "~/assets/bootstrap/bootstrap.min.css";
+//import "~/assets/bootstrap/bootstrap.min.js";

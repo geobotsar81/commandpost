@@ -3,22 +3,33 @@
         <!--Loader-->
         <AppLoader v-if="processing" />
         <div v-else class="command">
-            <div class="row command__collection">
-                <div class="col-12">
-                    <strong>{{ command.collection.title }}</strong>
-                    <span v-if="command.description"> - {{ command.description }}</span>
+            <div class="row align-items-center">
+                <!--Left Side-->
+                <div class="col-8">
+                    <div class="row command__collection">
+                        <div class="col-12">
+                            <strong>{{ command.collection.title }}</strong>
+                            <span v-if="command.description"> - {{ command.description }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 command__code"><i class="fas fa-code"></i> {{ command.command }}</div>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-8 command__code">
-                    {{ command.command }}
-                </div>
-                <div class="col-4 text-end command__links">
-                    <NuxtLink :to="'/commands/clone/' + command.id"><i class="far fa-clone"></i></NuxtLink>
-                    <template v-if="command.collection.user_id == form.userID">
-                        <NuxtLink :to="'/commands/update/' + command.id"><i class="far fa-edit"></i></NuxtLink>
-                        <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt"></i></a>
-                    </template>
+                <!--Right Side-->
+                <div class="col-4 text-end">
+                    <div class="row command__date">
+                        <div class="col-12">{{ command.formated_created }}</div>
+                    </div>
+                    <div class="row mt-2 command__links">
+                        <div class="col-12">
+                            <NuxtLink :to="'/commands/clone/' + command.id"><i class="far fa-clone" title="copy"></i></NuxtLink>
+                            <template v-if="command.collection.user_id == form.userID">
+                                <NuxtLink :to="'/commands/update/' + command.id"><i class="far fa-edit" title="edit"></i></NuxtLink>
+                                <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt" title="delete"></i></a>
+                            </template>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +74,11 @@ export default {
             }
         },
     },
+    watch: {
+        "$store.state.auth.user": function (val) {
+            this.form.userID = this.$auth?.user?.id ?? null;
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>
@@ -92,12 +108,22 @@ export default {
     padding-top: 2px;
     font-style: italic;
     font-weight: 400;
+    font-size: 20px;
+    i {
+        color: $appGrey;
+        font-size: 14px;
+        padding-right: 10px;
+    }
 }
-
+.command__date {
+    font-size: 11px;
+    color: $appGrey2;
+}
 .command__links {
     a {
         color: $appGreen;
         transition: $appTransition;
+        margin-left: 20px;
 
         &:hover,
         &:focus {

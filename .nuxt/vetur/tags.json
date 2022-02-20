@@ -26,8 +26,11 @@
   "AppMessage": {
     "description": "Auto imported from components/AppMessage.vue"
   },
-  "AppModal": {
-    "description": "Auto imported from components/AppModal.vue"
+  "AppModalCollection": {
+    "description": "Auto imported from components/AppModalCollection.vue"
+  },
+  "AppModalMessage": {
+    "description": "Auto imported from components/AppModalMessage.vue"
   },
   "AppPaginatedCommands": {
     "description": "Auto imported from components/AppPaginatedCommands.vue"

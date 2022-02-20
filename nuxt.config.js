@@ -17,20 +17,20 @@ export default {
     ssr: false,
 
     env: {
-        backendUrl: "http://localhost:8001",
+        backendUrl: process.env.BASE_URL,
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: ["~/assets/scss/main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [{ src: "~/plugins/bootstrap.js", mode: "client" }],
+    plugins: [{ src: "~/plugins/bootstrap.js" }],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: ["@nuxtjs/tailwindcss", "@nuxtjs/google-fonts"],
+    buildModules: ["@nuxtjs/google-fonts"],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
@@ -42,7 +42,7 @@ export default {
     ],
 
     styleResources: {
-        scss: ["./assets/scss/*.scss"],
+        scss: ["./assets/scss/main.scss"],
     },
 
     googleFonts: {
@@ -57,7 +57,7 @@ export default {
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: "http://localhost:8001",
+        baseURL: process.env.BASE_URL,
         credentials: true,
     },
 
@@ -68,7 +68,12 @@ export default {
         strategies: {
             laravelSanctum: {
                 provider: "laravel/sanctum",
-                url: "http://localhost:8001",
+                url: process.env.BASE_URL,
+            },
+            cookie: {
+                cookie: {
+                    name: "XSRF-TOKEN",
+                },
             },
         },
     },

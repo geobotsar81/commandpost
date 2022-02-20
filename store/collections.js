@@ -31,6 +31,11 @@ export const actions = {
             commit("SET_USER_COLLECTIONS", response.data);
         });
     },
+    addUserCollection({ commit }, data) {
+        return CollectionService.addCollection(data.form).then((response) => {
+            commit("SET_USER_COLLECTIONS", response.data);
+        });
+    },
     updateUserCollection({ commit }, data) {
         return CollectionService.updateCollection(data.form, data.collectionID).then((response) => {
             commit("SET_COLLECTION", response.data);
