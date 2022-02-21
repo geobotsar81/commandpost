@@ -1,20 +1,45 @@
 body {
-    .btn-primary {
+    .btn {
         font-size: 15px;
-        background-color: $appBlack;
-        border-color: $appGrey;
-        color: $appWhite;
-        padding: 14px 25px;
         border-radius: 4px;
-        transition: $appTransition;
-        font-weight: 700;
+        padding: 14px 25px;
+        transition: $appTransition !important;
+        font-weight: 400;
+
+        i {
+            transition: none !important;
+        }
 
         &:hover,
         &:focus {
-            background-color: $appOrange;
-            border-color: $appOrange;
-            color: $appBlack;
             box-shadow: none !important;
+            transition: $appTransition;
+        }
+    }
+
+    .btn-primary {
+        background-color: $appBlack2;
+        border-color: $appBlack;
+        color: $appOrange;
+
+        &:hover,
+        &:focus {
+            background-color: $appGrey2;
+            border-color: $appGrey2;
+            color: $appBlack;
+        }
+    }
+
+    .btn-secondary {
+        background-color: $appOrange;
+        border-color: $appOrange;
+        color: $appBlack;
+
+        &:hover,
+        &:focus {
+            background-color: $appBlack2;
+            border-color: $appBlack2;
+            color: $appGrey2;
         }
     }
 }

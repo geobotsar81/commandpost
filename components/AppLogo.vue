@@ -1,5 +1,5 @@
 <template>
-    <div class="logo">CmndPost</div>
+    <div class="logo"><span>Cmnd</span>Post</div>
 </template>
 <script>
 export default {
@@ -9,13 +9,23 @@ export default {
 <style lang="scss" scoped>
 .logo {
     font-size: 48px;
-    color: $appGrey2;
+    color: $appOrange;
     font-weight: 900;
     text-decoration: none;
+
+    span {
+        color: $appGrey2;
+    }
 }
 @media (max-width: 1199.98px) {
     .logo {
         font-size: 40px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .logo {
+        font-size: 30px !important;
     }
 }
 </style>

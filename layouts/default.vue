@@ -1,8 +1,8 @@
 <template>
     <div class="container-fluid siteContainer">
         <div class="row">
-            <div class="col-sm-4 col-lg-3 pe-0"><TheSideMenu /></div>
-            <div class="col-sm-8 col-lg-9 ps-0">
+            <div class="col-md-4 col-lg-3 pe-0 ps-0"><TheSideMenu /></div>
+            <div class="col-md-8 col-lg-9 pe-0 ps-0">
                 <TheMain>
                     <Nuxt />
                 </TheMain>

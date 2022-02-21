@@ -30,7 +30,7 @@ export const actions = {
         });
     },
     fetchCollectionCommands({ commit }, data) {
-        return CommandService.getCollectionCommands(data.userID, data.collectionID).then((response) => {
+        return CommandService.getCollectionCommands(data.collectionID, data).then((response) => {
             commit("SET_COLLECTION_COMMANDS", response.data);
         });
     },

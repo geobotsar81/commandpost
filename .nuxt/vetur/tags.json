@@ -38,9 +38,6 @@
   "AppPagination": {
     "description": "Auto imported from components/AppPagination.vue"
   },
-  "TheFooter": {
-    "description": "Auto imported from components/TheFooter.vue"
-  },
   "TheMain": {
     "description": "Auto imported from components/TheMain.vue"
   },
