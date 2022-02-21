@@ -117,10 +117,18 @@ export default {
             this.searching = true;
             this.message = "";
             try {
+                //If this is a Collection page
                 if (this.type == "collection") {
-                    await this.$store.dispatch("commands/fetchCollectionCommands", { sort: this.sortFilter, search: this.searchFilter, page: this.currentPage, collectionID: this.$route.params.id });
+                    await this.$store.dispatch("commands/fetchCollectionCommands", {
+                        userID: this.$store.state.auth.user.id,
+                        sort: this.sortFilter,
+                        search: this.searchFilter,
+                        page: this.currentPage,
+                        collectionID: this.$route.params.id,
+                    });
                     this.commands = this.$store.state.commands.collectionCommands.data;
                     this.paginationLinks = this.$store.state.commands.collectionCommands.links;
+                    //If this is the Home page
                 } else {
                     await this.$store.dispatch("commands/fetchCommands", { sort: this.sortFilter, search: this.searchFilter, page: this.currentPage });
                     this.commands = this.$store.state.commands.commands.data;
