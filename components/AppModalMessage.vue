@@ -4,10 +4,15 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="messageModalLabel">
-                        <span v-if="type == 'error'"><i class="far fa-exclamation-triangle"></i> Error</span>
-                        <span v-if="type == 'success'"><i class="far fa-check-circle"></i> Success</span>
-                    </h5>
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <h5 class="modal-title" id="messageModalLabel">
+                                <span v-if="type == 'error'"><i class="far fa-exclamation-triangle"></i> Error</span>
+                                <span v-if="type == 'success'"><i class="far fa-check-circle"></i> Success</span>
+                            </h5>
+                        </div>
+                    </div>
+
                     <button @click.prevent="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
                 </div>
                 <div class="modal-body">

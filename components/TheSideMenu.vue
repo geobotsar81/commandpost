@@ -1,11 +1,12 @@
 <template>
-    <div class="sideMenu">
+    <div class="sideMenu" :class="showMobileMenu ? 'expanded' : ''">
         <div class="row">
-            <div class="col-12">
+            <div class="col-6 col-md-12">
                 <NuxtLink to="/">
                     <AppLogo />
                 </NuxtLink>
             </div>
+            <div class="col-6 col-md-12 text-end d-md-none sideMenu__burger"><i @click="toggleMobileMenu" :class="showMobileMenu ? 'far fa-times' : 'far fa-bars'"></i></div>
         </div>
 
         <!--Message Modal-->
@@ -21,8 +22,8 @@
                     <template v-if="auth.$state.loggedIn">
                         <li><NuxtLink to="/dashboard"> Dashboard </NuxtLink></li>
                         <li>
-                            <a class="collapsed" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
-                                >Collections <i class="fal fa-angle-up"></i
+                            <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
+                                >My Collections <i class="fal fa-angle-down"></i
                             ></a>
 
                             <div class="collapse" id="collapseCollections" v-if="userCollections">
@@ -37,18 +38,18 @@
                                                 :collection="collection"
                                             />
                                         </li>
-                                        <li class="mt-4">
-                                            <a href="#" @click.prevent="showCollectionModal"> <i class="fas fa-plus-circle"></i> Add Collection </a>
-                                        </li>
-                                        <li class="mt-2">
-                                            <a href="#"> <i class="fas fa-plus-circle"></i> Add Command </a>
-                                        </li>
                                     </ul>
                                 </div>
                             </div>
                         </li>
 
                         <li><a href="#" @click.prevent="logout">Logout</a></li>
+                        <li>
+                            <a class="btn btn-primary" href="#" @click.prevent="showCollectionModal"> <i class="fas fa-plus-circle"></i> Add Collection </a>
+                        </li>
+                        <li>
+                            <a class="btn btn-secondary" href="#"> <i class="fas fa-plus-circle"></i> Add Command </a>
+                        </li>
                     </template>
 
                     <template v-else>
@@ -59,7 +60,7 @@
             </div>
         </div>
 
-        <div class="sidemenu__copyrights">© All rights reserved - {{ currentYear }}</div>
+        <div class="sidemenu__copyrights">©CmndPost {{ currentYear }} - All rights reserved</div>
     </div>
 </template>
 <script>
@@ -83,6 +84,7 @@ export default {
             type: null,
             editCollectionID: null,
             editCollectionTitle: null,
+            showMobileMenu: false,
         };
     },
     //Fetch user collections
@@ -124,6 +126,11 @@ export default {
         refreshCollections() {
             this.userCollections = this.$store.state.collections.userCollections;
         },
+        //Toggle Mobile menu
+        toggleMobileMenu() {
+            this.showMobileMenu = !this.showMobileMenu;
+            console.log(this.showMobileMenu);
+        },
     },
     watch: {
         "$store.state.auth.user": function (val) {
@@ -141,6 +148,7 @@ export default {
     display: inline-block;
     position: relative;
     width: 100%;
+    transition: $appTransition;
 }
 
 .sideMenu__links {
@@ -160,28 +168,45 @@ export default {
         }
     }
 
-    a,
+    a:not(.btn),
     button {
         color: $appOrange;
         font-size: 18px;
+
+        &:hover,
+        &:focus {
+            color: $appOrange2;
+        }
     }
 
     i {
         transition: $appTransition;
     }
 
-    a.collapsed {
+    a[aria-expanded="true"] {
         i {
             transform: rotate(180deg);
         }
     }
 }
 
+.sideMenu__burger {
+    font-size: 24px;
+    color: $appOrange;
+    padding-top: 5px;
+    i {
+        cursor: pointer;
+    }
+}
+
 .sidemenu__copyrights {
     position: absolute;
-    left: 45px;
+    left: 0px;
     bottom: 15px;
     color: $appGrey2;
+    width: 100%;
+    padding: 0px 15px;
+    text-align: center;
 }
 
 @media (max-width: 1199.98px) {
@@ -190,6 +215,36 @@ export default {
     }
     :deep(.logo) {
         font-size: 25px !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .sideMenu {
+        height: 60px;
+        padding: 10px 30px;
+        margin: 0px;
+        overflow: hidden;
+        .sideMenu__links,
+        .sidemenu__copyrights {
+            opacity: 0;
+            transition: $appTransition;
+            text-align: center;
+        }
+        &.expanded {
+            height: 100vh;
+
+            .sideMenu__links {
+                opacity: 1;
+                transition: $appTransition;
+            }
+            .sidemenu__copyrights {
+                opacity: 1;
+                transition: $appTransition;
+            }
+        }
+        .sidemenu__copyrights {
+            pointer-events: none;
+        }
     }
 }
 </style>

@@ -5,7 +5,7 @@
         <div v-else class="command">
             <div class="row align-items-center">
                 <!--Left Side-->
-                <div class="col-8">
+                <div class="col-sm-8 text-center text-sm-start">
                     <div class="row command__collection">
                         <div class="col-12">
                             <strong>{{ command.collection.title }}</strong>
@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <!--Right Side-->
-                <div class="col-4 text-end">
-                    <div class="row command__date">
+                <div class="col-sm-4 text-center text-sm-end">
+                    <div class="row command__date d-none d-sm-block">
                         <div class="col-12">{{ command.formated_created }}</div>
                     </div>
                     <div class="row mt-2 command__links">

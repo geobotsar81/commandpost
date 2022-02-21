@@ -90,6 +90,7 @@ export default {
     methods: {
         showModal() {
             this.modal.show();
+            this.message = "";
         },
         //Add a New Collection
         async submit() {
