@@ -29,6 +29,9 @@
   "AppModalCollection": {
     "description": "Auto imported from components/AppModalCollection.vue"
   },
+  "AppModalCommand": {
+    "description": "Auto imported from components/AppModalCommand.vue"
+  },
   "AppModalMessage": {
     "description": "Auto imported from components/AppModalMessage.vue"
   },

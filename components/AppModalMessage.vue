@@ -16,7 +16,7 @@
                     <button @click.prevent="closeModal" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
                 </div>
                 <div class="modal-body">
-                    <div :class="type == 'error' ? 'alert alert-danger' : 'alert alert-success'">{{ message }}</div>
+                    <div>{{ message }}</div>
                 </div>
             </div>
         </div>

@@ -1,8 +1,10 @@
 import CommandService from "@/services/CommandService.js";
 
 export const state = () => ({
-    commands: [],
+    commands: null,
     command: null,
+    userCommands: null,
+    collectionCommands: null,
 });
 export const mutations = {
     SET_COMMANDS(state, commands) {
@@ -32,6 +34,11 @@ export const actions = {
     fetchCollectionCommands({ commit }, data) {
         return CommandService.getCollectionCommands(data.collectionID, data).then((response) => {
             commit("SET_COLLECTION_COMMANDS", response.data);
+        });
+    },
+    addUserCommand({ commit }, data) {
+        return CommandService.addCommand(data).then((response) => {
+            commit("SET_COMMANDS", response.data);
         });
     },
     fetchUserCommands({ commit }, userID) {

@@ -1,11 +1,11 @@
 <template>
     <!-- Modal -->
-    <div class="modal fade" id="collectionModal" tabindex="-1" aria-labelledby="collectionModalLabel" aria-hidden="true">
+    <div class="modal fade" id="commandModal" tabindex="-1" aria-labelledby="commandModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="collectionModalLabel" v-if="collectionID">Update Collection</h5>
-                    <h5 class="modal-title" id="collectionModalLabel" v-else>Add a new Collection</h5>
+                    <h5 class="modal-title" id="commandModalLabel" v-if="commandID">Update Command</h5>
+                    <h5 class="modal-title" id="commandModalLabel" v-else>Add a new Command</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
                 </div>
                 <div class="modal-body">
@@ -19,16 +19,32 @@
                     <form @submit.prevent="submit">
                         <div class="row mt-4">
                             <div class="col-12">
-                                <AppLabel for="title" value="Title" />
-                                <AppInput id="title" type="title" class="mt-1 block w-full" v-model="form.title" />
+                                <AppLabel for="collection" value="Collection" />
+                                <select id="collection" class="form-select" aria-label="Default select example" v-model="form.collection">
+                                    <option value="" selected>Select a Collection</option>
+                                    <option v-for="(collection, index) in userCollections" :key="index" :value="collection.id">{{ collection.title }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <AppLabel for="command" value="Command" />
+                                <AppInput id="command" type="command" class="mt-1 block w-full" v-model="form.command" />
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <AppLabel for="description" value="Description" />
+                                <AppInput id="description" type="description" class="mt-1 block w-full" v-model="form.description" />
                             </div>
                         </div>
 
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    <template v-if="collectionID">Update Collection</template>
-                                    <template v-else>Add Collection</template>
+                                    <template v-if="commandID">Update Command</template>
+                                    <template v-else>Add Command</template>
                                 </AppButton>
                             </div>
                         </div>
@@ -53,6 +69,13 @@ export default {
     mounted() {
         this.modal = new Modal(document.getElementById(this.modalId));
     },
+    //Fetch user collections
+    async fetch() {
+        try {
+            await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+            this.userCollections = this.$store.state.collections.userCollections;
+        } catch (e) {}
+    },
     components: {
         AppValidationErrors,
         AppButton,
@@ -62,27 +85,29 @@ export default {
         AppMessage,
     },
     props: {
-        collectionID: {
+        commandID: {
             type: Number,
             required: false,
         },
-        collectionTitle: {
+        commandTitle: {
             type: String,
             required: false,
         },
     },
     data() {
         return {
-            modalId: "collectionModal",
+            modalId: "commandModal",
             form: {
-                title: this.collectionTitle ?? null,
-                user_id: this.$auth?.user?.id ?? null,
-                collection_id: this.collectionID ?? null,
+                command: "",
+                description: "",
+                user_id: this.$auth.user.id,
+                collection: "",
                 errors: [],
             },
             message: "",
             messageType: "",
             processing: false,
+            userCollections: null,
         };
     },
 
@@ -91,24 +116,24 @@ export default {
             this.modal.show();
             this.message = "";
         },
-        //Add a New Collection
+        //Add a New Command
         async submit() {
             this.processing = true;
             this.success = "";
             this.form.errors = [];
 
             try {
-                //Update Collection
-                if (this.collectionID) {
-                    await this.$store.dispatch("collections/updateUserCollection", { form: this.form, collectionID: this.collectionID });
+                //Update Command
+                if (this.commandID) {
+                    await this.$store.dispatch("commands/updateUserCommand", { form: this.form, commandID: this.commandID });
                 } else {
-                    //Add new Collection
-                    await this.$store.dispatch("collections/addUserCollection", { form: this.form });
+                    //Add new Command
+                    await this.$store.dispatch("commands/addUserCommand", this.form);
                 }
-                //this.$emit("refreshCollections");
+                this.$emit("refreshCommands");
                 this.processing = false;
                 this.form.title = "";
-                this.message = "Collection was successfully added";
+                this.message = "Command was successfully added";
                 this.messageType = "success";
             } catch (e) {
                 this.processing = false;
@@ -117,7 +142,7 @@ export default {
         },
     },
     watch: {
-        collectionTitle: function (val) {
+        commandTitle: function (val) {
             this.form.title = val;
         },
     },

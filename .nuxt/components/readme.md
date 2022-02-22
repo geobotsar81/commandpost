@@ -16,6 +16,7 @@ You can directly use them in pages and other components without the need to impo
 - `<AppLogo>` | `<app-logo>` (components/AppLogo.vue)
 - `<AppMessage>` | `<app-message>` (components/AppMessage.vue)
 - `<AppModalCollection>` | `<app-modal-collection>` (components/AppModalCollection.vue)
+- `<AppModalCommand>` | `<app-modal-command>` (components/AppModalCommand.vue)
 - `<AppModalMessage>` | `<app-modal-message>` (components/AppModalMessage.vue)
 - `<AppPaginatedCommands>` | `<app-paginated-commands>` (components/AppPaginatedCommands.vue)
 - `<AppPagination>` | `<app-pagination>` (components/AppPagination.vue)

@@ -17,10 +17,10 @@
                                 <div class="col-md-6 col-lg-4">
                                     <label for="sortCommands">Sort commands by</label>
                                     <select id="sortCommands" v-model="sortFilter" class="form-select" aria-label="Sort movies by">
-                                        <option value="1" selected>Command &#8595;</option>
-                                        <option value="2">Command &#8593;</option>
-                                        <option value="3">Date &#8595;</option>
-                                        <option value="4">Date &#8593;</option>
+                                        <option value="1" selected>Command &#8593;</option>
+                                        <option value="2">Command &#8595;</option>
+                                        <option value="3">Date &#8593;</option>
+                                        <option value="4">Date &#8595;</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-3 col-xl-2 search__button">
@@ -83,11 +83,9 @@ export default {
         return {
             message: "",
             messageType: "",
-            sort: 3,
-            search: "",
             currentPage: 1,
             searchFilter: "",
-            sortFilter: 1,
+            sortFilter: 4,
             searching: false,
             commands: null,
             paginationLinks: null,
@@ -145,6 +143,17 @@ export default {
         //Watch for changes in the current page
         currentPage: function (val) {
             this.getCommands();
+        },
+        //Watch if a command was added
+        "$store.state.commands.commands": function (val) {
+            this.sortFilter = 4;
+            this.searchFilter = "";
+            if (this.type == "collection") {
+                this.getCommands();
+            } else {
+                this.commands = this.$store.state.commands.commands.data;
+                this.paginationLinks = this.$store.state.commands.commands.links;
+            }
         },
     },
 };
