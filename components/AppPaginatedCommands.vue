@@ -1,9 +1,9 @@
 <template>
     <div class="search">
-        <!--Message-->
-        <AppMessage v-if="message" :message="message" :type="messageType" />
+        <!--Toast-->
+        <AppToast ref="messageToast" :message="message" toastId="commandsToast" />
 
-        <div class="row mt-4" v-if="commands && commands.length > 0">
+        <div class="row mt-4">
             <div class="col-12">
                 <!--Search Form-->
                 <div class="row">
@@ -32,12 +32,12 @@
                     </div>
                 </div>
 
-                <div class="row mt-4" v-if="commands">
+                <div class="row mt-4" v-if="commands && commands.length > 0">
                     <div class="col-12">
                         <!--Commands-->
                         <div class="row" v-for="(command, index) in commands" :key="index">
                             <div class="col-12">
-                                <AppCommand @showMessage="displayMessage" @deletedCommand="refreshCommands" :command="command" />
+                                <AppCommand @showToast="showToast" :command="command" />
                             </div>
                         </div>
 
@@ -82,7 +82,6 @@ export default {
     data() {
         return {
             message: "",
-            messageType: "",
             currentPage: 1,
             searchFilter: "",
             sortFilter: 4,
@@ -97,9 +96,9 @@ export default {
             this.commands = this.$store.state.commands.commands;
         },
         //Display a message if there is an emitted message from the commands component
-        displayMessage(message) {
-            this.message = message.message;
-            this.messageType = message.type;
+        showToast(message) {
+            this.message = message;
+            this.$refs.messageToast.showToast();
         },
         //Listen for emits from pagination and change the current page
         changePage(page) {
@@ -134,7 +133,7 @@ export default {
                 }
             } catch (e) {
                 this.message = "Could not load data at this time";
-                this.messageType = "error";
+                this.$refs.messageToast.showToast();
             }
             this.searching = false;
         },

@@ -53,7 +53,7 @@ export const actions = {
     },
     deleteUserCommands({ commit }, data) {
         return CommandService.deleteCommand(data.form, data.commandID).then((response) => {
-            commit("SET_USER_COMMANDS", response.data);
+            commit("SET_COMMANDS", response.data);
         });
     },
 };

@@ -41,6 +41,9 @@
   "AppPagination": {
     "description": "Auto imported from components/AppPagination.vue"
   },
+  "AppToast": {
+    "description": "Auto imported from components/AppToast.vue"
+  },
   "TheMain": {
     "description": "Auto imported from components/TheMain.vue"
   },

@@ -9,13 +9,12 @@
             <div class="col-6 col-md-12 text-end d-md-none sideMenu__burger"><i @click="toggleMobileMenu" :class="showMobileMenu ? 'far fa-times' : 'far fa-bars'"></i></div>
         </div>
 
-        <!--Message Modal-->
-        <AppMessageModal ref="messageModal" :message="message" :type="type" />
-
+        <!--Toast for message-->
+        <AppToast ref="messageToast" :message="message" toastId="sidemenuToast" />
         <!--Collection Modal-->
         <AppCollectionModal :collectionID="editCollectionID" :collectionTitle="editCollectionTitle" ref="collectionModal" />
         <!--Command Modal-->
-        <AppCommandModal :commandID="editCommandID" ref="commandModal" @refreshCommands="refreshCommands" />
+        <AppCommandModal :commandID="editCommandID" ref="commandModal" />
 
         <div class="row mt-4 sideMenu__links">
             <div class="col-12">
@@ -32,7 +31,7 @@
                                 <div>
                                     <ul>
                                         <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
-                                            <AppCollection @editCollection="editCollection" @showMessage="showMessageModal" type="compact" :collection="collection" />
+                                            <AppCollection @editCollection="editCollection" @showToast="showToast" type="compact" :collection="collection" />
                                         </li>
                                     </ul>
                                 </div>
@@ -121,17 +120,14 @@ export default {
             this.editCommandID = null;
             this.$refs.commandModal.showModal();
         },
-        showMessageModal(data) {
-            this.message = data.message;
-            this.type = data.type;
-            this.$refs.messageModal.showModal();
+        //Show a message as toash
+        showToast(message) {
+            this.message = message;
+            this.$refs.messageToast.showToast();
         },
         //Refresh collections when one is added through the modal
         refreshCollections() {
             this.userCollections = this.$store.state.collections.userCollections;
-        },
-        refreshCommands() {
-            this.userCommands = this.$store.state.commands.userCommands;
         },
         //Toggle Mobile menu
         toggleMobileMenu() {
@@ -144,6 +140,9 @@ export default {
             this.auth = this.$auth;
         },
         "$store.state.collections.userCollections": function (val) {
+            this.userCollections = this.$store.state.collections.userCollections;
+        },
+        "$store.state.commands.commands": function (val) {
             this.userCollections = this.$store.state.collections.userCollections;
         },
     },

@@ -42,7 +42,7 @@
 
                         <div class="row mt-4">
                             <div class="col-12">
-                                <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                <AppButton class="ml-4" v-if="!processing">
                                     <template v-if="commandID">Update Command</template>
                                     <template v-else>Add Command</template>
                                 </AppButton>
@@ -69,13 +69,6 @@ export default {
     mounted() {
         this.modal = new Modal(document.getElementById(this.modalId));
     },
-    //Fetch user collections
-    async fetch() {
-        try {
-            await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
-            this.userCollections = this.$store.state.collections.userCollections;
-        } catch (e) {}
-    },
     components: {
         AppValidationErrors,
         AppButton,
@@ -89,10 +82,10 @@ export default {
             type: Number,
             required: false,
         },
-        commandTitle: {
-            type: String,
-            required: false,
-        },
+    },
+    //Fetch user collections
+    async fetch() {
+        this.getCollections();
     },
     data() {
         return {
@@ -100,7 +93,7 @@ export default {
             form: {
                 command: "",
                 description: "",
-                user_id: this.$auth.user.id,
+                user_id: this.$auth?.user?.id ?? null,
                 collection: "",
                 errors: [],
             },
@@ -110,11 +103,17 @@ export default {
             userCollections: null,
         };
     },
-
     methods: {
         showModal() {
             this.modal.show();
             this.message = "";
+            this.getCollections();
+        },
+        async getCollections() {
+            try {
+                await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                this.userCollections = this.$store.state.collections.userCollections;
+            } catch (e) {}
         },
         //Add a New Command
         async submit() {
@@ -126,11 +125,14 @@ export default {
                 //Update Command
                 if (this.commandID) {
                     await this.$store.dispatch("commands/updateUserCommand", { form: this.form, commandID: this.commandID });
+                    //Re-fetch user collections in order to have an updated commands number in the side menu
+                    await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
                 } else {
                     //Add new Command
                     await this.$store.dispatch("commands/addUserCommand", this.form);
+                    //Re-fetch user collections in order to have an updated commands number in the side menu
+                    await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
                 }
-                this.$emit("refreshCommands");
                 this.processing = false;
                 this.form.title = "";
                 this.message = "Command was successfully added";

@@ -44,17 +44,17 @@ export default {
             this.message = "";
 
             if (this.collection.commands.length != 0) {
-                this.$emit("showMessage", { message: "You will need to delete any commands in this Collection, in order to be able to delete it.", type: "error" });
+                this.$emit("showToast", "You will need to delete any commands in this Collection, in order to be able to delete it.");
             } else {
                 try {
                     await this.$store.dispatch("collections/deleteUserCollections", { form: this.form, collectionID: collectionID });
                     this.processing = false;
                     this.userCollections = this.$store.state.collections.userCollections;
                     //this.$emit("deletedCollection", true);
-                    this.$emit("showMessage", { message: "Collection deleted successfully", type: "success" });
+                    this.$emit("showToast", "Collection deleted successfully");
                 } catch (e) {
                     this.processing = false;
-                    this.$emit("showMessage", { message: e, type: "error" });
+                    this.$emit("showToast", e);
                 }
             }
         },
