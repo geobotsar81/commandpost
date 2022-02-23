@@ -85,10 +85,7 @@ export default {
     },
     //Fetch user collections
     async fetch() {
-        try {
-            await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
-            this.userCollections = this.$store.state.collections.userCollections;
-        } catch (e) {}
+        this.getCollections();
     },
     data() {
         return {
@@ -110,6 +107,13 @@ export default {
         showModal() {
             this.modal.show();
             this.message = "";
+            this.getCollections();
+        },
+        async getCollections() {
+            try {
+                await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                this.userCollections = this.$store.state.collections.userCollections;
+            } catch (e) {}
         },
         //Add a New Command
         async submit() {

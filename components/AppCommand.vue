@@ -24,11 +24,11 @@
                     <div class="row command__date d-none d-sm-block">
                         <div class="col-12">{{ command.formated_created }}</div>
                     </div>
-                    <div class="row mt-2 command__links">
+                    <div class="row mt-2 command__links" v-if="auth.$state.loggedIn">
                         <div class="col-12">
-                            <NuxtLink :to="'/commands/clone/' + command.id"><i class="far fa-clone" title="duplicate command"></i></NuxtLink>
+                            <a v-if="command.collection.user_id != form.userID" href="#" @click.prevent="cloneCommand(command.id)"><i class="far fa-plus-circle" title="add to collection"></i></a>
                             <template v-if="command.collection.user_id == form.userID">
-                                <NuxtLink :to="'/commands/update/' + command.id"><i class="far fa-edit" title="edit"></i></NuxtLink>
+                                <a href="#" @click.prevent="editCommand(command.id)"><i class="far fa-edit" title="edit"></i></a>
                                 <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt" title="delete"></i></a>
                             </template>
                         </div>
@@ -57,8 +57,9 @@ export default {
     data() {
         return {
             form: {
-                userID: this.$auth?.user?.id,
+                userID: this.$auth?.user?.id ?? null,
             },
+            auth: this.$auth ?? null,
             processing: false,
         };
     },

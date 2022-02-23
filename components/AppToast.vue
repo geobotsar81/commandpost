@@ -1,9 +1,9 @@
 <template>
     <!-- Toast -->
     <div class="toast-container">
-        <div id="messageToast" class="toast" data-bs-delay="2000" role="alert" aria-live="assertive" aria-atomic="true">
+        <div :id="toastId" class="toast" data-bs-delay="2000" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"><i class="fal fa-times"></i></button>
+                <button @click.prevent="closeToast" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"><i class="fal fa-times"></i></button>
             </div>
             <div class="toast-body">{{ message }}</div>
         </div>
@@ -18,16 +18,11 @@ export default {
         this.toast = new Toast(document.getElementById(this.toastId));
     },
     components: {},
-    data() {
-        return {
-            toastId: "messageToast",
-        };
-    },
     props: {
         message: {
             type: String,
         },
-        type: {
+        toastId: {
             type: String,
         },
     },
@@ -43,12 +38,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .toast-container {
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 10px;
+    z-index: 99999;
 }
 .toast {
-    background-color: $appBlack2;
+    background-color: $appOrange;
+    color: $appBlack2;
     padding: 0px;
     box-shadow: $appBoxShadow;
 }
@@ -57,7 +54,7 @@ export default {
     padding: 0px 5px 5px 5px;
     background-color: $appGrey;
     .btn-close {
-        color: $appBlack2;
+        color: $appWhite;
         margin-left: auto;
         margin-right: 10px;
         font-size: 16px;

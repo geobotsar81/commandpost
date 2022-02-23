@@ -1,7 +1,7 @@
 <template>
     <div class="search">
         <!--Toast-->
-        <AppToast ref="messageToast" :message="toastMessage" />
+        <AppToast ref="messageToast" :message="message" toastId="commandsToast" />
 
         <div class="row mt-4">
             <div class="col-12">
@@ -82,8 +82,6 @@ export default {
     data() {
         return {
             message: "",
-            messageType: "",
-            toastMessage: "",
             currentPage: 1,
             searchFilter: "",
             sortFilter: 4,
@@ -99,7 +97,7 @@ export default {
         },
         //Display a message if there is an emitted message from the commands component
         showToast(message) {
-            this.toastMessage = message;
+            this.message = message;
             this.$refs.messageToast.showToast();
         },
         //Listen for emits from pagination and change the current page
@@ -134,7 +132,7 @@ export default {
                     this.paginationLinks = this.$store.state.commands.commands.links;
                 }
             } catch (e) {
-                this.toastMessage = "Could not load data at this time";
+                this.message = "Could not load data at this time";
                 this.$refs.messageToast.showToast();
             }
             this.searching = false;

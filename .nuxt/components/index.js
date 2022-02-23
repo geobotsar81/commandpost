@@ -1,21 +1,21 @@
-export { default as AppButton } from '../../components/AppButton.vue'
-export { default as AppCheckbox } from '../../components/AppCheckbox.vue'
-export { default as AppCollection } from '../../components/AppCollection.vue'
-export { default as AppCommand } from '../../components/AppCommand.vue'
-export { default as AppInput } from '../../components/AppInput.vue'
-export { default as AppLabel } from '../../components/AppLabel.vue'
-export { default as AppLoader } from '../../components/AppLoader.vue'
-export { default as AppLogo } from '../../components/AppLogo.vue'
-export { default as AppMessage } from '../../components/AppMessage.vue'
-export { default as AppModalCollection } from '../../components/AppModalCollection.vue'
-export { default as AppModalCommand } from '../../components/AppModalCommand.vue'
-export { default as AppModalMessage } from '../../components/AppModalMessage.vue'
-export { default as AppPaginatedCommands } from '../../components/AppPaginatedCommands.vue'
-export { default as AppPagination } from '../../components/AppPagination.vue'
-export { default as AppToast } from '../../components/AppToast.vue'
-export { default as TheMain } from '../../components/TheMain.vue'
-export { default as TheSideMenu } from '../../components/TheSideMenu.vue'
-export { default as ValidationErrors } from '../../components/validation-errors.vue'
+export const AppButton = () => import('../../components/AppButton.vue' /* webpackChunkName: "components/app-button" */).then(c => wrapFunctional(c.default || c))
+export const AppCheckbox = () => import('../../components/AppCheckbox.vue' /* webpackChunkName: "components/app-checkbox" */).then(c => wrapFunctional(c.default || c))
+export const AppCollection = () => import('../../components/AppCollection.vue' /* webpackChunkName: "components/app-collection" */).then(c => wrapFunctional(c.default || c))
+export const AppCommand = () => import('../../components/AppCommand.vue' /* webpackChunkName: "components/app-command" */).then(c => wrapFunctional(c.default || c))
+export const AppInput = () => import('../../components/AppInput.vue' /* webpackChunkName: "components/app-input" */).then(c => wrapFunctional(c.default || c))
+export const AppLabel = () => import('../../components/AppLabel.vue' /* webpackChunkName: "components/app-label" */).then(c => wrapFunctional(c.default || c))
+export const AppLoader = () => import('../../components/AppLoader.vue' /* webpackChunkName: "components/app-loader" */).then(c => wrapFunctional(c.default || c))
+export const AppLogo = () => import('../../components/AppLogo.vue' /* webpackChunkName: "components/app-logo" */).then(c => wrapFunctional(c.default || c))
+export const AppMessage = () => import('../../components/AppMessage.vue' /* webpackChunkName: "components/app-message" */).then(c => wrapFunctional(c.default || c))
+export const AppModalCollection = () => import('../../components/AppModalCollection.vue' /* webpackChunkName: "components/app-modal-collection" */).then(c => wrapFunctional(c.default || c))
+export const AppModalCommand = () => import('../../components/AppModalCommand.vue' /* webpackChunkName: "components/app-modal-command" */).then(c => wrapFunctional(c.default || c))
+export const AppModalMessage = () => import('../../components/AppModalMessage.vue' /* webpackChunkName: "components/app-modal-message" */).then(c => wrapFunctional(c.default || c))
+export const AppPaginatedCommands = () => import('../../components/AppPaginatedCommands.vue' /* webpackChunkName: "components/app-paginated-commands" */).then(c => wrapFunctional(c.default || c))
+export const AppPagination = () => import('../../components/AppPagination.vue' /* webpackChunkName: "components/app-pagination" */).then(c => wrapFunctional(c.default || c))
+export const AppToast = () => import('../../components/AppToast.vue' /* webpackChunkName: "components/app-toast" */).then(c => wrapFunctional(c.default || c))
+export const TheMain = () => import('../../components/TheMain.vue' /* webpackChunkName: "components/the-main" */).then(c => wrapFunctional(c.default || c))
+export const TheSideMenu = () => import('../../components/TheSideMenu.vue' /* webpackChunkName: "components/the-side-menu" */).then(c => wrapFunctional(c.default || c))
+export const ValidationErrors = () => import('../../components/validation-errors.vue' /* webpackChunkName: "components/validation-errors" */).then(c => wrapFunctional(c.default || c))
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {
