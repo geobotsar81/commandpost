@@ -1,8 +1,9 @@
 import CollectionService from "@/services/CollectionService.js";
 
 export const state = () => ({
-    collections: [],
+    collections: null,
     collection: null,
+    userCollections: null,
 });
 export const mutations = {
     SET_COLLECTIONS(state, collections) {

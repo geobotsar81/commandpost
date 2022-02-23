@@ -13,7 +13,9 @@
         <AppMessageModal ref="messageModal" :message="message" :type="type" />
 
         <!--Collection Modal-->
-        <AppCollectionModal :collectionID="editCollectionID" :collectionTitle="editCollectionTitle" ref="collectionModal" @refreshCollections="refreshCollections" />
+        <AppCollectionModal :collectionID="editCollectionID" :collectionTitle="editCollectionTitle" ref="collectionModal" />
+        <!--Command Modal-->
+        <AppCommandModal :commandID="editCommandID" ref="commandModal" @refreshCommands="refreshCommands" />
 
         <div class="row mt-4 sideMenu__links">
             <div class="col-12">
@@ -30,13 +32,7 @@
                                 <div>
                                     <ul>
                                         <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
-                                            <AppCollection
-                                                @editCollection="editCollection"
-                                                @deletedCollection="refreshCollections"
-                                                @showMessage="showMessageModal"
-                                                type="compact"
-                                                :collection="collection"
-                                            />
+                                            <AppCollection @editCollection="editCollection" @showMessage="showMessageModal" type="compact" :collection="collection" />
                                         </li>
                                     </ul>
                                 </div>
@@ -48,7 +44,7 @@
                             <a class="btn btn-primary" href="#" @click.prevent="showCollectionModal"> <i class="fas fa-plus-circle"></i> Add Collection </a>
                         </li>
                         <li>
-                            <a class="btn btn-secondary" href="#"> <i class="fas fa-plus-circle"></i> Add Command </a>
+                            <a class="btn btn-secondary" href="#" @click.prevent="showCommandModal"> <i class="fas fa-plus-circle"></i> Add Command </a>
                         </li>
                     </template>
 
@@ -67,14 +63,16 @@
 import AppLogo from "~/components/AppLogo.vue";
 import AppCollection from "~/components/AppCollection.vue";
 import AppCollectionModal from "~/components/AppModalCollection.vue";
+import AppCommandModal from "~/components/AppModalCommand.vue";
 import AppMessageModal from "~/components/AppModalMessage.vue";
-
+import { mapState } from "vuex";
 export default {
     components: {
         AppLogo,
         AppCollection,
         AppCollectionModal,
         AppMessageModal,
+        AppCommandModal,
     },
     data() {
         return {
@@ -84,6 +82,7 @@ export default {
             type: null,
             editCollectionID: null,
             editCollectionTitle: null,
+            editCommandID: null,
             showMobileMenu: false,
         };
     },
@@ -117,6 +116,11 @@ export default {
             this.editCollectionTitle = null;
             this.$refs.collectionModal.showModal();
         },
+        //Show the modal to add/edit a Command
+        showCommandModal() {
+            this.editCommandID = null;
+            this.$refs.commandModal.showModal();
+        },
         showMessageModal(data) {
             this.message = data.message;
             this.type = data.type;
@@ -125,6 +129,9 @@ export default {
         //Refresh collections when one is added through the modal
         refreshCollections() {
             this.userCollections = this.$store.state.collections.userCollections;
+        },
+        refreshCommands() {
+            this.userCommands = this.$store.state.commands.userCommands;
         },
         //Toggle Mobile menu
         toggleMobileMenu() {
@@ -135,6 +142,9 @@ export default {
     watch: {
         "$store.state.auth.user": function (val) {
             this.auth = this.$auth;
+        },
+        "$store.state.collections.userCollections": function (val) {
+            this.userCollections = this.$store.state.collections.userCollections;
         },
     },
 };

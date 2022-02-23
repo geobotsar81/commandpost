@@ -37,7 +37,7 @@ export default {
 .home__login {
     padding: 10px 25px !important;
     position: absolute;
-    right: 15px;
+    right: 25px;
     top: 15px;
 }
 </style>

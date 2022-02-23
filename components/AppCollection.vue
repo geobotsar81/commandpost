@@ -50,7 +50,7 @@ export default {
                     await this.$store.dispatch("collections/deleteUserCollections", { form: this.form, collectionID: collectionID });
                     this.processing = false;
                     this.userCollections = this.$store.state.collections.userCollections;
-                    this.$emit("deletedCollection", true);
+                    //this.$emit("deletedCollection", true);
                     this.$emit("showMessage", { message: "Collection deleted successfully", type: "success" });
                 } catch (e) {
                     this.processing = false;
