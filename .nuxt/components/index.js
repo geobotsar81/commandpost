@@ -12,6 +12,7 @@ export { default as AppModalCommand } from '../../components/AppModalCommand.vue
 export { default as AppModalMessage } from '../../components/AppModalMessage.vue'
 export { default as AppPaginatedCommands } from '../../components/AppPaginatedCommands.vue'
 export { default as AppPagination } from '../../components/AppPagination.vue'
+export { default as AppToast } from '../../components/AppToast.vue'
 export { default as TheMain } from '../../components/TheMain.vue'
 export { default as TheSideMenu } from '../../components/TheSideMenu.vue'
 export { default as ValidationErrors } from '../../components/validation-errors.vue'

@@ -20,6 +20,7 @@ You can directly use them in pages and other components without the need to impo
 - `<AppModalMessage>` | `<app-modal-message>` (components/AppModalMessage.vue)
 - `<AppPaginatedCommands>` | `<app-paginated-commands>` (components/AppPaginatedCommands.vue)
 - `<AppPagination>` | `<app-pagination>` (components/AppPagination.vue)
+- `<AppToast>` | `<app-toast>` (components/AppToast.vue)
 - `<TheMain>` | `<the-main>` (components/TheMain.vue)
 - `<TheSideMenu>` | `<the-side-menu>` (components/TheSideMenu.vue)
 - `<ValidationErrors>` | `<validation-errors>` (components/validation-errors.vue)

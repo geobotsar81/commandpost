@@ -11,11 +11,10 @@
 
         <!--Message Modal-->
         <AppMessageModal ref="messageModal" :message="message" :type="type" />
-
         <!--Collection Modal-->
         <AppCollectionModal :collectionID="editCollectionID" :collectionTitle="editCollectionTitle" ref="collectionModal" />
         <!--Command Modal-->
-        <AppCommandModal :commandID="editCommandID" ref="commandModal" @refreshCommands="refreshCommands" />
+        <AppCommandModal :commandID="editCommandID" ref="commandModal" />
 
         <div class="row mt-4 sideMenu__links">
             <div class="col-12">
@@ -144,6 +143,9 @@ export default {
             this.auth = this.$auth;
         },
         "$store.state.collections.userCollections": function (val) {
+            this.userCollections = this.$store.state.collections.userCollections;
+        },
+        "$store.state.commands.commands": function (val) {
             this.userCollections = this.$store.state.collections.userCollections;
         },
     },
