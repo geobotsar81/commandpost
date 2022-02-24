@@ -5,28 +5,31 @@
         <div v-else class="command">
             <div class="row align-items-center">
                 <!--Left Side-->
-                <div class="col-sm-8 text-center text-sm-start">
+                <div class="col-sm-8 col-lg-9 text-center text-sm-start">
                     <div class="row command__collection">
                         <div class="col-12">
                             <strong>{{ command.collection.title }}</strong>
                             <span v-if="command.description"> - {{ command.description }}</span>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12 command__code">
-                            <i class="fas fa-code"></i> {{ command.command }}
-                            <i @click="copyCommandText(command.command)" class="copy fas fa-copy" title="copy text"></i>
+                    <div class="row align-items-center">
+                        <div class="col-1 command__symbol"><i class="fas fa-code"></i></div>
+                        <div class="col-11 command__code">
+                            {{ command.command }}
                         </div>
                     </div>
                 </div>
                 <!--Right Side-->
-                <div class="col-sm-4 text-center text-sm-end">
+                <div class="col-sm-4 col-lg-3 text-center text-sm-end">
                     <div class="row command__date d-none d-sm-block">
                         <div class="col-12">{{ command.formated_created }}</div>
                     </div>
                     <div class="row mt-2 command__links" v-if="auth.$state.loggedIn">
                         <div class="col-12">
-                            <a v-if="command.collection.user_id != form.userID" href="#" @click.prevent="cloneCommand(command.id)"><i class="far fa-plus-circle" title="add to collection"></i></a>
+                            <a href="#" @click.prevent="copyCommandText(command.command)"><i class="far fa-copy" title="copy text"></i></a>
+                            <a v-if="command.collection.user_id != form.userID" href="#" @click.prevent="copyCommand(command.id, command.collection.user_id)"
+                                ><i class="far fa-file-plus" title="add to collection"></i
+                            ></a>
                             <template v-if="command.collection.user_id == form.userID">
                                 <a href="#" @click.prevent="editCommand(command.id)"><i class="far fa-edit" title="edit"></i></a>
                                 <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt" title="delete"></i></a>
@@ -64,6 +67,14 @@ export default {
         };
     },
     methods: {
+        //Copy Command
+        async copyCommand(commandID, userID) {
+            await this.$store.dispatch("commands/copyUserCommand", { userID: userID, commandID: commandID });
+        },
+        //Edit Command
+        async editCommand(commandID) {
+            await this.$store.dispatch("commands/fetchUserCommand", { userID: this.form.userID, commandID: commandID });
+        },
         //Delete a Command
         async deleteCommand(commandID) {
             this.processing = true;
@@ -113,17 +124,18 @@ export default {
         font-size: 17px;
     }
 }
-
+.command__symbol {
+    i {
+        color: $appGrey;
+        font-size: 14px;
+    }
+}
 .command__code {
     padding-top: 2px;
     font-style: italic;
     font-weight: 400;
-    font-size: 20px;
-    i {
-        color: $appGrey;
-        font-size: 14px;
-        padding-right: 10px;
-    }
+    font-size: 18px;
+
     .copy {
         color: $appOrange;
         font-size: 16px;
@@ -143,8 +155,9 @@ export default {
 .command__links {
     a {
         color: $appGreen;
+        font-size: 18px;
         transition: $appTransition;
-        margin-left: 20px;
+        margin-left: 15px;
 
         &:hover,
         &:focus {

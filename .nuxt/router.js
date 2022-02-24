@@ -9,10 +9,7 @@ const _68df265a = () => interopDefault(import('../pages/forgot-password.vue' /* 
 const _3de5a3b7 = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
 const _76907476 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
 const _616290ea = () => interopDefault(import('../pages/verify-email.vue' /* webpackChunkName: "pages/verify-email" */))
-const _50900b3c = () => interopDefault(import('../pages/commands/add.vue' /* webpackChunkName: "pages/commands/add" */))
-const _044e8e80 = () => interopDefault(import('../pages/commands/user.vue' /* webpackChunkName: "pages/commands/user" */))
 const _70ed21a8 = () => interopDefault(import('../pages/collections/view/_id.vue' /* webpackChunkName: "pages/collections/view/_id" */))
-const _97f19bae = () => interopDefault(import('../pages/commands/update/_id.vue' /* webpackChunkName: "pages/commands/update/_id" */))
 const _2cde7b3e = () => interopDefault(import('../pages/reset-password/_token.vue' /* webpackChunkName: "pages/reset-password/_token" */))
 const _743e00a0 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -48,21 +45,9 @@ export const routerOptions = {
     component: _616290ea,
     name: "verify-email"
   }, {
-    path: "/commands/add",
-    component: _50900b3c,
-    name: "commands-add"
-  }, {
-    path: "/commands/user",
-    component: _044e8e80,
-    name: "commands-user"
-  }, {
     path: "/collections/view/:id?",
     component: _70ed21a8,
     name: "collections-view-id"
-  }, {
-    path: "/commands/update/:id?",
-    component: _97f19bae,
-    name: "commands-update-id"
   }, {
     path: "/reset-password/:token?",
     component: _2cde7b3e,

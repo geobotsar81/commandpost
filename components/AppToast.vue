@@ -41,13 +41,18 @@ export default {
     position: fixed;
     right: 20px;
     top: 10px;
-    z-index: 99999;
+    z-index: $zindexToast;
 }
 .toast {
     background-color: $appOrange;
     color: $appBlack2;
     padding: 0px;
     box-shadow: $appBoxShadow;
+    pointer-events: none;
+
+    &.show {
+        pointer-events: all;
+    }
 }
 .toast-header {
     text-align: right;

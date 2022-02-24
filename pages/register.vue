@@ -43,8 +43,8 @@
                             <div class="row mt-4">
                                 <div class="col-12">
                                     <NuxtLink to="/login"> Already registered? </NuxtLink>
-
-                                    <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Register </AppButton>
+                                    <AppLoader v-if="form.processing"></AppLoader>
+                                    <AppButton class="ml-4" v-else> Register </AppButton>
                                 </div>
                             </div>
                         </form>
@@ -60,6 +60,8 @@ import BreezeValidationErrors from "@/components/validation-errors.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
+import AppLoader from "~/components/AppLoader.vue";
+
 export default {
     head: {
         title: "Register",
@@ -70,6 +72,7 @@ export default {
         AppButton,
         AppInput,
         AppLabel,
+        AppLoader,
     },
 
     data() {

@@ -2,7 +2,7 @@
     <div class="collection">
         <NuxtLink :to="'/collections/view/' + collection.id">{{ collection.title }} ({{ collection.commands.length }})</NuxtLink>
         <span class="float-end collection__links">
-            <a href="#" @click.prevent="editCollection(collection.id, collection.title)"><i class="far fa-edit" title="edit"></i></a>
+            <a href="#" @click.prevent="editCollection(collection.id)"><i class="far fa-edit" title="edit"></i></a>
             <a href="#" @click.prevent="deleteCollection(collection.id)"><i class="far fa-trash-alt" title="delete"></i></a>
         </span>
     </div>
@@ -35,8 +35,8 @@ export default {
     },
     methods: {
         //Edit Collection
-        editCollection(id, title) {
-            this.$emit("editCollection", { id: id, title: title });
+        async editCollection(id) {
+            await this.$store.dispatch("collections/fetchUserCollection", { userID: this.form.userID, collectionID: id });
         },
         //Delete a Collection
         async deleteCollection(collectionID) {

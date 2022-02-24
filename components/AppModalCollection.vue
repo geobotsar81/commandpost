@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="collectionModalLabel" v-if="collectionID">Update Collection</h5>
+                    <h5 class="modal-title" id="collectionModalLabel" v-if="collection">Update Collection</h5>
                     <h5 class="modal-title" id="collectionModalLabel" v-else>Add a new Collection</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
                 </div>
@@ -27,7 +27,7 @@
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    <template v-if="collectionID">Update Collection</template>
+                                    <template v-if="collection">Update Collection</template>
                                     <template v-else>Add Collection</template>
                                 </AppButton>
                             </div>
@@ -62,12 +62,8 @@ export default {
         AppMessage,
     },
     props: {
-        collectionID: {
-            type: Number,
-            required: false,
-        },
-        collectionTitle: {
-            type: String,
+        collection: {
+            type: Object,
             required: false,
         },
     },
@@ -77,7 +73,7 @@ export default {
             form: {
                 title: this.collectionTitle ?? null,
                 user_id: this.$auth?.user?.id ?? null,
-                collection_id: this.collectionID ?? null,
+                collection_id: null,
                 errors: [],
             },
             message: "",
@@ -88,6 +84,8 @@ export default {
 
     methods: {
         showModal() {
+            this.title = this.collectionTitle ?? null;
+            this.form.user_id = this.$auth?.user?.id ?? null;
             this.modal.show();
             this.message = "";
         },
@@ -99,17 +97,16 @@ export default {
 
             try {
                 //Update Collection
-                if (this.collectionID) {
-                    await this.$store.dispatch("collections/updateUserCollection", { form: this.form, collectionID: this.collectionID });
+                if (this.collection) {
+                    await this.$store.dispatch("collections/updateUserCollection", { form: this.form, collectionID: this.collection.id });
+                    this.message = "Collection was successfully updated";
                 } else {
                     //Add new Collection
                     await this.$store.dispatch("collections/addUserCollection", { form: this.form });
+                    this.form.title = "";
+                    this.message = "Collection was successfully added";
                 }
-                //this.$emit("refreshCollections");
                 this.processing = false;
-                this.form.title = "";
-                this.message = "Collection was successfully added";
-                this.messageType = "success";
             } catch (e) {
                 this.processing = false;
                 global.mapErrors(e, this.form.errors);
@@ -117,8 +114,9 @@ export default {
         },
     },
     watch: {
-        collectionTitle: function (val) {
-            this.form.title = val;
+        //If the collection prop is updated(editing a collection), reflect the changes on the form fields
+        collection: function (val) {
+            this.form.title = val.title;
         },
     },
 };

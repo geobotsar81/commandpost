@@ -35,32 +35,11 @@
     "_name": "_616290ea"
   },
   {
-    "name": "commands-add",
-    "path": "/commands/add",
-    "component": "/home/geobotsra/projects/commandpost/pages/commands/add.vue",
-    "chunkName": "pages/commands/add",
-    "_name": "_50900b3c"
-  },
-  {
-    "name": "commands-user",
-    "path": "/commands/user",
-    "component": "/home/geobotsra/projects/commandpost/pages/commands/user.vue",
-    "chunkName": "pages/commands/user",
-    "_name": "_044e8e80"
-  },
-  {
     "name": "collections-view-id",
     "path": "/collections/view/:id?",
     "component": "/home/geobotsra/projects/commandpost/pages/collections/view/_id.vue",
     "chunkName": "pages/collections/view/_id",
     "_name": "_70ed21a8"
-  },
-  {
-    "name": "commands-update-id",
-    "path": "/commands/update/:id?",
-    "component": "/home/geobotsra/projects/commandpost/pages/commands/update/_id.vue",
-    "chunkName": "pages/commands/update/_id",
-    "_name": "_97f19bae"
   },
   {
     "name": "reset-password-token",

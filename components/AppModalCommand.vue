@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="commandModalLabel" v-if="commandID">Update Command</h5>
+                    <h5 class="modal-title" id="commandModalLabel" v-if="command">Update Command</h5>
                     <h5 class="modal-title" id="commandModalLabel" v-else>Add a new Command</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
                 </div>
@@ -43,7 +43,7 @@
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppButton class="ml-4" v-if="!processing">
-                                    <template v-if="commandID">Update Command</template>
+                                    <template v-if="command">Update Command</template>
                                     <template v-else>Add Command</template>
                                 </AppButton>
                             </div>
@@ -78,8 +78,12 @@ export default {
         AppMessage,
     },
     props: {
-        commandID: {
-            type: Number,
+        command: {
+            type: Object,
+            required: false,
+        },
+        copyCommand: {
+            type: Object,
             required: false,
         },
     },
@@ -123,8 +127,8 @@ export default {
 
             try {
                 //Update Command
-                if (this.commandID) {
-                    await this.$store.dispatch("commands/updateUserCommand", { form: this.form, commandID: this.commandID });
+                if (this.command?.id) {
+                    await this.$store.dispatch("commands/updateUserCommand", { form: this.form, commandID: this.command.id });
                     //Re-fetch user collections in order to have an updated commands number in the side menu
                     await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
                 } else {
@@ -144,8 +148,16 @@ export default {
         },
     },
     watch: {
-        commandTitle: function (val) {
-            this.form.title = val;
+        //If the command prop is updated(editing a command), reflect the changes on the form fields
+        command: function (val) {
+            this.form.command = val.command;
+            this.form.collection = val.collection_id;
+            this.form.description = val.description;
+        },
+        //If the copyCommand prop is updated(cloning a command), reflect the changes on the form fields
+        copyCommand: function (val) {
+            this.form.command = val.command;
+            this.form.description = val.description;
         },
     },
 };

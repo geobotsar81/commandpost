@@ -1,6 +1,6 @@
 <template>
     <div class="container home">
-        <template v-if="!auth.$state.loggedIn"><NuxtLink class="btn btn-secondary home__login" to="/login">Login/Register</NuxtLink></template>
+        <div v-if="!auth.$state.loggedIn" class="home__login"><NuxtLink class="btn btn-secondary" to="/login">Login/Register</NuxtLink></div>
 
         <div class="row">
             <div class="col-12 text-center"><h1>Welcome to CommandPost!</h1></div>
@@ -34,10 +34,24 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.home {
+    padding-top: 20px;
+}
 .home__login {
     padding: 10px 25px !important;
     position: absolute;
-    right: 25px;
-    top: 15px;
+    right: 15px;
+    top: 5px;
+}
+@media (max-width: 767.98px) {
+    .home {
+        padding-top: 0px;
+    }
+    .home__login {
+        position: relative;
+        text-align: center;
+        right: auto;
+        top: auto;
+    }
 }
 </style>

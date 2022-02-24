@@ -59,21 +59,40 @@ export default {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
         baseURL: process.env.BASE_URL,
         credentials: true,
+        //proxy: true,
     },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
-
+    /*proxy: {
+        "/api/": {
+            target: "http://localhost:8001",
+            pathRewrite: { "^/api/": "" },
+        },
+    },*/
     auth: {
+        redirect: {
+            login: "/login",
+            logout: "/",
+            callback: "/login",
+            home: "/",
+        },
         strategies: {
             laravelSanctum: {
                 provider: "laravel/sanctum",
                 url: process.env.BASE_URL,
             },
             cookie: {
-                cookie: {
+                /*cookie: {
+                    // (optional) If set, we check this cookie existence for loggedIn check
                     name: "XSRF-TOKEN",
-                },
+                },*/
+                /*endpoints: {
+                    // (optional) If set, we send a get request to this endpoint before login
+                    csrf: {
+                        url: "/sanctum/csrf-cookie",
+                    },
+                },*/
             },
         },
     },
