@@ -11,8 +11,8 @@ export default {};
 .lds-hourglass {
     display: inline-block;
     position: relative;
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 .lds-hourglass:after {
     content: " ";
@@ -22,7 +22,7 @@ export default {};
     height: 0;
     margin: 4px;
     box-sizing: border-box;
-    border: 12px solid $appOrange;
+    border: 10px solid $appOrange;
     border-color: $appOrange transparent $appOrange transparent;
     animation: lds-hourglass 1.2s infinite;
 }

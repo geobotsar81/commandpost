@@ -25,7 +25,11 @@ main {
         }
     }
 }
-
+@media (max-width: 767.98px) {
+    main {
+        padding: 10px 0px;
+    }
+}
 @media (max-width: 575.98px) {
     main {
         text-align: center;

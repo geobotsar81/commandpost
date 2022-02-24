@@ -1,31 +1,30 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-    baseURL: process.env.backendUrl + "/api",
+    baseURL: process.env.backendUrl,
     withCredentials: true,
     headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
     },
 });
 
 export default {
     getCollections() {
-        return apiClient.get("/collections/index");
+        return apiClient.get("/api/collections/index");
     },
     getUserCollections(userID) {
-        return apiClient.get("/collections/users/" + userID);
+        return apiClient.get("/api/collections/users/" + userID);
     },
     getUserCollection(userID, collectionID) {
-        return apiClient.get("/collections/users/" + userID + "/" + collectionID);
+        return apiClient.get("/api/collections/users/" + userID + "/" + collectionID);
     },
     addCollection(data) {
-        return apiClient.post("/collections/store", data);
+        return apiClient.post("/api/collections/store", data);
     },
     updateCollection(data, collectionID) {
-        return apiClient.post("/collections/update/" + collectionID, data);
+        return apiClient.post("/api/collections/update/" + collectionID, data);
     },
     deleteCollection(data, collectionID) {
-        return apiClient.post("/collections/destroy/" + collectionID, data);
+        return apiClient.post("/api/collections/destroy/" + collectionID, data);
     },
 };

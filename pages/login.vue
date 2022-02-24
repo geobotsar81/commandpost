@@ -38,8 +38,8 @@
                             <div class="row mt-4">
                                 <div class="col-12">
                                     <NuxtLink to="/forgot-password"> Forgot your password? </NuxtLink>
-
-                                    <AppButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing"> Log in </AppButton>
+                                    <AppLoader v-if="form.processing"></AppLoader>
+                                    <AppButton class="ml-4" v-else> Log in </AppButton>
                                 </div>
                             </div>
                         </form>
@@ -56,6 +56,8 @@ import AppCheckbox from "~/components/AppCheckbox.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
+import AppLoader from "~/components/AppLoader.vue";
+
 export default {
     head: {
         title: "Login",
@@ -67,6 +69,7 @@ export default {
         AppButton,
         AppInput,
         AppLabel,
+        AppLoader,
     },
 
     data() {
@@ -91,7 +94,7 @@ export default {
 
                 this.processing = false;
             } catch (e) {
-                Object.keys(e.response.data.errors).forEach((key) => {
+                Object.keys(e?.response?.data?.errors).forEach((key) => {
                     Object.values(e.response.data.errors[key]).forEach((error) => {
                         this.form.errors.push(error);
                     });

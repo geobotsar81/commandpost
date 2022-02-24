@@ -34,8 +34,8 @@ export default {
     //Get the current Collection along with its Commands
     async fetch() {
         try {
-            await this.$store.dispatch("collections/fetchUserCollection", { userID: this.$store.state.auth.user.id, collectionID: this.$route.params.id });
-            this.collection = this.$store.state.collections.collection;
+            await this.$store.dispatch("collections/viewUserCollection", { userID: this.$store.state.auth.user.id, collectionID: this.$route.params.id });
+            this.collection = this.$store.state.collections.viewCollection;
         } catch (e) {}
     },
 };

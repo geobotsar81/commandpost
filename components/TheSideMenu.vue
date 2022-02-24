@@ -6,32 +6,34 @@
                     <AppLogo />
                 </NuxtLink>
             </div>
-            <div class="col-6 col-md-12 text-end d-md-none sideMenu__burger"><i @click="toggleMobileMenu" :class="showMobileMenu ? 'far fa-times' : 'far fa-bars'"></i></div>
+            <div class="col-6 col-md-12 text-end d-md-none">
+                <div class="sideMenu__burger"><i @click="toggleMobileMenu" :class="showMobileMenu ? 'far fa-times' : 'far fa-bars'"></i></div>
+            </div>
         </div>
 
         <!--Toast for message-->
         <AppToast ref="messageToast" :message="message" toastId="sidemenuToast" />
         <!--Collection Modal-->
-        <AppCollectionModal :collectionID="editCollectionID" :collectionTitle="editCollectionTitle" ref="collectionModal" />
+        <AppCollectionModal :collection="editCollection" ref="collectionModal" />
         <!--Command Modal-->
-        <AppCommandModal :commandID="editCommandID" ref="commandModal" />
+        <AppCommandModal :command="editCommand" :copyCommand="copyCommand" ref="commandModal" />
 
         <div class="row mt-4 sideMenu__links">
-            <div class="col-12">
+            <div class="col-8 offset-2 col-sm-6 offset-sm-3 offset-md-0 col-md-12">
                 <ul>
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
                     <template v-if="auth.$state.loggedIn">
                         <li><NuxtLink to="/dashboard"> Dashboard </NuxtLink></li>
-                        <li>
+                        <li v-if="userCollections">
                             <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
                                 >My Collections <i class="fal fa-angle-down"></i
                             ></a>
 
-                            <div class="collapse" id="collapseCollections" v-if="userCollections">
+                            <div class="collapse" id="collapseCollections">
                                 <div>
                                     <ul>
                                         <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
-                                            <AppCollection @editCollection="editCollection" @showToast="showToast" type="compact" :collection="collection" />
+                                            <AppCollection @showToast="showToast" type="compact" :collection="collection" />
                                         </li>
                                     </ul>
                                 </div>
@@ -64,7 +66,7 @@ import AppCollection from "~/components/AppCollection.vue";
 import AppCollectionModal from "~/components/AppModalCollection.vue";
 import AppCommandModal from "~/components/AppModalCommand.vue";
 import AppMessageModal from "~/components/AppModalMessage.vue";
-import { mapState } from "vuex";
+
 export default {
     components: {
         AppLogo,
@@ -79,9 +81,9 @@ export default {
             auth: this.$auth ?? null,
             message: null,
             type: null,
-            editCollectionID: null,
-            editCollectionTitle: null,
-            editCommandID: null,
+            editCollection: null,
+            editCommand: null,
+            copyCommand: null,
             showMobileMenu: false,
         };
     },
@@ -103,31 +105,20 @@ export default {
         logout() {
             this.$auth.logout();
         },
-        //Edit a Collection
-        editCollection(data) {
-            this.editCollectionID = data.id;
-            this.editCollectionTitle = data.title;
-            this.$refs.collectionModal.showModal();
-        },
         //Show the modal to add/edit a Collection
         showCollectionModal() {
-            this.editCollectionID = null;
-            this.editCollectionTitle = null;
+            this.editCollection = null;
             this.$refs.collectionModal.showModal();
         },
         //Show the modal to add/edit a Command
         showCommandModal() {
-            this.editCommandID = null;
+            this.editCommand = null;
             this.$refs.commandModal.showModal();
         },
         //Show a message as toash
         showToast(message) {
             this.message = message;
             this.$refs.messageToast.showToast();
-        },
-        //Refresh collections when one is added through the modal
-        refreshCollections() {
-            this.userCollections = this.$store.state.collections.userCollections;
         },
         //Toggle Mobile menu
         toggleMobileMenu() {
@@ -136,14 +127,32 @@ export default {
         },
     },
     watch: {
+        //Watch if user has logged in
         "$store.state.auth.user": function (val) {
             this.auth = this.$auth;
         },
+        //Watch if there was a change in user's collections
         "$store.state.collections.userCollections": function (val) {
             this.userCollections = this.$store.state.collections.userCollections;
         },
+        //Watch if there was a change in user's commands
         "$store.state.commands.commands": function (val) {
             this.userCollections = this.$store.state.collections.userCollections;
+        },
+        //Watch if a command is being edited and launch the modal
+        "$store.state.commands.command": function (val) {
+            this.editCommand = val;
+            this.$refs.commandModal.showModal();
+        },
+        //Watch if a command is being cloned and launch the modal
+        "$store.state.commands.copiedCommand": function (val) {
+            this.copyCommand = val;
+            this.$refs.commandModal.showModal();
+        },
+        //Watch if a collection is being edited and launch the modal
+        "$store.state.collections.collection": function (val) {
+            this.editCollection = val;
+            this.$refs.collectionModal.showModal();
         },
     },
 };
