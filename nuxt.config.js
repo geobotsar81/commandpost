@@ -1,5 +1,6 @@
 export default {
     target: "static",
+    mode: "universal",
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: "CommandPost",
@@ -28,7 +29,7 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: ["~/assets/scss/main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
+    css: ["~/assets/scss/theme1/_main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [{ src: "~/plugins/bootstrap.js" }],
@@ -49,7 +50,7 @@ export default {
     ],
 
     styleResources: {
-        scss: ["./assets/scss/main.scss"],
+        scss: ["./assets/scss/theme1/_main.scss"],
     },
 
     googleFonts: {

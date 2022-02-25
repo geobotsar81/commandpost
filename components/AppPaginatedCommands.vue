@@ -59,9 +59,6 @@ import AppButton from "~/components/AppButton.vue";
 import AppLoader from "~/components/AppLoader.vue";
 
 export default {
-    head: {
-        title: "Welcome to CommandPost",
-    },
     components: {
         AppMessage,
         AppCommand,
@@ -117,7 +114,6 @@ export default {
                 //If this is a Collection page
                 if (this.type == "collection") {
                     await this.$store.dispatch("commands/fetchCollectionCommands", {
-                        userID: this.$store.state.auth.user.id,
                         sort: this.sortFilter,
                         search: this.searchFilter,
                         page: this.currentPage,
@@ -157,13 +153,4 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.search__button {
-    margin-top: 28px;
-}
-@media (max-width: 991.98px) {
-    .search__button .btn {
-        width: 100%;
-    }
-}
-</style>
+<style lang="scss" scoped></style>

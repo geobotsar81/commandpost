@@ -37,7 +37,7 @@ export const actions = {
         });
     },
     viewUserCollection({ commit }, data) {
-        return CollectionService.getUserCollection(data.userID, data.collectionID).then((response) => {
+        return CollectionService.getCollection(data.collectionID).then((response) => {
             commit("SET_VIEW_COLLECTION", response.data);
         });
     },

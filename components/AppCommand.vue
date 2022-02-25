@@ -8,14 +8,16 @@
                 <div class="col-sm-8 col-lg-9 text-center text-sm-start">
                     <div class="row command__collection">
                         <div class="col-12">
-                            <strong>{{ command.collection.title }}</strong>
+                            in <NuxtLink :to="'/collections/view/' + command.collection.id">{{ command.collection.title }}</NuxtLink>
                             <span v-if="command.description"> - {{ command.description }}</span>
                         </div>
                     </div>
-                    <div class="row align-items-center">
-                        <div class="col-1 command__symbol"><i class="fas fa-code"></i></div>
-                        <div class="col-11 command__code">
-                            {{ command.command }}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="command__code">
+                                <div class="icon"><i class="fas fa-code"></i></div>
+                                <span>{{ command.command }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -24,15 +26,17 @@
                     <div class="row command__date d-none d-sm-block">
                         <div class="col-12">{{ command.formated_created }}</div>
                     </div>
-                    <div class="row mt-2 command__links" v-if="auth.$state.loggedIn">
+                    <div class="row mt-2 command__links">
                         <div class="col-12">
-                            <a href="#" @click.prevent="copyCommandText(command.command)"><i class="far fa-copy" title="copy text"></i></a>
-                            <a v-if="command.collection.user_id != form.userID" href="#" @click.prevent="copyCommand(command.id, command.collection.user_id)"
-                                ><i class="far fa-file-plus" title="add to collection"></i
-                            ></a>
-                            <template v-if="command.collection.user_id == form.userID">
-                                <a href="#" @click.prevent="editCommand(command.id)"><i class="far fa-edit" title="edit"></i></a>
-                                <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt" title="delete"></i></a>
+                            <a href="#" @click.prevent="copyCommandText(command.command)"><i class="far fa-copy" title="copy to clipboard"></i></a>
+                            <template v-if="auth.$state.loggedIn">
+                                <a v-if="command.collection.user_id != form.userID" href="#" @click.prevent="copyCommand(command.id, command.collection.user_id)"
+                                    ><i class="far fa-file-plus" title="add to collection"></i
+                                ></a>
+                                <template v-if="command.collection.user_id == form.userID">
+                                    <a href="#" @click.prevent="editCommand(command.id)"><i class="far fa-edit" title="edit"></i></a>
+                                    <a href="#" @click.prevent="deleteCommand(command.id)"><i class="far fa-trash-alt" title="delete"></i></a>
+                                </template>
                             </template>
                         </div>
                     </div>
@@ -92,7 +96,7 @@ export default {
         //Copy command text
         copyCommandText(command) {
             navigator.clipboard.writeText(command);
-            this.$emit("showToast", "Command copied to keyboard");
+            this.$emit("showToast", "Command copied to clipboard");
         },
     },
     watch: {
@@ -102,67 +106,3 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.command {
-    padding: 15px 20px;
-    border: solid 1px $appGrey;
-    border-radius: $appBorderRadius;
-    background-color: rgba($appBlack2, 0.5);
-    margin-bottom: 20px;
-    transition: $appTransition;
-
-    &:hover,
-    &:focus {
-        background-color: rgba($appGrey2, 0.1);
-    }
-}
-
-.command__collection {
-    color: $appOrange;
-    font-size: 12px;
-    strong {
-        font-size: 17px;
-    }
-}
-.command__symbol {
-    i {
-        color: $appGrey;
-        font-size: 14px;
-    }
-}
-.command__code {
-    padding-top: 2px;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 18px;
-
-    .copy {
-        color: $appOrange;
-        font-size: 16px;
-        padding-left: 20px;
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-            color: $appOrange2;
-        }
-    }
-}
-.command__date {
-    font-size: 11px;
-    color: $appGrey2;
-}
-.command__links {
-    a {
-        color: $appGreen;
-        font-size: 18px;
-        transition: $appTransition;
-        margin-left: 15px;
-
-        &:hover,
-        &:focus {
-            color: $appOrange;
-        }
-    }
-}
-</style>

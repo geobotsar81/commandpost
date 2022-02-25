@@ -41,7 +41,7 @@
 
 <script>
 import { Modal } from "bootstrap";
-import AppValidationErrors from "@/components/validation-errors.vue";
+import AppValidationErrors from "~/components/AppValidationErrors.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";

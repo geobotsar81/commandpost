@@ -22,6 +22,7 @@
             <div class="col-8 offset-2 col-sm-6 offset-sm-3 offset-md-0 col-md-12">
                 <ul>
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
+                    <li><NuxtLink to="/contact"> Contact </NuxtLink></li>
                     <template v-if="auth.$state.loggedIn">
                         <li v-if="userCollections">
                             <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
@@ -87,11 +88,8 @@ export default {
         };
     },
     //Fetch user collections
-    async fetch() {
-        try {
-            await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
-            this.userCollections = this.$store.state.collections.userCollections;
-        } catch (e) {}
+    fetch() {
+        this.getCollections();
     },
     computed: {
         currentYear() {
@@ -103,6 +101,13 @@ export default {
     methods: {
         logout() {
             this.$auth.logout();
+        },
+        //Get the user's collections
+        async getCollections() {
+            try {
+                await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                this.userCollections = this.$store.state.collections.userCollections;
+            } catch (e) {}
         },
         //Show the modal to add/edit a Collection
         showCollectionModal() {
@@ -129,6 +134,7 @@ export default {
         //Watch if user has logged in
         "$store.state.auth.user": function (val) {
             this.auth = this.$auth;
+            this.getCollections();
         },
         //Watch if there was a change in user's collections
         "$store.state.collections.userCollections": function (val) {
@@ -157,111 +163,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.sideMenu {
-    padding: 15px 45px;
-    background-color: rgba($appBlack2, 1);
-    height: 100%;
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    transition: $appTransition;
-}
-
-.sideMenu__links {
-    ul {
-        padding-left: 0px;
-    }
-
-    li {
-        list-style: none;
-        padding: 10px 0px;
-
-        ul {
-            padding-left: 10px;
-            li {
-                padding: 2px 0px;
-            }
-        }
-    }
-
-    a:not(.btn),
-    button {
-        color: $appOrange;
-        font-size: 18px;
-
-        &:hover,
-        &:focus {
-            color: $appOrange2;
-        }
-    }
-
-    i {
-        transition: $appTransition;
-    }
-
-    a[aria-expanded="true"] {
-        i {
-            transform: rotate(180deg);
-        }
-    }
-}
-
-.sideMenu__burger {
-    font-size: 24px;
-    color: $appOrange;
-    padding-top: 5px;
-    i {
-        cursor: pointer;
-    }
-}
-
-.sidemenu__copyrights {
-    position: absolute;
-    left: 0px;
-    bottom: 15px;
-    color: $appGrey2;
-    width: 100%;
-    padding: 0px 15px;
-    text-align: center;
-}
-
-@media (max-width: 1199.98px) {
-    .sideMenu {
-        padding: 15px 25px;
-    }
-    :deep(.logo) {
-        font-size: 25px !important;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .sideMenu {
-        height: 60px;
-        padding: 10px 30px;
-        margin: 0px;
-        overflow: hidden;
-        .sideMenu__links,
-        .sidemenu__copyrights {
-            opacity: 0;
-            transition: $appTransition;
-            text-align: center;
-        }
-        &.expanded {
-            height: 100vh;
-
-            .sideMenu__links {
-                opacity: 1;
-                transition: $appTransition;
-            }
-            .sidemenu__copyrights {
-                opacity: 1;
-                transition: $appTransition;
-            }
-        }
-        .sidemenu__copyrights {
-            pointer-events: none;
-        }
-    }
-}
-</style>
+<style lang="scss" scoped></style>

@@ -6,26 +6,3 @@ export default {
     name: "AppLogo",
 };
 </script>
-<style lang="scss" scoped>
-.logo {
-    font-size: 48px;
-    color: $appOrange;
-    font-weight: 900;
-    text-decoration: none;
-
-    span {
-        color: $appGrey2;
-    }
-}
-@media (max-width: 1199.98px) {
-    .logo {
-        font-size: 40px !important;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .logo {
-        font-size: 30px !important;
-    }
-}
-</style>
