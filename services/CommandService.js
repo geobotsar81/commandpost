@@ -9,29 +9,25 @@ const apiClient = axios.create({
 });
 
 export default {
+    //Not authenticated routes
     getCommands(data) {
         return apiClient.get(process.env.backendUrl + "/sanctum/csrf-cookie").then((response) => {
-            /*const config = {
-                headers: {
-                    "X-XSRF-TOKEN": response,
-                },
-            };*/
-            //console.log(JSON.stringify(response));
             return apiClient.post("/api/commands/index", data);
-            //return axios.post(process.env.backendUrl + "/api/commands/index", data, config);
         });
-
-        //return apiClient.post("/api/commands/index", data);
     },
+    getCollectionCommands(collectionID, data) {
+        return apiClient.get(process.env.backendUrl + "/sanctum/csrf-cookie").then((response) => {
+            return apiClient.post("/api/commands/collection/" + collectionID, data);
+        });
+    },
+    //Authenticated routes
     getUserCommands(userID) {
         return apiClient.get("/api/commands/users/" + userID);
     },
     getUserCommand(userID, commandID) {
         return apiClient.get("/api/commands/users/" + userID + "/" + commandID);
     },
-    getCollectionCommands(collectionID, data) {
-        return apiClient.post("/api/commands/collection/" + collectionID, data);
-    },
+
     addCommand(data) {
         return apiClient.post("/api/commands/store", data);
     },

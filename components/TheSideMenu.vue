@@ -87,11 +87,8 @@ export default {
         };
     },
     //Fetch user collections
-    async fetch() {
-        try {
-            await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
-            this.userCollections = this.$store.state.collections.userCollections;
-        } catch (e) {}
+    fetch() {
+        this.getCollections();
     },
     computed: {
         currentYear() {
@@ -103,6 +100,13 @@ export default {
     methods: {
         logout() {
             this.$auth.logout();
+        },
+        //Get the user's collections
+        async getCollections() {
+            try {
+                await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                this.userCollections = this.$store.state.collections.userCollections;
+            } catch (e) {}
         },
         //Show the modal to add/edit a Collection
         showCollectionModal() {
@@ -129,6 +133,7 @@ export default {
         //Watch if user has logged in
         "$store.state.auth.user": function (val) {
             this.auth = this.$auth;
+            this.getCollections();
         },
         //Watch if there was a change in user's collections
         "$store.state.collections.userCollections": function (val) {

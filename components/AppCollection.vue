@@ -61,8 +61,3 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.collection__links a {
-    margin-left: 10px;
-}
-</style>

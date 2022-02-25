@@ -97,7 +97,7 @@ export default {
             outline: none;
             background-color: $appOrange;
             border-color: $appOrange;
-            color: $appBlack;
+            color: $appBlack !important;
         }
     }
 }
