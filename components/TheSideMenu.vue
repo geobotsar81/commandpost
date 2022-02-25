@@ -23,7 +23,6 @@
                 <ul>
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
                     <template v-if="auth.$state.loggedIn">
-                        <li><NuxtLink to="/dashboard"> Dashboard </NuxtLink></li>
                         <li v-if="userCollections">
                             <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
                                 >My Collections <i class="fal fa-angle-down"></i
