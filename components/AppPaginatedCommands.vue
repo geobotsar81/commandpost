@@ -153,13 +153,4 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.search__button {
-    margin-top: 28px;
-}
-@media (max-width: 991.98px) {
-    .search__button .btn {
-        width: 100%;
-    }
-}
-</style>
+<style lang="scss" scoped></style>

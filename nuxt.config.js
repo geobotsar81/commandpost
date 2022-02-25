@@ -29,7 +29,7 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: ["~/assets/scss/theme1/main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
+    css: ["~/assets/scss/theme1/_main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [{ src: "~/plugins/bootstrap.js" }],
@@ -50,7 +50,7 @@ export default {
     ],
 
     styleResources: {
-        scss: ["./assets/scss/theme1/main.scss"],
+        scss: ["./assets/scss/theme1/_main.scss"],
     },
 
     googleFonts: {

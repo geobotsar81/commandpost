@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import BreezeValidationErrors from "@/components/validation-errors.vue";
+import BreezeValidationErrors from "~/components/AppValidationErrors.vue";
 import BreezeButton from "~/components/AppButton.vue";
 import BreezeInput from "~/components/AppInput.vue";
 import BreezeLabel from "~/components/AppLabel.vue";

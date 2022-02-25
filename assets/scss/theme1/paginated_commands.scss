@@ -1,0 +1,10 @@
+.theme1 {
+    .search__button {
+        margin-top: 28px;
+    }
+    @media (max-width: 991.98px) {
+        .search__button .btn {
+            width: 100%;
+        }
+    }
+}

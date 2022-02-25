@@ -12,10 +12,12 @@
                             <span v-if="command.description"> - {{ command.description }}</span>
                         </div>
                     </div>
-                    <div class="row align-items-center">
-                        <div class="col-sm-1 command__symbol d-none d-sm-flex"><i class="fas fa-code"></i></div>
-                        <div class="col-sm-11 command__code">
-                            {{ command.command }}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="command__code">
+                                <div class="icon"><i class="fas fa-code"></i></div>
+                                <span>{{ command.command }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,73 +106,3 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.command {
-    padding: 15px 20px;
-    border: solid 1px $appGrey;
-    border-radius: $appBorderRadius;
-    background-color: rgba($appBlack2, 0.5);
-    margin-bottom: 20px;
-    transition: $appTransition;
-
-    &:hover,
-    &:focus {
-        background-color: rgba($appGrey2, 0.1);
-    }
-}
-
-.command__collection {
-    color: $appOrange;
-    font-size: 12px;
-    a {
-        font-size: 17px;
-        font-weight: 700;
-
-        &:hover,
-        &:focus {
-            color: $appOrange2;
-        }
-    }
-}
-.command__symbol {
-    i {
-        color: $appGrey;
-        font-size: 14px;
-    }
-}
-.command__code {
-    padding-top: 2px;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 18px;
-
-    .copy {
-        color: $appOrange;
-        font-size: 16px;
-        padding-left: 20px;
-        cursor: pointer;
-
-        &:hover,
-        &:focus {
-            color: $appOrange2;
-        }
-    }
-}
-.command__date {
-    font-size: 11px;
-    color: $appGrey2;
-}
-.command__links {
-    a {
-        color: $appGreen;
-        font-size: 18px;
-        transition: $appTransition;
-        margin-left: 15px;
-
-        &:hover,
-        &:focus {
-            color: $appOrange;
-        }
-    }
-}
-</style>

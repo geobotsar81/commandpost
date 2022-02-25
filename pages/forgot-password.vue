@@ -12,7 +12,7 @@
                 <div class="card mt-5">
                     <div class="card-body">
                         <!-- Validation Errors -->
-                        <BreezeValidationErrors :errors="form.errors" class="mb-4" />
+                        <AppValidationErrors :errors="form.errors" class="mb-4" />
 
                         <form @submit.prevent="submit">
                             <div class="row">
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import BreezeValidationErrors from "@/components/validation-errors.vue";
+import AppValidationErrors from "~/components/AppValidationErrors.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppInput from "~/components/AppInput.vue";
 import AppLabel from "~/components/AppLabel.vue";
@@ -46,7 +46,7 @@ export default {
     },
 
     components: {
-        BreezeValidationErrors,
+        AppValidationErrors,
         AppButton,
         AppInput,
         AppLabel,

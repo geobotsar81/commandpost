@@ -33,25 +33,4 @@ export default {
     },
 };
 </script>
-<style lang="scss" scoped>
-.home {
-    padding-top: 20px;
-}
-.home__login {
-    padding: 10px 25px !important;
-    position: absolute;
-    right: 15px;
-    top: 5px;
-}
-@media (max-width: 767.98px) {
-    .home {
-        padding-top: 0px;
-    }
-    .home__login {
-        position: relative;
-        text-align: center;
-        right: auto;
-        top: auto;
-    }
-}
-</style>
+<style lang="scss" scoped></style>

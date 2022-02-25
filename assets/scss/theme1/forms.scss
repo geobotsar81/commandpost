@@ -6,7 +6,8 @@
 
     .alert {
         margin-bottom: 0px;
-        //padding: 0px;
+        font-size: 16px;
+
         ul {
             margin: 5px 0px;
             padding-left: 20px;
@@ -14,8 +15,6 @@
     }
 
     .alert-danger {
-        //background-color: transparent;
-        //border-color: transparent;
         color: $appRed !important;
         .text-red-600 {
             color: $appRed !important;
@@ -23,8 +22,6 @@
     }
 
     .alert-success {
-        //background-color: transparent;
-        //border-color: transparent;
         color: $appGreen;
     }
 
@@ -33,7 +30,9 @@
         color: $appGrey2;
         margin-bottom: 4px;
     }
-
+    textarea {
+        height: 150px !important;
+    }
     .form-control,
     .form-select {
         box-shadow: none !important;
