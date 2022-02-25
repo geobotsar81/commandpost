@@ -9,16 +9,22 @@ export default {
         meta: [
             { charset: "utf-8" },
             { name: "viewport", content: "width=device-width, initial-scale=1" },
-            { hid: "description", name: "description", content: "" },
+            { hid: "description", name: "description", content: "A place for web devs to store their commands" },
             { name: "format-detection", content: "telephone=no" },
         ],
-        link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+        link: [
+            { rel: "icon", type: "image/x-icon", href: "/favicons/favicon.ico" },
+            { rel: "apple-touch-icon", sizes: "180x180", href: "/favicons/apple-touch-icon.png" },
+            { rel: "icon", sizes: "32x32", href: "/favicons/favicon-32x32.png" },
+            { rel: "icon", sizes: "16x16", href: "/favicons/favicon-16x16.png" },
+            { rel: "manifest", href: "/favicons/site.webmanifest" },
+        ],
     },
 
     ssr: false,
 
     env: {
-        backendUrl: process.env.BASE_URL,
+        backendUrl: process.env.NODE_ENV === "dev" ? "http://localhost:8001" : "https://api.commandpost.dev",
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
