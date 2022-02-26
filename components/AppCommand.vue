@@ -28,6 +28,9 @@
                     </div>
                     <div class="row mt-2 command__links">
                         <div class="col-12">
+                            <template v-if="command.collection.user_id == form.userID && command.collection.id == $route.params.id">
+                                <i class="far fa-grip-lines sort" title="sort commands"></i>
+                            </template>
                             <a href="#" @click.prevent="copyCommandText(command.command)"><i class="far fa-copy" title="copy to clipboard"></i></a>
                             <template v-if="auth.$state.loggedIn">
                                 <a v-if="command.collection.user_id != form.userID" href="#" @click.prevent="copyCommand(command.id, command.collection.user_id)"

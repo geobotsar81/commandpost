@@ -26,6 +26,11 @@ export const actions = {
             commit("SET_COLLECTIONS", response.data);
         });
     },
+    sortUserCollections({ commit }, data) {
+        return CollectionService.sortUserCollections(data.userID, data).then((response) => {
+            commit("SET_USER_COLLECTIONS", response.data);
+        });
+    },
     fetchUserCollection({ commit }, data) {
         return CollectionService.getUserCollection(data.userID, data.collectionID).then((response) => {
             commit("SET_COLLECTION", response.data);

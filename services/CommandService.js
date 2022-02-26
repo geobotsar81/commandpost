@@ -20,7 +20,11 @@ export default {
             return apiClient.post("/api/commands/collection/" + collectionID, data);
         });
     },
+
     //Authenticated routes
+    sortCollectionCommands(collectionID, data) {
+        return apiClient.post("/api/commands/sort/" + collectionID, data);
+    },
     getUserCommands(userID) {
         return apiClient.get("/api/commands/users/" + userID);
     },

@@ -17,10 +17,12 @@
                                 <div class="col-md-6 col-lg-4">
                                     <label for="sortCommands">Sort commands by</label>
                                     <select id="sortCommands" v-model="sortFilter" class="form-select" aria-label="Sort movies by">
-                                        <option value="1" selected>Command &#8593;</option>
+                                        <option value="1">Command &#8593;</option>
                                         <option value="2">Command &#8595;</option>
                                         <option value="3">Date &#8593;</option>
                                         <option value="4">Date &#8595;</option>
+                                        <option v-if="type == 'collection'" value="5">Order &#8593;</option>
+                                        <option v-if="type == 'collection'" value="6">Order &#8595;</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-3 col-xl-2 search__button">
@@ -34,12 +36,22 @@
 
                 <div class="row mt-4" v-if="commands && commands.length > 0">
                     <div class="col-12">
-                        <!--Commands-->
-                        <div class="row" v-for="(command, index) in commands" :key="index">
-                            <div class="col-12">
-                                <AppCommand @showToast="showToast" :command="command" />
+                        <template v-if="type == 'collection' && isUsersCollection">
+                            <!--Sortable Commands-->
+                            <draggable class="commandDraggable" ghost-class="commandGhost" v-model="commands" group="people" @change="sortCommands" @start="drag = true" @end="drag = false">
+                                <div v-for="(command, index) in commands" :key="index">
+                                    <AppCommand @showToast="showToast" :command="command" />
+                                </div>
+                            </draggable>
+                        </template>
+                        <template v-else>
+                            <!--Commands-->
+                            <div class="row" v-for="(command, index) in commands" :key="index">
+                                <div class="col-12">
+                                    <AppCommand @showToast="showToast" :command="command" />
+                                </div>
                             </div>
-                        </div>
+                        </template>
 
                         <!--Pagination-->
                         <div class="row mt-4">
@@ -57,6 +69,7 @@ import AppMessage from "~/components/AppMessage.vue";
 import AppCommand from "~/components/AppCommand.vue";
 import AppButton from "~/components/AppButton.vue";
 import AppLoader from "~/components/AppLoader.vue";
+import draggable from "vuedraggable";
 
 export default {
     components: {
@@ -64,6 +77,7 @@ export default {
         AppCommand,
         AppButton,
         AppLoader,
+        draggable,
     },
     props: {
         type: {
@@ -75,19 +89,33 @@ export default {
     async fetch() {
         this.getCommands();
     },
-
+    computed: {
+        isUsersCollection() {
+            return this.$auth?.user.id == this.$store.state.collections?.viewCollection?.user_id ? true : false;
+        },
+    },
     data() {
         return {
             message: "",
             currentPage: 1,
             searchFilter: "",
-            sortFilter: 4,
+            sortFilter: this.type != "collection" ? 4 : 5,
             searching: false,
             commands: null,
             paginationLinks: null,
         };
     },
     methods: {
+        //Sort the Collection's Commands
+        async sortCommands() {
+            try {
+                await this.$store.dispatch("commands/sortCollectionCommands", { collectionID: this.$route.params.id, commands: this.commands });
+                this.searchFilter = "";
+                this.sortFilter = 5;
+            } catch (e) {
+                this.showToast("Could not sort commands");
+            }
+        },
         //Refresh commands if there is an emitted change from a command
         refreshCommands() {
             this.commands = this.$store.state.commands.commands;
