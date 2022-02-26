@@ -13,6 +13,11 @@
         }
     }
 
+    .commandGhost {
+        opacity: 1;
+        background: $appYellow;
+    }
+
     .command__collection {
         color: $appOrange;
         font-size: 12px;
@@ -67,7 +72,12 @@
         color: $appGrey2;
     }
     .command__links {
-        a {
+        .sort {
+            cursor: move;
+        }
+
+        a,
+        .sort {
             color: $appGreen;
             font-size: 18px;
             transition: $appTransition;

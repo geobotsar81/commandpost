@@ -31,11 +31,11 @@
 
                             <div class="collapse" id="collapseCollections">
                                 <div>
-                                    <ul>
-                                        <li class="mt-2" v-for="(collection, index) in userCollections" :key="index">
+                                    <draggable ghost-class="collectionGhost" v-model="userCollections" group="people" @change="sortCollections" @start="drag = true" @end="drag = false">
+                                        <div class="mt-2" v-for="collection in userCollections" :key="collection.id">
                                             <AppCollection @showToast="showToast" type="compact" :collection="collection" />
-                                        </li>
-                                    </ul>
+                                        </div>
+                                    </draggable>
                                 </div>
                             </div>
                         </li>
@@ -66,6 +66,7 @@ import AppCollection from "~/components/AppCollection.vue";
 import AppCollectionModal from "~/components/AppModalCollection.vue";
 import AppCommandModal from "~/components/AppModalCommand.vue";
 import AppMessageModal from "~/components/AppModalMessage.vue";
+import draggable from "vuedraggable";
 
 export default {
     components: {
@@ -74,6 +75,7 @@ export default {
         AppCollectionModal,
         AppMessageModal,
         AppCommandModal,
+        draggable,
     },
     data() {
         return {
@@ -102,12 +104,23 @@ export default {
         logout() {
             this.$auth.logout();
         },
+
+        //Sort the user's collections
+        async sortCollections() {
+            try {
+                await this.$store.dispatch("collections/sortUserCollections", { userID: this.$store.state.auth.user.id, collections: this.userCollections });
+            } catch (e) {
+                this.showToast("Could not sort collections");
+            }
+        },
         //Get the user's collections
         async getCollections() {
             try {
                 await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
                 this.userCollections = this.$store.state.collections.userCollections;
-            } catch (e) {}
+            } catch (e) {
+                this.showToast("Could not get user collections");
+            }
         },
         //Show the modal to add/edit a Collection
         showCollectionModal() {
@@ -162,5 +175,4 @@ export default {
     },
 };
 </script>
-
 <style lang="scss" scoped></style>

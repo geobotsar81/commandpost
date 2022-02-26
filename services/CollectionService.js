@@ -18,6 +18,9 @@ export default {
     getUserCollection(userID, collectionID) {
         return apiClient.get("/api/collections/users/" + userID + "/" + collectionID);
     },
+    sortUserCollections(userID, data) {
+        return apiClient.post("/api/collections/sort/" + userID, data);
+    },
     getCollection(collectionID) {
         return apiClient.get("/api/collections/" + collectionID);
     },

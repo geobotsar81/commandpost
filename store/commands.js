@@ -45,6 +45,11 @@ export const actions = {
             commit("SET_COLLECTION_COMMANDS", response.data);
         });
     },
+    sortCollectionCommands({ commit }, data) {
+        return CommandService.sortCollectionCommands(data.collectionID, data).then((response) => {
+            commit("SET_COLLECTION_COMMANDS", response.data);
+        });
+    },
     addUserCommand({ commit }, data) {
         return CommandService.addCommand(data).then((response) => {
             commit("SET_COMMANDS", response.data);
