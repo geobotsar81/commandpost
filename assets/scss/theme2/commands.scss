@@ -1,0 +1,92 @@
+.theme2 {
+    .command {
+        padding: 15px 20px;
+        border: solid 1px $appGrey;
+        border-radius: $appBorderRadius;
+        background-color: $appBlack2;
+        margin-bottom: 20px;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            background-color: $appGrey;
+        }
+    }
+
+    .commandGhost {
+        opacity: 1;
+        background: $appYellow;
+    }
+
+    .command__collection {
+        color: $appYellow;
+        font-size: 12px;
+        a {
+            font-size: 20px;
+            font-weight: 700;
+
+            &:hover,
+            &:focus {
+                color: $appYellow2;
+            }
+        }
+    }
+
+    .command__code {
+        padding-top: 2px;
+        font-style: italic;
+        font-weight: 400;
+        font-size: 20px;
+
+        .icon {
+            i {
+                color: $appYellow;
+                font-size: 14px;
+                padding-top: 4px;
+                padding-right: 5px;
+            }
+            display: inline-block;
+            width: 20px;
+            vertical-align: top;
+        }
+
+        span {
+            display: inline-block;
+            width: calc(100% - 30px);
+        }
+
+        .copy {
+            color: $appYellow;
+            font-size: 16px;
+            padding-left: 20px;
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                color: $appYellow2;
+            }
+        }
+    }
+    .command__date {
+        font-size: 11px;
+        color: $appGrey2;
+    }
+    .command__links {
+        .sort {
+            cursor: move;
+        }
+
+        a,
+        .sort {
+            color: $appLightBrown;
+            font-size: 24px;
+            transition: $appTransition;
+            margin-left: 15px;
+
+            &:hover,
+            &:focus {
+                color: $appYellow;
+            }
+        }
+    }
+}

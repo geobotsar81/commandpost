@@ -1,0 +1,40 @@
+.theme2 {
+    .modal {
+        top: 25%;
+    }
+    .modal-dialog {
+        max-width: 600px;
+    }
+    .modal-content {
+        border-radius: $appBorderRadius;
+        background-color: $appBlack2;
+        color: $appWhite;
+        border: solid 1px $appBlack;
+    }
+    .modal-header {
+        border-bottom: 0px;
+        padding: 25px;
+        padding-bottom: 0px;
+
+        .btn-close {
+            color: $appGrey2 !important;
+            background-image: none;
+            font-size: 20px;
+            &:hover,
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+    }
+    .modal-title {
+        font-weight: 400;
+        h5 {
+            margin: 0px;
+            padding: 0px;
+        }
+    }
+    .modal-body {
+        padding: 25px;
+        padding-top: 10px;
+    }
+}

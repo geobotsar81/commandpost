@@ -1,0 +1,46 @@
+.theme2 {
+    .btn {
+        font-size: 15px;
+        border-radius: 4px;
+        padding: 13px 25px;
+        transition: $appTransition !important;
+        font-weight: 700;
+        text-transform: uppercase;
+
+        i {
+            transition: none !important;
+        }
+
+        &:hover,
+        &:focus {
+            box-shadow: none !important;
+            transition: $appTransition;
+        }
+    }
+
+    .btn-primary {
+        background-color: $appGreen;
+        border-color: $appGreen;
+        color: $appGrey2;
+
+        &:hover,
+        &:focus {
+            background-color: $appBlack2;
+            border-color: $appBlack2;
+            color: $appGrey2;
+        }
+    }
+
+    .btn-secondary {
+        background-color: $appYellow;
+        border-color: $appYellow;
+        color: $appBlack2;
+
+        &:hover,
+        &:focus {
+            background-color: $appBlack2;
+            border-color: $appBlack2;
+            color: $appGrey2;
+        }
+    }
+}

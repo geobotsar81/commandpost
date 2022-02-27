@@ -1,5 +1,5 @@
 export const state = () => ({
-    currentTheme: 1,
+    currentTheme: 2,
 });
 export const mutations = {
     SET_THEME(state, theme) {

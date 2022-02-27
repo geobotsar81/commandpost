@@ -1,0 +1,38 @@
+.theme2 {
+    .logo {
+        font-size: 48px;
+        line-height: 48px;
+        color: $appGrey2;
+        font-weight: 700;
+        text-decoration: none;
+        img {
+            height: 55px;
+            margin-right: 10px;
+            vertical-align: top;
+        }
+        span {
+            color: $appYellow;
+        }
+    }
+
+    @media (max-width: 1400px) {
+        .logo {
+            font-size: 40px !important;
+            img {
+                height: 45px;
+            }
+        }
+    }
+
+    @media (max-width: 1199.98px) {
+        .logo {
+            font-size: 37px !important;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .logo {
+            font-size: 30px !important;
+        }
+    }
+}

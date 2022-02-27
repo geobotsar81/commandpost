@@ -4,6 +4,9 @@
         color: $appOrange;
         font-weight: 900;
         text-decoration: none;
+        img {
+            display: none;
+        }
 
         span {
             color: $appGrey2;

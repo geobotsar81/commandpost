@@ -1,0 +1,17 @@
+.theme2 {
+    .collectionGhost {
+        opacity: 1;
+        background: $appYellow;
+    }
+
+    .collection__links {
+        color: $appYellow;
+        .sort {
+            cursor: move;
+            font-size: 18px;
+        }
+        a {
+            margin-left: 15px;
+        }
+    }
+}
