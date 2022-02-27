@@ -24,7 +24,7 @@
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
                     <li><NuxtLink to="/contact"> Contact </NuxtLink></li>
                     <template v-if="auth.$state.loggedIn">
-                        <li v-if="userCollections">
+                        <li v-if="userCollections && userCollections.length != 0">
                             <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
                                 >My Collections <i class="fal fa-angle-down"></i
                             ></a>
@@ -91,7 +91,9 @@ export default {
     },
     //Fetch user collections
     fetch() {
-        this.getCollections();
+        if (this.$auth?.user) {
+            this.getCollections();
+        }
     },
     computed: {
         currentYear() {
@@ -155,7 +157,7 @@ export default {
         },
         //Watch if there was a change in user's commands
         "$store.state.commands.commands": function (val) {
-            this.userCollections = this.$store.state.collections.userCollections;
+            this.getCollections();
         },
         //Watch if a command is being edited and launch the modal
         "$store.state.commands.command": function (val) {

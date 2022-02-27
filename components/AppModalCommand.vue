@@ -99,6 +99,7 @@ export default {
                 description: "",
                 user_id: this.$auth?.user?.id ?? null,
                 collection: "",
+                copy_id: null,
                 errors: [],
             },
             message: "",
@@ -156,6 +157,7 @@ export default {
         },
         //If the copyCommand prop is updated(cloning a command), reflect the changes on the form fields
         copyCommand: function (val) {
+            this.form.copy_id = val.id;
             this.form.command = val.command;
             this.form.description = val.description;
         },

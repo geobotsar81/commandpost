@@ -17,9 +17,6 @@ export const mutations = {
     SET_COPIED_COMMAND(state, command) {
         state.copiedCommand = command;
     },
-    SET_USER_COMMANDS(state, commands) {
-        state.userCommands = commands;
-    },
     SET_COLLECTION_COMMANDS(state, commands) {
         state.collectionCommands = commands;
     },
@@ -63,11 +60,6 @@ export const actions = {
     deleteUserCommands({ commit }, data) {
         return CommandService.deleteCommand(data.form, data.commandID).then((response) => {
             commit("SET_COMMANDS", response.data);
-        });
-    },
-    fetchUserCommands({ commit }, userID) {
-        return CommandService.getUserCommands(userID).then((response) => {
-            commit("SET_USER_COMMANDS", response.data);
         });
     },
 };
