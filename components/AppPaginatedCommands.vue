@@ -91,7 +91,7 @@ export default {
     },
     computed: {
         isUsersCollection() {
-            return this.$auth?.user.id == this.$store.state.collections?.viewCollection?.user_id ? true : false;
+            return this.$auth?.user?.id == this.$store.state.collections?.viewCollection?.user_id ? true : false;
         },
     },
     data() {

@@ -24,7 +24,7 @@
                     <li><NuxtLink to="/"> Home </NuxtLink></li>
                     <li><NuxtLink to="/contact"> Contact </NuxtLink></li>
                     <template v-if="auth.$state.loggedIn">
-                        <li v-if="userCollections">
+                        <li v-if="userCollections && userCollections.length != 0">
                             <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
                                 >My Collections <i class="fal fa-angle-down"></i
                             ></a>
@@ -53,6 +53,13 @@
                         <li><NuxtLink to="/login"> Log in </NuxtLink></li>
                         <li><NuxtLink to="/register"> Register </NuxtLink></li>
                     </template>
+                    <li class="mt-4">
+                        <label for="selectTheme">Theme:</label>
+                        <select @click.prevent="setTheme" id="selectTheme" v-model="selectTheme" class="form-select selectTheme" aria-label="Select Theme">
+                            <option value="1">Futuristic</option>
+                            <option value="2">Military</option>
+                        </select>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -87,6 +94,7 @@ export default {
             editCommand: null,
             copyCommand: null,
             showMobileMenu: false,
+            selectTheme: this.$store.state.theme.currentTheme,
         };
     },
     //Fetch user collections
@@ -105,6 +113,14 @@ export default {
             this.$auth.logout();
         },
 
+        //Select Theme
+        async setTheme() {
+            try {
+                await this.$store.dispatch("theme/setTheme", this.selectTheme);
+            } catch (e) {
+                this.showToast("Could not switch Theme");
+            }
+        },
         //Sort the user's collections
         async sortCollections() {
             try {
@@ -115,11 +131,13 @@ export default {
         },
         //Get the user's collections
         async getCollections() {
-            try {
-                await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
-                this.userCollections = this.$store.state.collections.userCollections;
-            } catch (e) {
-                this.showToast("Could not get user collections");
+            if (this.$auth?.user) {
+                try {
+                    await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                    this.userCollections = this.$store.state.collections.userCollections;
+                } catch (e) {
+                    this.showToast("Could not get user collections");
+                }
             }
         },
         //Show the modal to add/edit a Collection
@@ -155,7 +173,7 @@ export default {
         },
         //Watch if there was a change in user's commands
         "$store.state.commands.commands": function (val) {
-            this.userCollections = this.$store.state.collections.userCollections;
+            this.getCollections();
         },
         //Watch if a command is being edited and launch the modal
         "$store.state.commands.command": function (val) {

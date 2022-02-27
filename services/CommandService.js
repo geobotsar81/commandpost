@@ -25,9 +25,6 @@ export default {
     sortCollectionCommands(collectionID, data) {
         return apiClient.post("/api/commands/sort/" + collectionID, data);
     },
-    getUserCommands(userID) {
-        return apiClient.get("/api/commands/users/" + userID);
-    },
     getUserCommand(userID, commandID) {
         return apiClient.get("/api/commands/users/" + userID + "/" + commandID);
     },

@@ -29,7 +29,7 @@ export default {
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: ["~/assets/scss/theme1/_main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
+    css: ["~/assets/scss/theme1/_main.scss", "~/assets/scss/theme2/_main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [{ src: "~/plugins/bootstrap.js" }],
@@ -56,6 +56,10 @@ export default {
     googleFonts: {
         families: {
             Roboto: {
+                wght: [400, 700, 900],
+                ital: [400],
+            },
+            TitilliumWeb: {
                 wght: [400, 700, 900],
                 ital: [400],
             },

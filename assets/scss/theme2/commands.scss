@@ -1,15 +1,15 @@
-.theme1 {
+.theme2 {
     .command {
         padding: 15px 20px;
         border: solid 1px $appGrey;
         border-radius: $appBorderRadius;
-        background-color: rgba($appBlack2, 0.5);
+        background-color: $appBlack2;
         margin-bottom: 20px;
         transition: $appTransition;
 
         &:hover,
         &:focus {
-            background-color: rgba($appGrey2, 0.1);
+            background-color: $appGrey;
         }
     }
 
@@ -19,15 +19,15 @@
     }
 
     .command__collection {
-        color: $appOrange;
+        color: $appYellow;
         font-size: 12px;
         a {
-            font-size: 17px;
+            font-size: 20px;
             font-weight: 700;
 
             &:hover,
             &:focus {
-                color: $appOrange2;
+                color: $appYellow2;
             }
         }
     }
@@ -36,11 +36,11 @@
         padding-top: 2px;
         font-style: italic;
         font-weight: 400;
-        font-size: 18px;
+        font-size: 20px;
 
         .icon {
             i {
-                color: $appGrey;
+                color: $appYellow;
                 font-size: 14px;
                 padding-top: 4px;
                 padding-right: 5px;
@@ -56,14 +56,14 @@
         }
 
         .copy {
-            color: $appOrange;
+            color: $appYellow;
             font-size: 16px;
             padding-left: 20px;
             cursor: pointer;
 
             &:hover,
             &:focus {
-                color: $appOrange2;
+                color: $appYellow2;
             }
         }
     }
@@ -78,14 +78,14 @@
 
         a,
         .sort {
-            color: $appGreen;
-            font-size: 20px;
+            color: $appLightBrown;
+            font-size: 24px;
             transition: $appTransition;
             margin-left: 15px;
 
             &:hover,
             &:focus {
-                color: $appOrange;
+                color: $appYellow;
             }
         }
     }

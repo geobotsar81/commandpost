@@ -17,6 +17,12 @@ export default {
             theme: this.$store.state.theme.currentTheme ? "theme" + this.$store.state.theme.currentTheme : "theme1",
         };
     },
+    watch: {
+        //Watch if selected theme has changed
+        "$store.state.theme.currentTheme": function (val) {
+            this.theme = "theme" + this.$store.state.theme.currentTheme;
+        },
+    },
 };
 </script>
 <style lang="scss" scoped>

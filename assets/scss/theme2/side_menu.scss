@@ -1,0 +1,127 @@
+.theme2 {
+    .sideMenu {
+        padding: 25px 45px;
+        background-color: rgba($appGrey, 1);
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        transition: $appTransition;
+
+        .btn {
+            width: 100%;
+        }
+    }
+
+    .selectTheme {
+        background-color: $appGreen;
+        border: solid 1px $appGreen;
+        color: $appWhite;
+        transition: $appTransition;
+
+        &:hover,
+        &:focus {
+            background-color: $appBlack2;
+            border: solid 1px $appBlack2;
+            color: $appGrey2;
+        }
+    }
+
+    .sideMenu__links {
+        ul {
+            padding-left: 0px;
+        }
+
+        li {
+            list-style: none;
+            padding: 10px 0px;
+
+            ul {
+                padding-left: 10px;
+                li {
+                    padding: 2px 0px;
+                }
+            }
+        }
+
+        a:not(.btn),
+        button {
+            color: $appGrey2;
+            font-size: 18px;
+            font-weight: 700;
+
+            &:hover,
+            &:focus {
+                color: $appYellow2;
+            }
+        }
+
+        i {
+            transition: $appTransition;
+        }
+
+        a[aria-expanded="true"] {
+            i {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    .sideMenu__burger {
+        font-size: 24px;
+        color: $appYellow;
+        padding-top: 5px;
+        i {
+            cursor: pointer;
+        }
+    }
+
+    .sidemenu__copyrights {
+        position: absolute;
+        left: 0px;
+        bottom: 15px;
+        color: $appGrey2;
+        width: 100%;
+        padding: 0px 15px;
+        text-align: center;
+    }
+
+    @media (max-width: 1199.98px) {
+        .sideMenu {
+            padding: 15px 25px;
+        }
+        :deep(.logo) {
+            font-size: 25px !important;
+        }
+    }
+
+    @media (max-width: 767.98px) {
+        .sideMenu {
+            height: 60px;
+            padding: 10px 30px;
+            margin: 0px;
+            overflow: hidden;
+            .sideMenu__links,
+            .sidemenu__copyrights {
+                opacity: 0;
+                transition: $appTransition;
+                text-align: center;
+            }
+            &.expanded {
+                height: 100vh;
+
+                .sideMenu__links {
+                    opacity: 1;
+                    transition: $appTransition;
+                }
+                .sidemenu__copyrights {
+                    opacity: 1;
+                    transition: $appTransition;
+                }
+            }
+            .sidemenu__copyrights {
+                pointer-events: none;
+            }
+        }
+    }
+}

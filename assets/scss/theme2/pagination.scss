@@ -1,0 +1,54 @@
+.theme2 {
+    .pagination {
+        display: block;
+        text-align: center;
+
+        .page-item {
+            margin: 0px 4px;
+            display: inline-block;
+
+            &.active {
+                .page-link {
+                    background-color: $appYellow;
+                    border-color: $appYellow;
+                    color: $appBlack;
+                }
+            }
+
+            &:first-child,
+            &:last-child {
+                .page-link {
+                    color: $appYellow;
+                    font-size: 12px;
+                    line-height: 14px;
+                    font-weight: 700;
+                }
+            }
+        }
+        .page-link {
+            border-radius: 3px;
+            font-size: 12px;
+            line-height: 14px;
+            font-weight: 700;
+            min-width: 32px;
+            height: 32px;
+            text-align: center;
+            padding-top: 8px;
+            padding-left: 8px;
+            padding-right: 8px;
+            color: $appYellow;
+            border-color: $appYellow;
+            background-color: transparent;
+            transition: $appTransition;
+
+            &:hover,
+            &:focus {
+                box-shadow: none;
+                outline: none;
+                background-color: $appYellow;
+                border-color: $appYellow;
+                color: $appBlack !important;
+            }
+        }
+    }
+}
