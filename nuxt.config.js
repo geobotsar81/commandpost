@@ -14,6 +14,7 @@ export default {
             { name: "format-detection", content: "telephone=no" },
             { name: "og:type", hid: "og:type", content: "website" },
             { name: "og:title", hid: "og:title", content: "CommandPost" },
+            { hid: "og:image", name: "og:image", content: "~/static/ogImage.png" },
             { name: "og:description", hid: "og:description", content: "A place for web devs to store their commands" },
             { name: "twitter:card", hid: "twitter:card", content: "summary" },
             { name: "twitter:site", hid: "twitter:side", content: "@commandpost" },
