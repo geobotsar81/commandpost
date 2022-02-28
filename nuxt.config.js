@@ -12,6 +12,15 @@ export default {
             { name: "viewport", content: "width=device-width, initial-scale=1" },
             { hid: "description", name: "description", content: "A place for web devs to store their commands" },
             { name: "format-detection", content: "telephone=no" },
+            { name: "og:type", hid: "og:type", content: "website" },
+            { name: "og:title", hid: "og:title", content: "CommandPost" },
+            { name: "og:description", hid: "og:description", content: "A place for web devs to store their commands" },
+            { name: "twitter:card", hid: "twitter:card", content: "summary" },
+            { name: "twitter:site", hid: "twitter:side", content: "@commandpost" },
+            { name: "twitter:domain", hid: "twitter:domain", content: "commandpost.dev" },
+            { name: "twitter:url", hid: "twitter:url", content: "https://commandpost.dev/" },
+            { name: "twitter:title", hid: "twitter:title", content: "CommandPost" },
+            { name: "twitter:description", hid: "twitter:desccription", content: "A place for web devs to store their commands" },
         ],
         link: [
             { rel: "icon", type: "image/x-icon", href: "/favicons/favicon.ico" },
@@ -38,7 +47,7 @@ export default {
     components: true,
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: ["@nuxtjs/google-fonts"],
+    buildModules: ["@nuxtjs/google-fonts", "@nuxtjs/google-analytics"],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
@@ -65,7 +74,9 @@ export default {
             },
         },
     },
-
+    googleAnalytics: {
+        id: "G-HV4R41NQT0",
+    },
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
