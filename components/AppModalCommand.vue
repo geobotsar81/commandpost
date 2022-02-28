@@ -151,9 +151,15 @@ export default {
     watch: {
         //If the command prop is updated(editing a command), reflect the changes on the form fields
         command: function (val) {
-            this.form.command = val.command;
-            this.form.collection = val.collection_id;
-            this.form.description = val.description;
+            if (val) {
+                this.form.command = val.command;
+                this.form.collection = val.collection_id;
+                this.form.description = val.description;
+            } else {
+                this.form.command = "";
+                this.form.collection = "";
+                this.form.description = "";
+            }
         },
         //If the copyCommand prop is updated(cloning a command), reflect the changes on the form fields
         copyCommand: function (val) {

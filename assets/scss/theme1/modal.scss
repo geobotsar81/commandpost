@@ -10,6 +10,15 @@
         background-color: $appBlack2;
         color: $appWhite;
         border: solid 1px $appBlack;
+
+        .form-control,
+        .form-select {
+            border: solid 1px $appGrey;
+
+            &:hover,
+            &:focus {
+            }
+        }
     }
     .modal-header {
         border-bottom: 0px;

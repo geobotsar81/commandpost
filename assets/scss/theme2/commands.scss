@@ -10,12 +10,22 @@
         &:hover,
         &:focus {
             background-color: $appGrey;
+
+            .icon {
+                i {
+                    color: $appLightBrown;
+                }
+            }
         }
     }
 
     .commandGhost {
         opacity: 1;
-        background: $appYellow;
+        background-color: transparent;
+
+        .command {
+            background-color: $appGrey;
+        }
     }
 
     .command__collection {
@@ -40,10 +50,11 @@
 
         .icon {
             i {
-                color: $appYellow;
+                color: $appGrey;
                 font-size: 14px;
                 padding-top: 4px;
                 padding-right: 5px;
+                transition: $appTransition;
             }
             display: inline-block;
             width: 20px;
@@ -79,7 +90,7 @@
         a,
         .sort {
             color: $appLightBrown;
-            font-size: 24px;
+            font-size: 20px;
             transition: $appTransition;
             margin-left: 15px;
 

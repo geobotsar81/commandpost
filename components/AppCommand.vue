@@ -8,7 +8,9 @@
                 <div class="col-sm-8 col-lg-9 text-center text-sm-start">
                     <div class="row command__collection">
                         <div class="col-12">
-                            in <NuxtLink :to="'/collections/view/' + command.collection.id">{{ command.collection.title }}</NuxtLink>
+                            in <NuxtLink :to="'/collections/view/' + command.collection.encrypted_id">{{ command.collection.title }} </NuxtLink>
+                            <!--<span v-if="command.collection.views"> | {{ command.collection.views }} <i class="far fa-telescope" title="collection views"></i></span>-->
+                            <span v-if="command.additions"> | {{ command.additions }} <i class="far fa-plus-circle" title="collection additions"></i></span>
                             <span v-if="command.description"> - {{ command.description }}</span>
                         </div>
                     </div>
@@ -28,7 +30,7 @@
                     </div>
                     <div class="row mt-2 command__links">
                         <div class="col-12">
-                            <template v-if="command.collection.user_id == form.userID && command.collection.id == $route.params.id">
+                            <template v-if="command.collection.user_id == form.userID && command.collection.encrypted_id == $route.params.id">
                                 <i class="far fa-grip-lines sort" title="sort commands"></i>
                             </template>
                             <a href="#" @click.prevent="copyCommandText(command.command)"><i class="far fa-copy" title="copy to clipboard"></i></a>

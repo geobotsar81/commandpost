@@ -116,7 +116,11 @@ export default {
     watch: {
         //If the collection prop is updated(editing a collection), reflect the changes on the form fields
         collection: function (val) {
-            this.form.title = val.title;
+            if (val) {
+                this.form.title = val?.title;
+            } else {
+                this.form.title = "";
+            }
         },
     },
 };

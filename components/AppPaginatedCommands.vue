@@ -54,7 +54,7 @@
                         </template>
 
                         <!--Pagination-->
-                        <div class="row mt-4">
+                        <div class="row mt-2">
                             <div class="col-12"><AppPagination @changePage="changePage" :currentPage="currentPage" :links="paginationLinks" /></div>
                         </div>
                     </div>
