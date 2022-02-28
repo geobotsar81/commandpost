@@ -14,7 +14,7 @@
                         <form @submit.prevent="submit">
                             <div class="row">
                                 <div class="col-12">
-                                    <AppLabel for="name" value="Name" />
+                                    <AppLabel for="name" value="Username" />
                                     <AppInput id="name" type="text" class="input mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
                                 </div>
                             </div>
@@ -95,6 +95,7 @@ export default {
             this.form.errors = [];
 
             try {
+                await this.$axios.get("/sanctum/csrf-cookie");
                 await this.$axios.post("register", this.form);
 
                 await this.$auth.loginWith("laravelSanctum", { data: this.form });

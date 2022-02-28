@@ -116,7 +116,11 @@ export default {
         //Select Theme
         async setTheme() {
             try {
-                await this.$store.dispatch("theme/setTheme", this.selectTheme);
+                if (this.$auth?.user?.id) {
+                    await this.$store.dispatch("theme/setUserTheme", { userID: this.$store.state.auth.user.id, themeID: this.selectTheme });
+                } else {
+                    await this.$store.dispatch("theme/setGuestTheme", this.selectTheme);
+                }
             } catch (e) {
                 this.showToast("Could not switch Theme");
             }
@@ -189,6 +193,10 @@ export default {
         "$store.state.collections.collection": function (val) {
             this.editCollection = val;
             this.$refs.collectionModal.showModal();
+        },
+        //Watch if the theme has changed and update the dropdown
+        "$store.state.theme.currentTheme": function (val) {
+            this.selectTheme = val;
         },
     },
 };

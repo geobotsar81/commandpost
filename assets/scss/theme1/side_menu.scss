@@ -7,6 +7,25 @@
         position: relative;
         width: 100%;
         transition: $appTransition;
+
+        .btn {
+            width: 200px;
+        }
+    }
+
+    .selectTheme {
+        background-color: $appBlack2;
+        border: solid 1px $appGrey;
+        color: $appGrey2;
+        transition: $appTransition;
+        width: 200px;
+
+        &:hover,
+        &:focus {
+            background-color: $appBlack2;
+            border: solid 1px $appOrange;
+            color: $appGrey2;
+        }
     }
 
     .sideMenu__links {

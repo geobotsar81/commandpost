@@ -9,8 +9,8 @@
 
             &.active {
                 .page-link {
-                    background-color: $appYellow;
-                    border-color: $appYellow;
+                    background-color: $appGreen;
+                    border-color: $appGreen;
                     color: $appBlack;
                 }
             }
@@ -18,7 +18,7 @@
             &:first-child,
             &:last-child {
                 .page-link {
-                    color: $appYellow;
+                    color: $appGreen;
                     font-size: 12px;
                     line-height: 14px;
                     font-weight: 700;
@@ -36,8 +36,8 @@
             padding-top: 8px;
             padding-left: 8px;
             padding-right: 8px;
-            color: $appYellow;
-            border-color: $appYellow;
+            color: $appGreen;
+            border-color: $appGrey;
             background-color: transparent;
             transition: $appTransition;
 
@@ -45,8 +45,8 @@
             &:focus {
                 box-shadow: none;
                 outline: none;
-                background-color: $appYellow;
-                border-color: $appYellow;
+                background-color: $appGreen;
+                border-color: $appGreen;
                 color: $appBlack !important;
             }
         }

@@ -1,9 +1,12 @@
 <template>
-    <div class="container collection">
-        <div class="row" v-if="collection">
+    <div class="container collection" v-if="collection">
+        <div class="row">
             <div class="col-12 text-center">
                 <h1>{{ collection.title }} Collection</h1>
             </div>
+        </div>
+        <div class="row collection__views">
+            <div class="col-12 text-center">by {{ collection.user.name }}</div>
         </div>
 
         <div class="row mt-4">
@@ -44,7 +47,9 @@ export default {
         try {
             await this.$store.dispatch("collections/viewUserCollection", { collectionID: this.$route.params.id });
             this.collection = this.$store.state.collections.viewCollection;
-        } catch (e) {}
+        } catch (e) {
+            return this.$nuxt.error({ statusCode: 404, message: "Could not find Collection" });
+        }
     },
 };
 </script>

@@ -17,10 +17,27 @@ export default {
             theme: this.$store.state.theme.currentTheme ? "theme" + this.$store.state.theme.currentTheme : "theme1",
         };
     },
+    methods: {
+        //Select Theme
+        async getUserTheme() {
+            try {
+                await this.$store.dispatch("theme/fetchUserTheme", { userID: this.$store.state.auth.user.id });
+                this.theme = "theme" + this.$store.state.theme.currentTheme;
+            } catch (e) {
+                this.showToast("Could not switch Theme");
+            }
+        },
+    },
     watch: {
         //Watch if selected theme has changed
         "$store.state.theme.currentTheme": function (val) {
             this.theme = "theme" + this.$store.state.theme.currentTheme;
+        },
+        //Watch if user has logged in
+        "$store.state.auth.user": function (val) {
+            if (this.$auth?.user) {
+                this.getUserTheme();
+            }
         },
     },
 };

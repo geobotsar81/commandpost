@@ -59,7 +59,7 @@ export default {
                 wght: [400, 700, 900],
                 ital: [400],
             },
-            TitilliumWeb: {
+            "Titillium+Web": {
                 wght: [400, 700, 900],
                 ital: [400],
             },

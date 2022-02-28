@@ -5,7 +5,7 @@
     }
 
     .collection__links {
-        color: $appYellow;
+        color: $appWhite;
         .sort {
             cursor: move;
             font-size: 18px;
@@ -13,5 +13,10 @@
         a {
             margin-left: 15px;
         }
+    }
+
+    .collection__views {
+        color: $appLightBrown;
+        font-style: italic;
     }
 }
