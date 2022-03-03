@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="command__code">
-                                <div class="icon"><i class="fas fa-code"></i></div>
+                                <div class="icon"><i class="far fa-code"></i></div>
                                 <span>{{ command.command }}</span>
                             </div>
                         </div>

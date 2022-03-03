@@ -4,7 +4,8 @@ const apiClient = axios.create({
     baseURL: process.env.backendUrl,
     withCredentials: true,
     headers: {
-        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json ",
+        "Access-Control-Max-Age": 600,
     },
 });
 

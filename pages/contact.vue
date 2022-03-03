@@ -93,12 +93,12 @@ export default {
 
     methods: {
         async submit() {
-            this.processing = true;
+            this.form.processing = true;
             this.form.errors = [];
 
             try {
                 await ContactService.sendEmail(this.form);
-                this.processing = false;
+                this.form.processing = false;
                 this.message = "Message was successfully sent";
                 this.messageType = "success";
                 this.form.email = "";
@@ -110,6 +110,7 @@ export default {
                         this.form.errors.push(error);
                     });
                 });
+                this.form.processing = false;
             }
         },
     },

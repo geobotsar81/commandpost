@@ -1,6 +1,7 @@
 export default {
-    target: "static",
-    mode: "universal",
+    target: "static", // static or server
+    //mode: "spa", // universal or spa
+    ssr: false,
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
         title: "CommandPost",
@@ -13,8 +14,8 @@ export default {
             { hid: "description", name: "description", content: "A place for web devs to store their commands" },
             { name: "format-detection", content: "telephone=no" },
             { name: "og:type", hid: "og:type", content: "website" },
-            { name: "og:title", hid: "og:title", content: "CommandPost" },
-            { hid: "og:image", name: "og:image", content: "~/static/ogImage.png" },
+            { name: "og:title", hid: "og:title", content: "commandpost.dev" },
+            { hid: "og:image", name: "og:image", content: "/ogImage.png" },
             { name: "og:description", hid: "og:description", content: "A place for web devs to store their commands" },
             { name: "twitter:card", hid: "twitter:card", content: "summary" },
             { name: "twitter:site", hid: "twitter:side", content: "@commandpost" },
@@ -32,14 +33,12 @@ export default {
         ],
     },
 
-    ssr: false,
-
     env: {
         backendUrl: process.env.NODE_ENV === "dev" ? "http://localhost:8001" : "https://api.commandpost.dev",
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
-    css: ["~/assets/scss/theme1/_main.scss", "~/assets/scss/theme2/_main.scss", "~/assets/fontawesome-pro/css/all.min.css"],
+    css: ["~/assets/scss/theme1/_main.scss", "~/assets/scss/theme2/_main.scss", "~/static/fontawesome-pro/css/fontawesome.min.css", "~/static/fontawesome-pro/css/regular.min.css"],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [{ src: "~/plugins/bootstrap.js" }],
@@ -56,6 +55,7 @@ export default {
         "@nuxtjs/axios",
         "@nuxtjs/auth-next",
         "@nuxtjs/style-resources",
+        //"@nuxtjs/sitemap",
         //"@nuxtjs/proxy",
     ],
 
@@ -81,7 +81,7 @@ export default {
     // Axios module configuration: https://go.nuxtjs.dev/config-axios
     axios: {
         // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-        baseURL: process.env.BASE_URL,
+        baseURL: process.env.NODE_ENV === "dev" ? "http://localhost:8001" : "https://api.commandpost.dev",
         credentials: true,
         //proxy: true,
     },
@@ -104,7 +104,7 @@ export default {
         strategies: {
             laravelSanctum: {
                 provider: "laravel/sanctum",
-                url: process.env.BASE_URL,
+                url: process.env.NODE_ENV === "dev" ? "http://localhost:8001" : "https://api.commandpost.dev",
             },
             cookie: {
                 /*cookie: {

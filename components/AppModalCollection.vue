@@ -6,7 +6,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="collectionModalLabel" v-if="collection">Update Collection</h5>
                     <h5 class="modal-title" id="collectionModalLabel" v-else>Add a new Collection</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <!--Loader-->
@@ -71,7 +71,7 @@ export default {
         return {
             modalId: "collectionModal",
             form: {
-                title: this.collectionTitle ?? null,
+                title: "",
                 user_id: this.$auth?.user?.id ?? null,
                 collection_id: null,
                 errors: [],
@@ -84,7 +84,7 @@ export default {
 
     methods: {
         showModal() {
-            this.title = this.collectionTitle ?? null;
+            this.form.title = "";
             this.form.user_id = this.$auth?.user?.id ?? null;
             this.modal.show();
             this.message = "";
@@ -116,6 +116,7 @@ export default {
     watch: {
         //If the collection prop is updated(editing a collection), reflect the changes on the form fields
         collection: function (val) {
+            console.log("watch");
             if (val) {
                 this.form.title = val?.title;
             } else {
