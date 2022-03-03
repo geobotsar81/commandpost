@@ -4,21 +4,31 @@ const apiClient = axios.create({
     baseURL: process.env.backendUrl,
     withCredentials: true,
     headers: {
-        "X-Requested-With": "XMLHttpRequest",
+        "Content-Type": "application/json ",
+        //"X-Requested-With": "XMLHttpRequest",
+        "Access-Control-Max-Age": "600",
     },
 });
 
 export default {
     //Not authenticated routes
     getCommands(data) {
-        return apiClient.get(process.env.backendUrl + "/sanctum/csrf-cookie").then((response) => {
+        if (document.cookie.indexOf("XSRF-TOKEN") > -1) {
             return apiClient.post("/api/commands/index", data);
-        });
+        } else {
+            return apiClient.get(process.env.backendUrl + "/sanctum/csrf-cookie").then((response) => {
+                return apiClient.post("/api/commands/index", data);
+            });
+        }
     },
     getCollectionCommands(collectionID, data) {
-        return apiClient.get(process.env.backendUrl + "/sanctum/csrf-cookie").then((response) => {
+        if (document.cookie.indexOf("XSRF-TOKEN") > -1) {
             return apiClient.post("/api/commands/collection/" + collectionID, data);
-        });
+        } else {
+            return apiClient.get(process.env.backendUrl + "/sanctum/csrf-cookie").then((response) => {
+                return apiClient.post("/api/commands/collection/" + collectionID, data);
+            });
+        }
     },
 
     //Authenticated routes

@@ -1,7 +1,9 @@
 <template>
     <div class="collection">
         <NuxtLink :to="'/collections/view/' + collection.encrypted_id">{{ collection.title }} ({{ collection.commands.length }})</NuxtLink>
-        <span class="float-end collection__links">
+        <!--Loader-->
+        <AppLoader v-if="processing" />
+        <span v-else class="float-end collection__links">
             <i class="far fa-grip-lines sort" title="sort"></i>
             <a href="#" @click.prevent="editCollection(collection.id)"><i class="far fa-edit" title="edit"></i></a>
             <a href="#" @click.prevent="deleteCollection(collection.id)"><i class="far fa-trash-alt" title="delete"></i></a>

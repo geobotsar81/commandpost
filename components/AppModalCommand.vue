@@ -6,7 +6,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="commandModalLabel" v-if="command">Update Command</h5>
                     <h5 class="modal-title" id="commandModalLabel" v-else>Add a new Command</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fal fa-times"></i></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
                 </div>
                 <div class="modal-body">
                     <!--Loader-->

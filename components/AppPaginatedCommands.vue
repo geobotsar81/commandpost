@@ -23,10 +23,12 @@
                                         <option value="4">Date &#8595;</option>
                                         <option v-if="type == 'collection'" value="5">Order &#8593;</option>
                                         <option v-if="type == 'collection'" value="6">Order &#8595;</option>
+                                        <option value="7">Collection additions &#8593;</option>
+                                        <option value="8">Collection additions &#8595;</option>
                                     </select>
                                 </div>
                                 <div class="col-lg-3 col-xl-2 search__button">
-                                    <AppButton @click.prevent="searchCommands" v-if="!searching"><i class="far fa-search"></i> Search </AppButton>
+                                    <AppButton v-if="!searching"><i class="far fa-search"></i> Search </AppButton>
                                     <AppLoader v-else></AppLoader>
                                 </div>
                             </div>
@@ -34,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="row mt-4" v-if="commands && commands.length > 0">
+                <div class="row mt-4" v-if="commands && commands.length > 0 && !searching">
                     <div class="col-12">
                         <template v-if="type == 'collection' && isUsersCollection">
                             <!--Sortable Commands-->
@@ -169,8 +171,8 @@ export default {
         },
         //Watch if a command was added
         "$store.state.commands.commands": function (val) {
-            this.sortFilter = 4;
-            this.searchFilter = "";
+            //this.sortFilter = 4;
+            //this.searchFilter = "";
             if (this.type == "collection") {
                 this.getCommands();
             } else {

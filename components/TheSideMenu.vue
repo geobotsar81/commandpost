@@ -26,7 +26,7 @@
                     <template v-if="auth.$state.loggedIn">
                         <li v-if="userCollections && userCollections.length != 0">
                             <a class="collapseToggle" data-bs-toggle="collapse" href="#collapseCollections" role="button" aria-expanded="false" aria-controls="collapseCollections"
-                                >My Collections <i class="fal fa-angle-down"></i
+                                >My Collections <i class="far fa-angle-down"></i
                             ></a>
 
                             <div class="collapse" id="collapseCollections">
@@ -40,12 +40,16 @@
                             </div>
                         </li>
 
-                        <li><a href="#" @click.prevent="logout">Logout</a></li>
                         <li>
-                            <a class="btn btn-primary" href="#" @click.prevent="showCollectionModal"> <i class="fas fa-plus-circle"></i> Add Collection </a>
+                            <!--Loader-->
+                            <AppLoader v-if="processing" />
+                            <a v-else href="#" @click.prevent="logout">Logout</a>
                         </li>
                         <li>
-                            <a class="btn btn-secondary" href="#" @click.prevent="showCommandModal"> <i class="fas fa-plus-circle"></i> Add Command </a>
+                            <a class="btn btn-primary" href="#" @click.prevent="showCollectionModal"> <i class="far fa-plus-circle"></i> Add Collection </a>
+                        </li>
+                        <li>
+                            <a class="btn btn-secondary" href="#" @click.prevent="showCommandModal"> <i class="far fa-plus-circle"></i> Add Command </a>
                         </li>
                     </template>
 
@@ -73,6 +77,7 @@ import AppCollection from "~/components/AppCollection.vue";
 import AppCollectionModal from "~/components/AppModalCollection.vue";
 import AppCommandModal from "~/components/AppModalCommand.vue";
 import AppMessageModal from "~/components/AppModalMessage.vue";
+import AppLoader from "~/components/AppLoader.vue";
 import draggable from "vuedraggable";
 
 export default {
@@ -82,6 +87,7 @@ export default {
         AppCollectionModal,
         AppMessageModal,
         AppCommandModal,
+        AppLoader,
         draggable,
     },
     data() {
@@ -94,6 +100,7 @@ export default {
             editCommand: null,
             copyCommand: null,
             showMobileMenu: false,
+            processing: false,
             selectTheme: this.$store.state.theme.currentTheme,
         };
     },
@@ -109,8 +116,10 @@ export default {
         },
     },
     methods: {
-        logout() {
-            this.$auth.logout();
+        async logout() {
+            this.processing = true;
+            await this.$auth.logout();
+            this.processing = false;
         },
 
         //Select Theme
