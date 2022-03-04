@@ -48,13 +48,13 @@ export default {
     //Get the current Collection along with its Commands
     async fetch() {
         //Initial set of Collection through the store
-        let collection = null;
+        /*let collection = null;
         let commands = this.$store.state?.commands?.commands?.data ?? null;
         if (commands) {
             let command = commands.filter((command) => command.collection.encrypted_id == this.$route.params.id);
             collection = command[0].collection;
             this.collection = collection;
-        }
+        }*/
 
         //Load Collection from the API
         try {

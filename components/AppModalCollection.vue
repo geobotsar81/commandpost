@@ -20,7 +20,7 @@
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppLabel for="title" value="Title" />
-                                <AppInput id="title" type="title" class="mt-1 block w-full" v-model="form.title" />
+                                <input type="text" id="title" class="mt-1 form-control" v-model="form.title" />
                             </div>
                         </div>
 
