@@ -10,7 +10,6 @@
                 <div class="sideMenu__burger"><i @click="toggleMobileMenu" :class="showMobileMenu ? 'far fa-times' : 'far fa-bars'"></i></div>
             </div>
         </div>
-
         <!--Toast for message-->
         <AppToast ref="messageToast" :message="message" toastId="sidemenuToast" />
         <!--Collection Modal-->
@@ -68,7 +67,15 @@
             </div>
         </div>
 
-        <div class="sidemenu__copyrights">©CmndPost {{ currentYear }} - All rights reserved</div>
+        <div class="sidemenu__copyrights">
+            <div class="row">
+                <div class="col-12">Futuristic Theme by <a href="http://thaliabotsari.com/" target="_blank">ThaliaBo</a></div>
+                <div class="col-12">Military Theme by <a href="https://dribbble.com/_christofi" target="_blank">AndrewC</a></div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">©CmndPost {{ currentYear }} - All rights reserved</div>
+            </div>
+        </div>
     </div>
 </template>
 <script>

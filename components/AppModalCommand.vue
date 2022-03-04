@@ -29,14 +29,14 @@
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppLabel for="command" value="Command" />
-                                <AppInput id="command" type="command" class="mt-1 block w-full" v-model="form.command" />
+                                <input type="text" id="command" class="mt-1 form-control" v-model="form.command" />
                             </div>
                         </div>
 
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppLabel for="description" value="Description" />
-                                <AppInput id="description" type="description" class="mt-1 block w-full" v-model="form.description" />
+                                <input type="text" id="description" class="mt-1 form-control" v-model="form.description" />
                             </div>
                         </div>
 
@@ -132,15 +132,19 @@ export default {
                     await this.$store.dispatch("commands/updateUserCommand", { form: this.form, commandID: this.command.id });
                     //Re-fetch user collections in order to have an updated commands number in the side menu
                     await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                    this.message = "Command was successfully updated";
                 } else {
                     //Add new Command
                     await this.$store.dispatch("commands/addUserCommand", this.form);
                     //Re-fetch user collections in order to have an updated commands number in the side menu
                     await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
+                    this.message = "Command was successfully added";
+                    this.form.command = "";
+                    this.form.description = "";
+                    this.form.collection = "";
                 }
                 this.processing = false;
-                this.form.title = "";
-                this.message = "Command was successfully added";
+
                 this.messageType = "success";
             } catch (e) {
                 this.processing = false;
