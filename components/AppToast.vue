@@ -3,7 +3,7 @@
     <div class="toast-container">
         <div :id="toastId" class="toast" data-bs-delay="2000" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
-                <button @click.prevent="closeToast" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"><i class="fal fa-times"></i></button>
+                <button @click.prevent="closeToast" type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"><i class="far fa-times"></i></button>
             </div>
             <div class="toast-body">{{ message }}</div>
         </div>

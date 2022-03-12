@@ -16,7 +16,7 @@
                                 </div>
                                 <div class="col-md-6 col-lg-4">
                                     <label for="sortCommands">Sort commands by</label>
-                                    <select id="sortCommands" v-model="sortFilter" class="form-select" aria-label="Sort movies by">
+                                    <select @change="searchCommands" id="sortCommands" v-model="sortFilter" class="form-select" aria-label="Sort movies by">
                                         <option value="1">Command &#8593;</option>
                                         <option value="2">Command &#8595;</option>
                                         <option value="3">Date &#8593;</option>
@@ -38,6 +38,11 @@
 
                 <div class="row mt-4" v-if="commands && commands.length > 0 && !searching">
                     <div class="col-12">
+                        <!--Pagination-->
+                        <div class="row">
+                            <div class="col-12"><AppPagination @changePage="changePage" :currentPage="currentPage" :links="paginationLinks" /></div>
+                        </div>
+
                         <template v-if="type == 'collection' && isUsersCollection">
                             <!--Sortable Commands-->
                             <draggable class="commandDraggable" ghost-class="commandGhost" v-model="commands" group="people" @change="sortCommands" @start="drag = true" @end="drag = false">
@@ -56,7 +61,7 @@
                         </template>
 
                         <!--Pagination-->
-                        <div class="row mt-2">
+                        <div class="row">
                             <div class="col-12"><AppPagination @changePage="changePage" :currentPage="currentPage" :links="paginationLinks" /></div>
                         </div>
                     </div>
