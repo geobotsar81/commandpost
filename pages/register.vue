@@ -74,7 +74,12 @@ export default {
         AppLabel,
         AppLoader,
     },
-
+    async fetch() {
+        //Close mobile menu
+        try {
+            await this.$store.dispatch("theme/setMobileMenu", false);
+        } catch (e) {}
+    },
     data() {
         return {
             form: {

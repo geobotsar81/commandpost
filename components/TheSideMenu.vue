@@ -178,7 +178,7 @@ export default {
         //Toggle Mobile menu
         toggleMobileMenu() {
             this.showMobileMenu = !this.showMobileMenu;
-            console.log(this.showMobileMenu);
+            this.$store.dispatch("theme/setMobileMenu", this.showMobileMenu);
         },
     },
     watch: {
@@ -213,6 +213,10 @@ export default {
         //Watch if the theme has changed and update the dropdown
         "$store.state.theme.currentTheme": function (val) {
             this.selectTheme = val;
+        },
+        //Watch if the theme has changed and update the dropdown
+        "$store.state.theme.showMobileMenu": function (val) {
+            this.showMobileMenu = val;
         },
     },
 };

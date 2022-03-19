@@ -119,6 +119,10 @@ export default {
             try {
                 await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
                 this.userCollections = this.$store.state.collections.userCollections;
+                if (this.userCollections.length == 0) {
+                    this.message = "You need to create at least one Collection before creating your Commands";
+                    this.messageType = "error";
+                }
             } catch (e) {}
         },
         //Add a New Command

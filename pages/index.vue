@@ -26,6 +26,12 @@ export default {
     components: {
         AppPaginatedCommands,
     },
+    async fetch() {
+        //Close mobile menu
+        try {
+            await this.$store.dispatch("theme/setMobileMenu", false);
+        } catch (e) {}
+    },
     data() {
         return {
             auth: this.$auth ?? null,
