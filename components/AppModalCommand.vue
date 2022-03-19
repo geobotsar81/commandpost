@@ -4,7 +4,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="commandModalLabel" v-if="command">Update Command</h5>
+                    <h5 class="modal-title" id="commandModalLabel" v-if="!isNew">Update Command</h5>
                     <h5 class="modal-title" id="commandModalLabel" v-else>Add a new Command</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
                 </div>
@@ -43,7 +43,7 @@
                         <div class="row mt-4">
                             <div class="col-12">
                                 <AppButton class="ml-4" v-if="!processing">
-                                    <template v-if="command">Update Command</template>
+                                    <template v-if="!isNew">Update Command</template>
                                     <template v-else>Add Command</template>
                                 </AppButton>
                             </div>
@@ -106,6 +106,7 @@ export default {
             messageType: "",
             processing: false,
             userCollections: null,
+            isNew: true,
         };
     },
     methods: {
@@ -118,6 +119,10 @@ export default {
             try {
                 await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
                 this.userCollections = this.$store.state.collections.userCollections;
+                if (this.userCollections.length == 0) {
+                    this.message = "You need to create at least one Collection before creating your Commands";
+                    this.messageType = "error";
+                }
             } catch (e) {}
         },
         //Add a New Command
@@ -128,7 +133,7 @@ export default {
 
             try {
                 //Update Command
-                if (this.command?.id) {
+                if (!this.isNew) {
                     await this.$store.dispatch("commands/updateUserCommand", { form: this.form, commandID: this.command.id });
                     //Re-fetch user collections in order to have an updated commands number in the side menu
                     await this.$store.dispatch("collections/fetchUserCollections", this.$store.state.auth.user.id);
@@ -159,10 +164,12 @@ export default {
                 this.form.command = val.command;
                 this.form.collection = val.collection_id;
                 this.form.description = val.description;
+                this.isNew = false;
             } else {
                 this.form.command = "";
                 this.form.collection = "";
                 this.form.description = "";
+                this.isNew = true;
             }
         },
         //If the copyCommand prop is updated(cloning a command), reflect the changes on the form fields
@@ -170,6 +177,11 @@ export default {
             this.form.copy_id = val.id;
             this.form.command = val.command;
             this.form.description = val.description;
+            this.isNew = true;
+        },
+        //Watch if user has logged in
+        "$store.state.auth.user": function (val) {
+            this.form.user_id = this.$auth.user.id;
         },
     },
 };
